@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: QuizManager
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Boldi
+Implementation-Vendor-Id: Proiect731
+Build-Jdk: 1.8.0_111
+Implementation-URL: http://projects.spring.io/spring-boot/QuizManager/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

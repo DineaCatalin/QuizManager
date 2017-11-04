@@ -1,0 +1,8 @@
+Connection Name:logg
+Connection Method:Tcp/Ip
+Hostname:localhost
+port:1000
+user:Admin
+password:123456
+
+mySql. Version5.7
