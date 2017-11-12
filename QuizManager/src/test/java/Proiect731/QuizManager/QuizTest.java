@@ -29,7 +29,7 @@ public class QuizTest {
 		Quiz q1 = new Quiz(30, "mediu", u1);
 
 		q1 = service.saveOrUpdateQuiz(q1);// saveQuiz
-		Iterable<Quiz> listQuiz = service.getAllQuizuri();// getAllQuiz
+		Iterable<Quiz> listQuiz = service.getAllQuizzes();// getAllQuiz
 		assertNotNull(listQuiz);
 
 		service.deleteQuiz(q1.getIdQuiz());// deleteQuiz

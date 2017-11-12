@@ -20,10 +20,15 @@ public class QuizController {
 
 	@Autowired
 	private QuizService service;
+	
+	@GetMapping(path = "/generateQuizzes")
+	public String generateQuizzes() {
+		return service.generateRandomQuizzes().toString();
+	}
 
 	@GetMapping(path = "/getQuiz")
 	public @ResponseBody Iterable<Quiz> getAllQuizuri() {
-		return service.getAllQuizuri();
+		return service.getAllQuizzes();
 	}
 
 	@GetMapping("/getQuiz/{id}")
