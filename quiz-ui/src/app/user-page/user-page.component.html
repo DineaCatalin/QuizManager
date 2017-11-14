@@ -1,0 +1,123 @@
+<div ng-app="myApp" ng-controller="userCtrl" class="w3-container">
+
+  <h3>Question List</h3>
+
+  <button class="w3-btn w3-green w3-ripple" (click)="showForm = true">&#9998; Create New Quiz</button>
+
+  <div *ngIf="showForm">
+    <label>Question:</label>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="quizToAdd.text" placeholder="Question">
+    <br>
+    <label>Difficulty:</label>
+    <select [(ngModel)]="quizToAdd.nivelDificultate" class="w3-dropdown-hover">
+      <option>
+        Junior
+      </option>
+      <option>
+        Intermediary
+      </option>
+      <option>
+        Senior
+      </option>
+      <option>
+        Architect
+      </option>
+    </select>
+    <br>
+    <label>Language:</label>
+    <select [(ngModel)]="quizToAdd.limbaj" class="w3-dropdown-hover">
+      <option>
+        C
+      </option>
+      <option>
+        Java
+      </option>
+      <option>
+        HTML
+      </option>
+      <option>
+        SQL
+      </option>
+    </select>
+    <br>
+    <label>Answers:</label>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="answer1.text" placeholder="Answer 1"><input type="checkbox" [checked]="answer1.valoareAdevar" (change)="answer1.valoareAdevar = !answer1.valoareAdevar" />
+    <input class="w3-input w3-border" type="text" [(ngModel)]="answer2.text" placeholder="Answer 2"><input type="checkbox" [checked]="answer2.valoareAdevar" (change)="answer2.valoareAdevar = !answer2.valoareAdevar" />
+    <input class="w3-input w3-border" type="text" [(ngModel)]="answer3.text" placeholder="Answer 3"><input type="checkbox" [checked]="answer3.valoareAdevar" (change)="answer3.valoareAdevar = !answer3.valoareAdevar" />
+    <input class="w3-input w3-border" type="text" [(ngModel)]="answer4.text" placeholder="Answer 4"><input type="checkbox" [checked]="answer4.valoareAdevar" (change)="answer4.valoareAdevar = !answer4.valoareAdevar" />
+    <br>
+    <label>Points:</label>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="quizToAdd.punctaj" placeholder="Points">
+    <br>
+    <button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="addQuestion()">&#10004; Add Question</button>
+  </div>
+
+  <div *ngIf="showEdit">
+    <label>Question:</label>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="questionToEdit.text" placeholder="Question">
+    <br>
+    <label>Difficulty:</label>
+    <select [(ngModel)]="questionToEdit.nivelDificultate" class="w3-dropdown-hover">
+      <option>
+        Junior
+      </option>
+      <option>
+        Intermediary
+      </option>
+      <option>
+        Senior
+      </option>
+      <option>
+        Architect
+      </option>
+    </select>
+    <br>
+    <label>Language:</label>
+    <select [(ngModel)]="questionToEdit.limbaj" class="w3-dropdown-hover">
+      <option>
+        C
+      </option>
+      <option>
+        Java
+      </option>
+      <option>
+        HTML
+      </option>
+      <option>
+        SQL
+      </option>
+    </select>
+    <br>
+    <label>Points:</label>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="questionToEdit.punctaj" placeholder="Points">
+    <br>
+    <button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="finishQuestion()">&#10004; Add Question</button>
+  </div>
+
+  <table class="w3-table w3-bordered w3-striped">
+    <tr>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Question</th>
+      <th>Language</th>
+      <th>Points</th>
+    </tr>
+    <tr *ngFor="let question of questions">
+      <td>
+        <button class="w3-btn w3-ripple" (click)="editQuestion(question)">&#9998; Edit</button>
+      </td>
+      <td>
+        <button class="w3-btn w3-ripple" (click)="deleteQuestion(question)">&#9998; Delete</button>
+      </td>
+      <td>{{ question.text }}</td>
+      <td>{{ question.limbaj }}</td>
+      <td>{{ question.punctaj }}</td>
+    </tr>
+  </table>
+  <br>
+
+
+
+
+
+</div>
