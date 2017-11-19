@@ -48,7 +48,7 @@ FOREIGN KEY (id_utilizator) REFERENCES utilizator(id_utilizator),
 PRIMARY KEY (id_quiz));
 
 CREATE TABLE intrebare_quiz (
-id_quiz int NOT NULL auto_increment, 
+id_quiz int NOT NULL, 
 id_intrebare int NOT NULL,
 PRIMARY KEY (id_intrebare , id_quiz),
 CONSTRAINT fkidquiz FOREIGN KEY (id_quiz) REFERENCES quiz(id_quiz),
