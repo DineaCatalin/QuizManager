@@ -1,7 +1,7 @@
 CREATE TABLE intrebare (
 id_intrebare int NOT NULL auto_increment,
 nivelDificultate INTEGER,
-limbaj VARCHAR(20),
+enunt VARCHAR(100),
 domeniu VARCHAR(45),
 tehnologie VARCHAR(45),
 punctaj int,
