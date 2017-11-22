@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,10 +40,10 @@ public class Intrebare {
 	@Column(name = "punctaj")
 	private int punctaj;
 
-	@OneToMany(mappedBy = "intrebare")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare", fetch = FetchType.EAGER)
 	private Set<Raspuns> raspuns = new HashSet<Raspuns>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare", fetch = FetchType.EAGER)
 	private Set<TraducereIntrebare> traduceri = new HashSet<TraducereIntrebare>();
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -113,6 +114,23 @@ public class Intrebare {
 		this.punctaj = punctaj;
 	}
 
+	public Set<TraducereIntrebare> getTraducere() {
+		return traduceri;
+	}
+	
+	public void setTraduceri(Set<TraducereIntrebare> trad) {
+		this.traduceri=trad;
+	}
+	
+	
+	public Set<Raspuns> getRaspunsuri() {
+		return raspuns;
+	}
+	
+	public void setRaspunsuri(Set<Raspuns> rasp) {
+		this.raspuns=rasp;
+	}
+	
 	@Override
 	public String toString() {
 		return "Intrebare [idIntreabare=" + idIntrebare + ", nivelDificultate=" + nivelDificultate + ", limbaj="
