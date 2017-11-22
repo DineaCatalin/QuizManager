@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+    <link href="filter.css" rel="stylesheet">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="myApp" class="w3-container">
+    <h1 class="bold-text">Filtrare dupa:</h1>
+    <div ng-controller="selectAll">
+        <p>
+            <label class="bold-text">Nivel dificultate:</label>
+            <div style="display: inline-block" ng-repeat="checkbox in checkboxes1">
+                {{checkbox.label}}
+                <input type="checkbox" ng-click="clearParent()" ng-model="checkbox.selected">
+                <br>
+            </div>
+        <p>
+            <label class="bold-text">Limbaj:</label>
+            <div style="display: inline-block" ng-repeat="checkbox in checkboxes2">
+                {{checkbox.label}}
+                <input type="checkbox" ng-model="checkbox.selected">
+                <br>
+            </div>
+        </p>
+        <p><label class="bold-text">Domeniu:</label>
+            <input class="w3-input w3-border" type="text" ng-model="domeniu">
+        </p>
+        <p><label class="bold-text">Tehnologie:</label>
+                <input class="w3-input w3-border" type="text" ng-model="tehnologie">
+            </p>
+        <p>
+            <label class="bold-text">Numar de raspunsuri corecte:</label>
+            <div style="display: inline-block" ng-repeat="checkbox in checkboxes3">
+                {{checkbox.label}}
+                <input type="checkbox" ng-model="checkbox.selected">
+                <br>
+            </div>
+        </p>
+        <p><label class="bold-text">Dupa un anumit cuvant:</label>
+            <input class="w3-input w3-border" type="text" ng-model="dupaCuvant">
+            <input type="checkbox" ng-model="checkboxModel.cb1"> <label>Case-sensitive</label>
+        </p>
+        <p>
+            <select  class="w3-dropdown-hover">
+                <option value="romana">
+                  Romana
+                </option>
+                <option value="germana">
+                  Germana
+                </option>
+                <option value="engleza">
+                  Engleza
+                </option>
+              </select>
+        </p>
+        <p>
+            <input type="checkbox" ng-model="select_deselect" ng-click="toggleSelect()"/> <label>Selecteaza/Deselecteaza tot</label>
+        </p>
+        <p>
+            <button class="w3-btn w3-green w3-ripple" ng-click="clearSearch()">Reset</button>
+            <button class="w3-btn w3-green w3-ripple">Cauta</button>
+        </p>
+        <p>
+            <table class="w3-table w3-bordered w3-striped">
+                <tr>
+                    <th>Rezultate</th>
+                </tr>
+            </table>
+        </p>
+    </div>
+</body>
+</html>

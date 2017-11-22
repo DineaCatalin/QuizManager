@@ -33,7 +33,7 @@ public class Raspuns {
 	private boolean valoareAdevar;
 
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, targetEntity = Intrebare.class)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY, targetEntity = Intrebare.class)
 	@JoinColumn(name = "id_intrebare", nullable = false)
 	private Intrebare intrebare;
 
