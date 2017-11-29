@@ -1,5 +1,7 @@
 package Proiect731.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +49,9 @@ public class RaspunsService {
     }
     public void deleteRaspuns(int id) {
     	RaspunsRepository.delete(id);
+    }
+    
+    public List<Raspuns> getRaspunsByIntrebare(Intrebare intrebare) {
+    	return this.RaspunsRepository.getRaspunsByIntrebare(intrebare);
     }
 }

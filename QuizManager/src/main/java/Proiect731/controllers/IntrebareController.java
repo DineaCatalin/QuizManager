@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import Proiect731.entity.Intrebare;
 import Proiect731.entity.Raspuns;
 import Proiect731.entity.TraducereIntrebare;
+import Proiect731.entity.TraducereRaspuns;
 import Proiect731.service.IntrebareService;
+import Proiect731.service.RaspunsService;
+import Proiect731.service.TraducereIntrebareService;
+import Proiect731.service.TraducereRaspunsService;
 
 @RestController
 @CrossOrigin
@@ -27,6 +31,12 @@ public class IntrebareController {
 
 	@Autowired
 	private IntrebareService service;
+	
+	@Autowired
+	private TraducereIntrebareService serviceTradIntreb;
+	
+	@Autowired
+	private RaspunsService raspunsService;
 
 	@GetMapping(path = "/getIntrebari")
 	public @ResponseBody Iterable<Intrebare> getAllIntrebari() {
@@ -34,26 +44,16 @@ public class IntrebareController {
 	}
 
 	@GetMapping("/getIntrebari/{id}")
-	public String getById(@PathVariable("id") int id) {
-		Intrebare obj = service.getIntrebare(id);
-		if (obj == null) {
-			return "Intrebare not found!";
-		}
-
-		return "" + obj;
+	public Intrebare getById(@PathVariable("id") int id) {
+		return service.getIntrebare(id);
 	}
 
 	@RequestMapping(value = "/createIntrebare", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String create(@RequestBody Intrebare obj) {
-		String id = "";
-		try {
-			service.saveOrUpdateIntrebare(obj);
-			id = String.valueOf(obj.getIdIntrebare());
-		} catch (Exception ex) {
-			return "Error creating the utilizator: " + ex.toString();
-		}
-		return "User succesfully created with id = " + id;
+	public Intrebare create(@RequestBody Intrebare obj) {
+		System.out.println(obj);
+		return service.saveOrUpdateIntrebare(obj);
+		
 	}
 
 	@GetMapping("/deleteIntrebare/{id}")
@@ -66,34 +66,17 @@ public class IntrebareController {
 		return "Intrebare succesfully deleted!";
 	}
 
-	@RequestMapping("/updateIntrebare/{id}")
+	@RequestMapping("/updateIntrebare")
 	@ResponseBody
-	public String Update(@RequestBody Intrebare object, @PathVariable int id) {
-		try {
-			object.setIdIntreabare(id);
-			service.saveOrUpdateIntrebare(object);
-		} catch (Exception ex) {
-			return "Error updating Intrebare" + ex.toString();
-		}
-		return "Intrebare succesfully updated!";
+	public Intrebare Update(@RequestBody Intrebare object) {
+		return service.saveOrUpdateIntrebare(object);
 	}
 
-	/**
-	 * Functie de filtrare plus functiile adiacente necesare
-	 * 
-	 * @param dificultate
-	 * @param limbaj
-	 * @param domeniu
-	 * @param tehnologie
-	 * @param nrRaspCorecte
-	 * @param text
-	 * @return
-	 */
 	@RequestMapping("/filter/{dificultate}/{limbaj}/{domeniu}/{tehnologie}/{nrRaspunsuriCorecte}/{text}/{caseSensitive}/{limba}")
-	public @ResponseBody Iterable<Intrebare> Filter(@PathVariable("dificultate") List<Integer> dificultate,
-			@PathVariable("limbaj") List<String> limbaj, @PathVariable("domeniu") String domeniu,
+	public @ResponseBody Iterable<Intrebare> Filter(@PathVariable("dificultate") String dificultat,
+			@PathVariable("limbaj") String limbj, @PathVariable("domeniu") String domeniu,
 			@PathVariable("tehnologie") String tehnologie,
-			@PathVariable("nrRaspunsuriCorecte") List<Integer> nrRaspCorecte, 
+			@PathVariable("nrRaspunsuriCorecte") String nrRaspCor, 
 			@PathVariable("text") String text,
 			@PathVariable("caseSensitive") boolean caseSensitive,
 			@PathVariable("limba") String limba) {
@@ -101,12 +84,39 @@ public class IntrebareController {
 		
 		Iterable<Intrebare> listaIntrebariInitiala = getAllIntrebari();
 		List<Intrebare> listaReturnare = new ArrayList<Intrebare>();
-
+		if(dificultat.equals("___")) {
+			dificultat="";
+		}
+		if(tehnologie.equals("___")) {
+			tehnologie="";
+		}
+		if(domeniu.equals("___")) {
+			domeniu="";
+		}
+		if(limbj.equals("___")) {
+			limbj="";
+		}
+		if(nrRaspCor.equals("___")) {
+			nrRaspCor="";
+		}
+		if(text.equals("___")) {
+			text="";
+		}
 		
-		
+		String[] tmpDif =dificultat.split(","); 
+		int[] dificultate= new int[tmpDif.length];
+		for(int i=0;i<tmpDif.length;i++) {
+			dificultate[i]=Integer.parseInt(tmpDif[i]);
+		}
+		String[] limbaj=limbj.split(",");
+		String[] tmpNrRaspCor=nrRaspCor.split(",");
+		int[] nrRaspCorecte=new int[tmpNrRaspCor.length];
+		for(int i=0;i<tmpNrRaspCor.length;i++) {
+			nrRaspCorecte[i]=Integer.parseInt(tmpNrRaspCor[i]);
+		}
 		//System.out.println(lI.size());
 		// Filtrare dupa dificultate
-		if (dificultate.isEmpty()) {
+		if (dificultate.length!=0) {
 			listaIntrebariInitiala.forEach(elem -> {
 				listaReturnare.add(elem);
 			});
@@ -119,7 +129,7 @@ public class IntrebareController {
 		}
 		System.out.println("dupa dif"+ listaReturnare.size());
 		// Filtrare dupa limbaj
-		if (!limbaj.isEmpty()) {
+		if (limbaj.length!=0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
 				if (!VerificareLimbaje(limbaj, listaReturnare.get(i))) {
@@ -135,7 +145,7 @@ public class IntrebareController {
 		
 		
 		//Filtrare dupa numarul de raspunsuri corecte
-		if(!nrRaspCorecte.isEmpty()) {
+		if(nrRaspCorecte.length!=0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
 				if (!VerificareNrRaspunsuri(nrRaspCorecte, listaReturnare.get(i))) {
@@ -176,13 +186,15 @@ public class IntrebareController {
 		}
 		System.out.println("dupa tehnolo"+ listaReturnare.size());
 		
-		// Verificam inati dupa cuvantul cheie
+		System.out.println(text);
+		// Verificam traducerile intrebarilor dupa cuvantul cheie
+		
 		if(text.length()!=0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
 				boolean removed=false;
 				List<TraducereIntrebare> trad=new ArrayList<TraducereIntrebare>();
-				trad.addAll(listaReturnare.get(i).getTraducere());
+				trad.addAll(serviceTradIntreb.getTraducereIntrebareByIntrebare(listaReturnare.get(i)));
 				for(int j=0;j<trad.size();j++) {
 					if(trad.get(j).getLimba().equals(limba)) {
 						if(caseSensitive) {
@@ -212,9 +224,9 @@ public class IntrebareController {
 	}
 
 	// Verificare in lista de dificultate
-	boolean VerificareDificultate(List<Integer> dif, Intrebare intreb) {
-		for (int i = 0; i < dif.size(); i++) {
-			if (dif.get(i) == intreb.getNivelDificultate()) {
+	boolean VerificareDificultate(int[] dif, Intrebare intreb) {
+		for (int i = 0; i < dif.length; i++) {
+			if (dif[i] == intreb.getNivelDificultate()) {
 				return true;
 			}
 		}
@@ -222,27 +234,27 @@ public class IntrebareController {
 	}
 
 	// Verificare in lista de limbaje
-	boolean VerificareLimbaje(List<String> limbaj, Intrebare intreb) {
-		for (int i = 0; i < limbaj.size(); i++) {
-			if (limbaj.get(i).equals(intreb.getLimbaj())) {
+	boolean VerificareLimbaje(String[] limbaj, Intrebare intreb) {
+		for (int i = 0; i < limbaj.length; i++) {
+			if (limbaj[i].equals(intreb.getLimbaj())) {
 				return true;
 			}
 		}
 		return false;
 	}
 	// Verificare in lista de Raspunsuri
-		boolean VerificareNrRaspunsuri(List<Integer> nrRaspunsuri, Intrebare intreb) {
+		boolean VerificareNrRaspunsuri(int[] nrRaspunsuri, Intrebare intreb) {
 			int nrRaspunsuriCorecte=0;
 			List<Raspuns> lRaspunsuri=new ArrayList<Raspuns>();
-			lRaspunsuri.addAll(intreb.getRaspunsuri());
+			lRaspunsuri.addAll(raspunsService.getRaspunsByIntrebare(intreb));
 			for(int i=0;i<lRaspunsuri.size();i++) {
 				if(lRaspunsuri.get(i).isValoareAdevar()) {
 					nrRaspunsuriCorecte++;
 				}
 			}
 			
-			for (int i = 0; i < nrRaspunsuri.size(); i++) {
-				if (nrRaspunsuri.get(i) == nrRaspunsuriCorecte) {
+			for (int i = 0; i < nrRaspunsuri.length; i++) {
+				if (nrRaspunsuri[i] == nrRaspunsuriCorecte) {
 					return true;
 				}
 			}

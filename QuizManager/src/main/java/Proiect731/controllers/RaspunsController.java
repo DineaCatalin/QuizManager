@@ -1,5 +1,7 @@
 package Proiect731.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import Proiect731.entity.Raspuns;
+import Proiect731.service.IntrebareService;
 import Proiect731.service.RaspunsService;
 
 @RestController
@@ -20,6 +23,9 @@ public class RaspunsController {
 
 	@Autowired
 	private RaspunsService service;
+	
+	@Autowired
+	private IntrebareService intService;
 
 	@GetMapping(path = "/getRaspuns")
 	public @ResponseBody Iterable<Raspuns> getAllRaspunsuri() {
@@ -27,26 +33,20 @@ public class RaspunsController {
 	}
 
 	@GetMapping("/getRaspuns/{id}")
-	public String getById(@PathVariable("id") int id) {
-		Raspuns obj = service.getRaspuns(id);
-		if (obj == null) {
-			return "Intrebare not found!";
-		}
-
-		return "" + obj;
+	public Raspuns getById(@PathVariable("id") int id) {
+		return service.getRaspuns(id);
+	}
+	
+	@GetMapping("/getRaspunsByIntrebare/{id}")
+	public List<Raspuns> getByIntrebare(@PathVariable("id") int id) {
+		return service.getRaspunsByIntrebare(intService.getIntrebare(id));
 	}
 
 	@RequestMapping(value = "/createRaspuns", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String create(@RequestBody Raspuns obj) {
-		String id = "";
-		try {
-			service.saveOrUpdateRaspuns(obj);
-			id = String.valueOf(obj.getIdRaspuns());
-		} catch (Exception ex) {
-			return "Error creating the raspuns: " + ex.toString();
-		}
-		return "Raspuns succesfully created with id = " + id;
+	public Raspuns create(@RequestBody Raspuns obj) {
+		System.out.println(obj);
+		return service.saveOrUpdateRaspuns(obj);
 	}
 
 	@GetMapping("/deleteRaspuns/{id}")
@@ -59,15 +59,9 @@ public class RaspunsController {
 		return "Raspuns succesfully deleted!";
 	}
 
-	@RequestMapping("/updateRaspuns/{id}")
+	@RequestMapping("/updateRaspuns")
 	@ResponseBody
-	public String Update(@RequestBody Raspuns object, @PathVariable int id) {
-		try {
-			object.setIdRaspuns(id);
-			service.saveOrUpdateRaspuns(object);
-		} catch (Exception ex) {
-			return "Error updating Raspuns" + ex.toString();
-		}
-		return "Raspuns succesfully updated!";
+	public Raspuns Update(@RequestBody Raspuns object) {
+		return service.saveOrUpdateRaspuns(object);
 	}
 }

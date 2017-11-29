@@ -1,0 +1,46 @@
+<div>
+  <label>Question:</label>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.traduceri[0].enunt" placeholder="Question">
+  <br>
+  <label>Difficulty:</label>
+  <select [(ngModel)]="intrebare.nivelDificultate" class="w3-dropdown-hover">
+    <option value="1">
+      Junior
+    </option>
+    <option value="2">
+      Intermediary
+    </option>
+    <option value="3">
+      Senior
+    </option>
+    <option value="4">
+      Architect
+    </option>
+  </select>
+  <br>
+  <label>Language:</label>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.limbaj" placeholder="Language">
+  <br>
+  <label>Technology:</label>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.tehnologie" placeholder="Technology">
+  <br>
+  <label>Domain:</label>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.domeniu" placeholder="Domain">
+  <br>
+  <label>Answers:</label>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.raspuns[0].traduceri[0].enunt" placeholder="Answer 1"><input
+  type="checkbox" [checked]="intrebare.raspuns[0].valoareAdevar" (change)="intrebare.raspuns[0].valoareAdevar = !intrebare.raspuns[0].valoareAdevar"/>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.raspuns[1].traduceri[0].enunt" placeholder="Answer 2"><input
+  type="checkbox" [checked]="intrebare.raspuns[1].valoareAdevar" (change)="intrebare.raspuns[1].valoareAdevar = !intrebare.raspuns[1].valoareAdevar"/>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.raspuns[2].traduceri[0].enunt" placeholder="Answer 3"><input
+  type="checkbox" [checked]="intrebare.raspuns[2].valoareAdevar" (change)="intrebare.raspuns[2].valoareAdevar = !intrebare.raspuns[2].valoareAdevar"/>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.raspuns[3].traduceri[0].enunt" placeholder="Answer 4"><input
+  type="checkbox" [checked]="intrebare.raspuns[3].valoareAdevar" (change)="intrebare.raspuns[3].valoareAdevar = !intrebare.raspuns[3].valoareAdevar"/>
+  <br>
+  <label>Points:</label>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.punctaj" placeholder="Points">
+  <br>
+  <button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="addQuestion()">&#10004; Edit
+    Question
+  </button>
+</div>

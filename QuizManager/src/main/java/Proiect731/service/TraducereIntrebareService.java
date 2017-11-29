@@ -1,8 +1,11 @@
 package Proiect731.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Proiect731.entity.Intrebare;
 import Proiect731.entity.TraducereIntrebare;
 import Proiect731.repository.TraducereIntrebareRepo;
 
@@ -26,5 +29,9 @@ public class TraducereIntrebareService {
 
 	    public void deleteTraducereIntrebare(int id) {
 	    	traducereIntrebareRepository.delete(id);
+	    }
+	    
+	    public List<TraducereIntrebare> getTraducereIntrebareByIntrebare(Intrebare intrebare) {
+	    	return this.traducereIntrebareRepository.getTraducereIntrebareByIntrebare(intrebare);
 	    }
 }

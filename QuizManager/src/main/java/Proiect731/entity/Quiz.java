@@ -37,10 +37,6 @@ public class Quiz {
 	@JoinColumn(name = "id_utilizator", nullable = false)
 	private Utilizator utilizator;
 
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "quizes")
-	private Set<Intrebare> intrebari= new HashSet<>();
-
 	public Quiz() {
 
 	}
@@ -49,7 +45,6 @@ public class Quiz {
 		this.punctajTotal = punctajTotal;
 		this.informatiiGenerale = informatiiGenerale;
 		this.utilizator = utilizator;
-		this.intrebari = new HashSet<Intrebare>(0);
 	}
 
 	public int getIdQuiz() {

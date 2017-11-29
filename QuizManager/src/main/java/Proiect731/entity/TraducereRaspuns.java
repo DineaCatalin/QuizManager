@@ -28,8 +28,7 @@ public class TraducereRaspuns {
 	@Column(name = "limba")
 	private String limba;
 
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, targetEntity = Raspuns.class)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_raspuns", nullable = false)
 	private Raspuns raspuns;
 
@@ -42,7 +41,7 @@ public class TraducereRaspuns {
 		this.limba = limba;
 		this.raspuns = idraspuns;
 	}
-
+	
 	public int getIdTraducere() {
 		return idTraducere;
 	}
@@ -67,12 +66,12 @@ public class TraducereRaspuns {
 		this.limba = limba;
 	}
 
-	public Raspuns getIdRaspuns() {
+	public Raspuns getRaspuns() {
 		return raspuns;
 	}
 
-	public void setIdRaspuns(Raspuns idraspuns) {
-		this.raspuns = idraspuns;
+	public void setRaspuns(Raspuns raspuns) {
+		this.raspuns = raspuns;
 	}
 
 	@Override
