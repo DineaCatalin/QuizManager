@@ -9,7 +9,6 @@ PRIMARY KEY (id_intrebare));
 
 CREATE TABLE raspuns (
 id_raspuns int NOT NULL auto_increment,
-enunt VARCHAR(500),
 valoareAdevar binary,
 id_intrebare int, 
 FOREIGN KEY (id_intrebare) REFERENCES intrebare(id_intrebare),
