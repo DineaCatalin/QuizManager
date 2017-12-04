@@ -3,12 +3,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@RestController
 public class QuizManagerController {
 	    
 	    @RequestMapping("/")
 	    public String index(String s) {
-	    	s="interfataFilter.html";
+	    	s="Greetings";
 	        return s;
 	    }
 	    

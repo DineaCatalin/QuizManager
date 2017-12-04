@@ -16,13 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "intrebare")
 public class Intrebare {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_intrebare")
@@ -43,19 +40,6 @@ public class Intrebare {
 	@Column(name = "punctaj")
 	private int punctaj;
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare",fetch = FetchType.LAZY)
-	private Set<Raspuns> raspuns = new HashSet<Raspuns>();
-
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare",fetch = FetchType.LAZY)
-	private Set<TraducereIntrebare> traduceri = new HashSet<TraducereIntrebare>();
-
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "intrebare_quiz", joinColumns = { @JoinColumn(name = "id_intrebare",nullable=false) }, inverseJoinColumns = {
-			@JoinColumn(name = "id_quiz",nullable=false) })
-	private Set<Quiz> quizes = new HashSet<>();
-
 	public Intrebare() {
 
 	}
@@ -66,17 +50,10 @@ public class Intrebare {
 		this.domeniu = domeniu;
 		this.tehnologie = tehnologie;
 		this.punctaj = punctaj;
-		this.quizes = new HashSet<>(0);
-		this.traduceri = new HashSet<TraducereIntrebare>(0);
-		this.raspuns = new HashSet<Raspuns>(0);
 	}
 
 	public int getIdIntrebare() {
 		return idIntrebare;
-	}
-
-	public void setIdIntreabare(int idIntreabare) {
-		this.idIntrebare = idIntreabare;
 	}
 
 	public int getNivelDificultate() {
@@ -110,33 +87,19 @@ public class Intrebare {
 	public void setTehnologie(String tehnologie) {
 		this.tehnologie = tehnologie;
 	}
-
-	public int getpunctaj() {
+	
+	public int getPunctaj() {
 		return punctaj;
 	}
 
-	public void setpunctaj(int punctaj) {
+	public void setPunctaj(int punctaj) {
 		this.punctaj = punctaj;
 	}
 
+	public void setIdIntrebare(int idIntrebare) {
+		this.idIntrebare = idIntrebare;
+	}
 
-	public Set<TraducereIntrebare> getTraducere() {
-		return traduceri;
-	}
-	
-	public void setTraduceri(Set<TraducereIntrebare> trad) {
-		this.traduceri=trad;
-	}
-	
-	
-	public Set<Raspuns> getRaspunsuri() {
-		return raspuns;
-	}
-	
-	public void setRaspunsuri(Set<Raspuns> rasp) {
-		this.raspuns=rasp;
-	}
-	
 	@Override
 	public String toString() {
 		return "Intrebare [idIntreabare=" + idIntrebare + ", nivelDificultate=" + nivelDificultate + ", limbaj="

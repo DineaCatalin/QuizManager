@@ -1,5 +1,7 @@
 package Proiect731.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import Proiect731.entity.TraducereIntrebare;
+import Proiect731.service.IntrebareService;
 import Proiect731.service.TraducereIntrebareService;
 
 @RestController
@@ -19,6 +22,9 @@ import Proiect731.service.TraducereIntrebareService;
 public class TraducereIntrebareController {
 	@Autowired
 	private TraducereIntrebareService service;
+	
+	@Autowired
+	private IntrebareService intService;
 
 	@GetMapping(path = "/getIntrebariTraduse")
 	public @ResponseBody Iterable<TraducereIntrebare> getAllIntrebariTraduse() {
@@ -26,26 +32,20 @@ public class TraducereIntrebareController {
 	}
 
 	@GetMapping("/getIntrebariTraduse/{id}")
-	public String getById(@PathVariable("id") int id) {
-		TraducereIntrebare obj = service.getTraducereIntrebare(id);
-		if (obj == null) {
-			return "TraducereIntrebare not found!";
-		}
+	public TraducereIntrebare getById(@PathVariable("id") int id) {
+		return service.getTraducereIntrebare(id);
+	}
 
-		return "" + obj;
+	@GetMapping("/getIntrebariTraduseByIntrebare/{id}")
+	public List<TraducereIntrebare> getByIntrebare(@PathVariable("id") int id) {
+		return service.getTraducereIntrebareByIntrebare(intService.getIntrebare(id));
 	}
 
 	@RequestMapping(value = "/createIntrebariTraduse", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String create(@RequestBody TraducereIntrebare obj) {
-		String id = "";
-		try {
-			service.saveOrUpdateTraducereIntrebare(obj);
-			id = String.valueOf(obj.getIdTraducere());
-		} catch (Exception ex) {
-			return "Error creating the TraducereIntrebare: " + ex.toString();
-		}
-		return "TraducereIntrebare succesfully created with id = " + id;
+	public TraducereIntrebare create(@RequestBody TraducereIntrebare obj) {
+		System.out.println(obj);
+		return service.saveOrUpdateTraducereIntrebare(obj);
 	}
 
 	@GetMapping("/deleteIntrebariTraduse/{id}")
@@ -58,16 +58,10 @@ public class TraducereIntrebareController {
 		return "TraducereIntrebare succesfully deleted!";
 	}
 
-	@RequestMapping("/updateIntrebariTraduse/{id}")
+	@RequestMapping("/updateIntrebariTraduse")
 	@ResponseBody
-	public String Update(@RequestBody TraducereIntrebare object, @PathVariable int id) {
-		try {
-			object.setIdTraducere(id);
-			service.saveOrUpdateTraducereIntrebare(object);
-		} catch (Exception ex) {
-			return "Error updating TraducereIntrebare" + ex.toString();
-		}
-		return "TraducereIntrebare succesfully updated!";
+	public TraducereIntrebare Update(@RequestBody TraducereIntrebare object) {
+		return service.saveOrUpdateTraducereIntrebare(object);
 	}
 
 }

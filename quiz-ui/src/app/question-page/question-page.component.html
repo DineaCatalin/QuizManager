@@ -1,0 +1,49 @@
+<div ng-app="myApp" ng-controller="userCtrl" class="w3-container">
+  <div *ngIf="!edit">
+  <h3>Question List</h3>
+
+  <table class="w3-table w3-bordered w3-striped">
+    <tr>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Question</th>
+      <th>Difficulty</th>
+      <th>Points</th>
+      <th>Answers</th>
+    </tr>
+    <tr *ngFor="let question of questions">
+      <td>
+        <button class="w3-btn w3-ripple" (click)="editQuestion(question)">&#9998; Edit</button>
+      </td>
+      <td>
+        <button class="w3-btn w3-ripple" (click)="deleteQuestion(question)">&#9998; Delete</button>
+      </td>
+      <td>
+        <span *ngFor="let traducere of question.traduceri">{{traducere.enunt}}</span>
+      </td>
+      <td>{{ getDificultate(question.nivelDificultate) }}</td>
+      <td>{{ question.punctaj }}</td>
+      <td>
+        <button *ngIf="!question.showAnswers" (click)="showAnswersMethod(question)" class="w3-btn w3-green w3-ripple">Show Answers</button>
+        <button *ngIf="question.showAnswers" (click)="hideAnswers(question)" class="w3-btn w3-green w3-ripple">Hide Answers</button>
+        <table *ngIf="question.showAnswers">
+          <tr>
+            <th>Answer</th>
+            <th>True</th>
+          </tr>
+          <tr *ngFor="let answer of question.raspuns">
+            <td>
+              <span *ngFor="let traducere of answer.traduceri">{{traducere.enunt}}</span>
+            </td>
+            <td>{{answer.valoareAdevar}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  </div>
+<edit-question *ngIf="edit" [intrebare]="editableQuestion" (finishEditing)="finishEditing()"></edit-question>
+
+</div>

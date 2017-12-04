@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "traducere_intrebare")
 public class TraducereIntrebare {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_traducere")
@@ -29,8 +28,7 @@ public class TraducereIntrebare {
 	@Column(name = "limba")
 	private String limba;
 
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, targetEntity = Intrebare.class)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_intrebare", nullable = false)
 	private Intrebare intrebare;
 
@@ -38,10 +36,11 @@ public class TraducereIntrebare {
 
 	}
 
-	public TraducereIntrebare(String enunt, String limba, Intrebare idIntrebare) {
+	public TraducereIntrebare(String enunt, String limba, Intrebare intrebare) {
+		super();
 		this.enunt = enunt;
 		this.limba = limba;
-		this.intrebare = idIntrebare;
+		this.intrebare = intrebare;
 	}
 
 	public int getIdTraducere() {
@@ -68,13 +67,12 @@ public class TraducereIntrebare {
 		this.limba = limba;
 	}
 
-	@JsonIgnore
-	public Intrebare getIdIntrebare() {
+	public Intrebare getIntrebare() {
 		return intrebare;
 	}
 
-	public void setIdIntrebare(Intrebare idIntrebare) {
-		this.intrebare = idIntrebare;
+	public void setIntrebare(Intrebare intrebare) {
+		this.intrebare = intrebare;
 	}
 
 	@Override

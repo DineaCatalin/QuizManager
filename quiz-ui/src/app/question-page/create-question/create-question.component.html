@@ -1,0 +1,44 @@
+<label>Question:</label>
+<input class="w3-input w3-border" type="text" [(ngModel)]="questionTransToAdd.enunt" placeholder="Question">
+<br>
+<label>Difficulty:</label>
+<select [(ngModel)]="questionToAdd.nivelDificultate" class="w3-dropdown-hover">
+  <option value="1">
+    Junior
+  </option>
+  <option value="2">
+    Intermediary
+  </option>
+  <option value="3">
+    Senior
+  </option>
+  <option value="4">
+    Architect
+  </option>
+</select>
+<br>
+<label>Language:</label>
+<input class="w3-input w3-border" type="text" [(ngModel)]="questionToAdd.limbaj" placeholder="Language">
+<br>
+<label>Technology:</label>
+<input class="w3-input w3-border" type="text" [(ngModel)]="questionToAdd.tehnologie" placeholder="Technology">
+<br>
+<label>Domain:</label>
+<input class="w3-input w3-border" type="text" [(ngModel)]="questionToAdd.domeniu" placeholder="Domain">
+<br>
+<label>Answers:</label>
+<input class="w3-input w3-border" type="text" [(ngModel)]="answerTrans1.enunt" placeholder="Answer 1"><input
+  type="checkbox" [checked]="answer1.valoareAdevar" (change)="answer1.valoareAdevar = !answer1.valoareAdevar"/>
+<input class="w3-input w3-border" type="text" [(ngModel)]="answerTrans2.enunt" placeholder="Answer 2"><input
+  type="checkbox" [checked]="answer2.valoareAdevar" (change)="answer2.valoareAdevar = !answer2.valoareAdevar"/>
+<input class="w3-input w3-border" type="text" [(ngModel)]="answerTrans3.enunt" placeholder="Answer 3"><input
+  type="checkbox" [checked]="answer3.valoareAdevar" (change)="answer3.valoareAdevar = !answer3.valoareAdevar"/>
+<input class="w3-input w3-border" type="text" [(ngModel)]="answerTrans4.enunt" placeholder="Answer 4"><input
+  type="checkbox" [checked]="answer4.valoareAdevar" (change)="answer4.valoareAdevar = !answer4.valoareAdevar"/>
+<br>
+<label>Points:</label>
+<input class="w3-input w3-border" type="text" [(ngModel)]="questionToAdd.punctaj" placeholder="Points">
+<br>
+<button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="addQuestion()">&#10004; Add
+  Question
+</button>
