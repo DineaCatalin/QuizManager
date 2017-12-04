@@ -33,7 +33,7 @@ public class Quiz {
 	private String informatiiGenerale;
 
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, targetEntity = Utilizator.class)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Utilizator.class)
 	@JoinColumn(name = "id_utilizator", nullable = false)
 	private Utilizator utilizator;
 

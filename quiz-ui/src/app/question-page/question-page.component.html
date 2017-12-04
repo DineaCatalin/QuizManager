@@ -1,6 +1,6 @@
 <div ng-app="myApp" ng-controller="userCtrl" class="w3-container">
   <div *ngIf="!edit">
-  <h3>Question List</h3>
+    <h3>Question List</h3>
 
   <table class="w3-table w3-bordered w3-striped">
     <tr>
@@ -42,8 +42,58 @@
     </tr>
   </table>
   <br>
-
   </div>
 <edit-question *ngIf="edit" [intrebare]="editableQuestion" (finishEditing)="finishEditing()"></edit-question>
-
+  <button class="w3-btn w3-green w3-ripple w3-margin-top"  type="submit" (click)="showHide = !showHide">Filter options</button>
+  <button class="w3-btn w3-green w3-ripple w3-margin-top" type="submit" (click)="refresh()">Clear filter</button>
+  <div *ngIf="showHide" class="w3-container">
+    <h1 class="bold-text">Filter:</h1>
+    <div>
+      <p>
+        <label class="bold-text">Difficulty:</label>
+      </p>
+      <table class="w3-table w3-striped">
+        <tr>
+          <td *ngFor="let checkbox of checkboxes1">
+            <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked"> {{checkbox.nume}}</td>
+        </tr>
+      </table>
+      <p><label class="bold-text">Programming language:</label>
+        <input class="w3-input w3-border" type="text" [(ngModel)]="programmingLanguage" placeholder="Programming language">
+      </p>
+      <p><label class="bold-text">Domain:</label>
+        <input class="w3-input w3-border" type="text" [(ngModel)]="domeniu" placeholder="Domain">
+      </p>
+      <p><label class="bold-text">Technology:</label>
+        <input class="w3-input w3-border" type="text" [(ngModel)]="tehnologie" placeholder="Technology">
+      </p>
+      <p>
+        <label class="bold-text">Number of correct answers:</label>
+      </p>
+      <table class="w3-table w3-striped">
+        <tr>
+          <td *ngFor="let checkbox of checkboxes2">
+            <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked"> {{checkbox.nume}}</td>
+        </tr>
+      </table>
+      <p><label class="bold-text">Sequence of characters:</label>
+        <input class="w3-input w3-border" type="text" [(ngModel)]="dupaCuvant" placeholder="Sequence of characters">
+        <input type="checkbox" [checked]="checkboxCaseSens" (change)="checkboxCaseSens = !checkboxCaseSens"> <label>Case-sensitive</label>
+      </p>
+      <p>
+        <select  class="w3-dropdown-hover" [(ngModel)]="limbaIntrebare">
+          <option *ngFor="let limba of trad" [ngValue]="limba.limba" >
+            {{limba.limba}}
+          </option>
+        </select>
+      </p>
+      <p>
+        <input type="checkbox" [checked]="selectDeselect" (change)="checkUncheck()"/> <label>Select/Deselect all</label>
+      </p>
+      <p>
+        <button class="w3-btn w3-green w3-ripple" type="submit" (click)="clearSearch()">Reset parameters</button>
+        <button class="w3-btn w3-green w3-ripple" type="submit" (click)="filter()">Search</button>
+      </p>
+    </div>
+  </div>
 </div>

@@ -11,7 +11,6 @@ import {Http, HttpModule} from "@angular/http";
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { EditQuestionComponentComponent } from './question-page/edit-question-component/edit-question-component.component';
 import { CreateQuestionComponent } from './question-page/create-question/create-question.component';
-import {FilterPageComponent} from "./filter-page/filter-page.component";
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import {FilterPageComponent} from "./filter-page/filter-page.component";
     QuestionPageComponent,
     MenuPageComponent,
     EditQuestionComponentComponent,
-    FilterPageComponent,
     CreateQuestionComponent
   ],
   imports: [

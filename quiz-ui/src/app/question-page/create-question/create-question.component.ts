@@ -30,7 +30,32 @@ export class CreateQuestionComponent implements OnInit {
   ngOnInit() {
   }
 
+  addQuestion1():void{
+
+    if (this.questionToAdd.punctaj > 100 || this.questionToAdd.punctaj <= 0) {
+      alert("Points must be between 1 and 100");
+    } else {
+      var idIntreb = -1;
+      var idTradIntreb = -1;
+      this.questionToAdd.traduceri = [];
+      this.questionToAdd.raspuns = [];
+      var intreb = new Intrebare(this.questionToAdd.nivelDificultate, this.questionToAdd.limbaj, this.questionToAdd.domeniu, this.questionToAdd.tehnologie, this.questionToAdd.punctaj, this.questionToAdd.raspuns, this.questionToAdd.traduceri);
+      var tradIntreb = new TraducereIntrebare(null, this.questionTransToAdd.enunt, this.questionTransToAdd.limba, this.questionToAdd);
+      intreb.traduceri.push(tradIntreb);
+      alert("Push successful");
+
+      this.backend.addQuestion(intreb).subscribe((res: Intrebare) => {
+
+        window.location.reload();
+      });
+
+
+    }
+
+  }
+
   addQuestion(): void {
+
     if (this.questionToAdd.punctaj > 100 || this.questionToAdd.punctaj <= 0) {
       alert("Points must be between 1 and 100");
     } else {
@@ -39,6 +64,7 @@ export class CreateQuestionComponent implements OnInit {
         this.backend.addQuestionTrans(this.questionTransToAdd).subscribe(res2 => {
           this.questionTransToAdd = new TraducereIntrebare(null, null, 'English', null);
         });
+
         this.answer1.intrebare = res;
         this.answer2.intrebare = res;
         this.answer3.intrebare = res;
@@ -74,6 +100,7 @@ export class CreateQuestionComponent implements OnInit {
             alert("Question added successfully");
           });
         });
+
       });
     }
   }

@@ -15,9 +15,8 @@ class menuItem {
 })
 export class MenuPageComponent implements OnInit {
   urls: menuItem[] = [
-    { active: false, url: "question-page", text: "Question List" },
+    { active: false, url: "question-page", text: "Filter and list questions" },
     { active: false, url: "create-question-page", text: "Add Question" },
-    { active: false, url:"filter-page", text:"Filter Questions"}
   ];
 
   constructor(private route: ActivatedRoute, private router: Router) { }

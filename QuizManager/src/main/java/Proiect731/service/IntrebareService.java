@@ -40,13 +40,6 @@ public class IntrebareService {
 	}
 
 	public void deleteIntrebare(int id) {
-		Intrebare intrebare = intrebareRepository.findOne(id);
-		List<Raspuns> raspunsuri = raspunsRepository.getRaspunsByIntrebare(intrebare);
-		for(Raspuns raspuns: raspunsuri) {
-			traducereRaspunsRepository.deleteByRaspuns(raspuns);
-		}
-		raspunsRepository.deleteByIntrebare(intrebare);
-		traducereIntrebareRepo.deleteByIntrebare(intrebare);
 		intrebareRepository.delete(id);
 	}
 }

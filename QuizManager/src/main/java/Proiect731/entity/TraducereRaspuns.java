@@ -28,7 +28,8 @@ public class TraducereRaspuns {
 	@Column(name = "limba")
 	private String limba;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Raspuns.class)
 	@JoinColumn(name = "id_raspuns", nullable = false)
 	private Raspuns raspuns;
 
@@ -66,12 +67,13 @@ public class TraducereRaspuns {
 		this.limba = limba;
 	}
 
-	public Raspuns getRaspuns() {
+	@JsonIgnore
+	public Raspuns getIdRaspuns() {
 		return raspuns;
 	}
 
-	public void setRaspuns(Raspuns raspuns) {
-		this.raspuns = raspuns;
+	public void setIdRaspuns(Raspuns idraspuns) {
+		this.raspuns = idraspuns;
 	}
 
 	@Override

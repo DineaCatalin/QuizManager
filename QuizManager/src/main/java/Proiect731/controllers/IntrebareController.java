@@ -31,10 +31,10 @@ public class IntrebareController {
 
 	@Autowired
 	private IntrebareService service;
-	
+
 	@Autowired
 	private TraducereIntrebareService serviceTradIntreb;
-	
+
 	@Autowired
 	private RaspunsService raspunsService;
 
@@ -51,9 +51,10 @@ public class IntrebareController {
 	@RequestMapping(value = "/createIntrebare", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Intrebare create(@RequestBody Intrebare obj) {
+		System.out.println("Suntem La creere");
 		System.out.println(obj);
 		return service.saveOrUpdateIntrebare(obj);
-		
+
 	}
 
 	@GetMapping("/deleteIntrebare/{id}")
@@ -66,57 +67,85 @@ public class IntrebareController {
 		return "Intrebare succesfully deleted!";
 	}
 
-	@RequestMapping("/updateIntrebare")
+	@RequestMapping(value = "/updateIntrebare", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Intrebare Update(@RequestBody Intrebare object) {
+		System.out.println("Suntem la update");
+		System.out.println(object);
 		return service.saveOrUpdateIntrebare(object);
 	}
 
 	@RequestMapping("/filter/{dificultate}/{limbaj}/{domeniu}/{tehnologie}/{nrRaspunsuriCorecte}/{text}/{caseSensitive}/{limba}")
 	public @ResponseBody Iterable<Intrebare> Filter(@PathVariable("dificultate") String dificultat,
 			@PathVariable("limbaj") String limbj, @PathVariable("domeniu") String domeniu,
-			@PathVariable("tehnologie") String tehnologie,
-			@PathVariable("nrRaspunsuriCorecte") String nrRaspCor, 
-			@PathVariable("text") String text,
-			@PathVariable("caseSensitive") boolean caseSensitive,
+			@PathVariable("tehnologie") String tehnologie, @PathVariable("nrRaspunsuriCorecte") String nrRaspCor,
+			@PathVariable("text") String text, @PathVariable("caseSensitive") boolean caseSensitive,
 			@PathVariable("limba") String limba) {
-		
-		
+
 		Iterable<Intrebare> listaIntrebariInitiala = getAllIntrebari();
 		List<Intrebare> listaReturnare = new ArrayList<Intrebare>();
-		if(dificultat.equals("___")) {
-			dificultat="";
+		if (dificultat.equals("___")) {
+			dificultat = "";
 		}
-		if(tehnologie.equals("___")) {
-			tehnologie="";
+		if (tehnologie.equals("___")) {
+			tehnologie = "";
 		}
-		if(domeniu.equals("___")) {
-			domeniu="";
+		if (domeniu.equals("___")) {
+			domeniu = "";
 		}
-		if(limbj.equals("___")) {
-			limbj="";
+		if (limbj.equals("___")) {
+			limbj = "";
 		}
-		if(nrRaspCor.equals("___")) {
-			nrRaspCor="";
+		if (nrRaspCor.equals("___")) {
+			nrRaspCor = "";
 		}
-		if(text.equals("___")) {
-			text="";
+		if (text.equals("___")) {
+			text = "";
+		}
+
+		String[] tmpDif = new String[0];
+		String[] limbaj = new String[0];
+		String[] tmpNrRaspCor = new String[0];
+		int[] nrRaspCorecte = new int[0];
+
+		if (dificultat.length() != 0) {
+			if (dificultat.contains(",")) {
+				tmpDif = dificultat.split(",");
+			} else {
+				tmpDif= new String[] {dificultat};
+			}
 		}
 		
-		String[] tmpDif =dificultat.split(","); 
-		int[] dificultate= new int[tmpDif.length];
-		for(int i=0;i<tmpDif.length;i++) {
-			dificultate[i]=Integer.parseInt(tmpDif[i]);
+		int[] dificultate = new int[tmpDif.length];
+		for (int i = 0; i < tmpDif.length; i++) {
+			dificultate[i] = Integer.parseInt(tmpDif[i]);
 		}
-		String[] limbaj=limbj.split(",");
-		String[] tmpNrRaspCor=nrRaspCor.split(",");
-		int[] nrRaspCorecte=new int[tmpNrRaspCor.length];
-		for(int i=0;i<tmpNrRaspCor.length;i++) {
-			nrRaspCorecte[i]=Integer.parseInt(tmpNrRaspCor[i]);
+		
+		
+		if (limbj.length() != 0) {
+			if (limbj.contains(",")) {
+				limbaj = limbj.split(",");
+			} else {
+				limbaj= new String[] {limbj};
+			}
 		}
-		//System.out.println(lI.size());
+		
+		
+		if (nrRaspCor.length() != 0) {
+			if (nrRaspCor.contains(",")) {
+				tmpNrRaspCor = nrRaspCor.split(",");
+			} else {
+				tmpNrRaspCor= new String[] {nrRaspCor};
+			}
+		}
+		
+		nrRaspCorecte = new int[tmpNrRaspCor.length];
+		for (int i = 0; i < tmpNrRaspCor.length; i++) {
+			nrRaspCorecte[i] = Integer.parseInt(tmpNrRaspCor[i]);
+		}
+		// System.out.println(lI.size());
 		// Filtrare dupa dificultate
-		if (dificultate.length!=0) {
+		if (dificultate.length != 0) {
 			listaIntrebariInitiala.forEach(elem -> {
 				listaReturnare.add(elem);
 			});
@@ -127,99 +156,93 @@ public class IntrebareController {
 				}
 			});
 		}
-		System.out.println("dupa dif"+ listaReturnare.size());
+		System.out.println("dupa dif" + listaReturnare.size());
 		// Filtrare dupa limbaj
-		if (limbaj.length!=0) {
+		if (limbaj.length != 0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
 				if (!VerificareLimbaje(limbaj, listaReturnare.get(i))) {
 					listaReturnare.remove(i);
-				}
-				else {
+				} else {
 					i++;
 				}
 			}
 
 		}
-		System.out.println("dupa limbaj"+ listaReturnare.size());
-		
-		
-		//Filtrare dupa numarul de raspunsuri corecte
-		if(nrRaspCorecte.length!=0) {
+		System.out.println("dupa limbaj" + listaReturnare.size());
+
+		// Filtrare dupa numarul de raspunsuri corecte
+		if (nrRaspCorecte.length != 0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
 				if (!VerificareNrRaspunsuri(nrRaspCorecte, listaReturnare.get(i))) {
 					listaReturnare.remove(i);
-				}
-				else {
+				} else {
 					i++;
 				}
 			}
 		}
-		
-		System.out.println("dupa nrRasp"+ listaReturnare.size());
-		
-		//Filtrare dupa domeniu
-		if(domeniu.length()!=0) {
+
+		System.out.println("dupa nrRasp" + listaReturnare.size());
+
+		// Filtrare dupa domeniu
+		if (domeniu.length() != 0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
 				if (!listaReturnare.get(i).getDomeniu().equals(domeniu)) {
 					listaReturnare.remove(i);
-				}
-				else {
+				} else {
 					i++;
 				}
 			}
 		}
-		System.out.println("dupa domeniu"+ listaReturnare.size());
-		//Filtrare dupa tehnologie 
-		if(tehnologie.length()!=0) {
+		System.out.println("dupa domeniu" + listaReturnare.size());
+		// Filtrare dupa tehnologie
+		if (tehnologie.length() != 0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
 				if (!listaReturnare.get(i).getTehnologie().equals(tehnologie)) {
 					listaReturnare.remove(i);
-				}
-				else {
+				} else {
 					i++;
 				}
 			}
 		}
-		System.out.println("dupa tehnolo"+ listaReturnare.size());
-		
+		System.out.println("dupa tehnolo" + listaReturnare.size());
+
 		System.out.println(text);
 		// Verificam traducerile intrebarilor dupa cuvantul cheie
-		
-		if(text.length()!=0) {
+
+		if (text.length() != 0) {
 			int i = 0;
 			while (i < listaReturnare.size()) {
-				boolean removed=false;
-				List<TraducereIntrebare> trad=new ArrayList<TraducereIntrebare>();
+				boolean removed = false;
+				List<TraducereIntrebare> trad = new ArrayList<TraducereIntrebare>();
 				trad.addAll(serviceTradIntreb.getTraducereIntrebareByIntrebare(listaReturnare.get(i)));
-				for(int j=0;j<trad.size();j++) {
-					if(trad.get(j).getLimba().equals(limba)) {
-						if(caseSensitive) {
+				for (int j = 0; j < trad.size(); j++) {
+					if (trad.get(j).getLimba().equals(limba)) {
+						if (caseSensitive) {
 							if (!trad.get(j).getEnunt().contains(text)) {
 								listaReturnare.remove(i);
-								removed=true;
+								removed = true;
 							}
-						}
-						else {
+						} else {
 							String enuntLower = trad.get(j).getEnunt().toLowerCase();
 							String textLower = text.toLowerCase();
 							if (!enuntLower.contains(textLower)) {
 								listaReturnare.remove(i);
-								removed=true;
+								removed = true;
 							}
 						}
 					}
 				}
-				
-				if(!removed) {
+
+				if (!removed) {
 					i++;
 				}
 			}
 		}
-		System.out.println("dupa text"+ listaReturnare.size());
+		System.out.println("dupa text" + listaReturnare.size());
 		return listaReturnare;
 	}
 
@@ -242,22 +265,23 @@ public class IntrebareController {
 		}
 		return false;
 	}
+
 	// Verificare in lista de Raspunsuri
-		boolean VerificareNrRaspunsuri(int[] nrRaspunsuri, Intrebare intreb) {
-			int nrRaspunsuriCorecte=0;
-			List<Raspuns> lRaspunsuri=new ArrayList<Raspuns>();
-			lRaspunsuri.addAll(raspunsService.getRaspunsByIntrebare(intreb));
-			for(int i=0;i<lRaspunsuri.size();i++) {
-				if(lRaspunsuri.get(i).isValoareAdevar()) {
-					nrRaspunsuriCorecte++;
-				}
+	boolean VerificareNrRaspunsuri(int[] nrRaspunsuri, Intrebare intreb) {
+		int nrRaspunsuriCorecte = 0;
+		List<Raspuns> lRaspunsuri = new ArrayList<Raspuns>();
+		lRaspunsuri.addAll(raspunsService.getRaspunsByIntrebare(intreb));
+		for (int i = 0; i < lRaspunsuri.size(); i++) {
+			if (lRaspunsuri.get(i).isValoareAdevar()) {
+				nrRaspunsuriCorecte++;
 			}
-			
-			for (int i = 0; i < nrRaspunsuri.length; i++) {
-				if (nrRaspunsuri[i] == nrRaspunsuriCorecte) {
-					return true;
-				}
-			}
-			return false;
 		}
+
+		for (int i = 0; i < nrRaspunsuri.length; i++) {
+			if (nrRaspunsuri[i] == nrRaspunsuriCorecte) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

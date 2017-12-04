@@ -32,9 +32,15 @@ public class Raspuns {
 	@Column(name = "valoareadevar")
 	private boolean valoareAdevar;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Intrebare.class)
 	@JoinColumn(name = "id_intrebare", nullable = false)
 	private Intrebare intrebare;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "raspuns", fetch = FetchType.EAGER)
+	private Set<TraducereRaspuns> traduceri = new HashSet<TraducereRaspuns>();
+	
+	
 	
 	public Raspuns() {
 
@@ -70,12 +76,22 @@ public class Raspuns {
 		this.valoareAdevar = valoareAdevar;
 	}
 
+	@JsonIgnore
 	public Intrebare getIntrebare() {
 		return intrebare;
 	}
 
 	public void setIntrebare(Intrebare intrebare) {
 		this.intrebare = intrebare;
+	}
+
+	@JsonIgnore
+	public Set<TraducereRaspuns> getTraduceri() {
+		return traduceri;
+	}
+
+	public void setTraduceri(Set<TraducereRaspuns> traduceri) {
+		this.traduceri = traduceri;
 	}
 
 	@Override

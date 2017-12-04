@@ -27,6 +27,10 @@ export class BackendService {
     }).catch(this.handleError);
   }
 
+  public  updateQuestion(question: Intrebare): Observable<any>{
+    return this.http.put("http://localhost:9090/updateIntrebare", question, this.options).map(response => response.json()).catch(this.handleError);
+  }
+
   public addQuestion(question: Intrebare): Observable<any> {
     return this.http.put("http://localhost:9090/createIntrebare", question, this.options).map(response => response.json()).catch(this.handleError);
   }
@@ -70,7 +74,7 @@ export class BackendService {
     return error.message || error;
   }
 
-  public filterQuestions(nivelDif: number[], limbaj: string[], tehnologie: string, domeniu: string, nrRasp: number[], dupaCuv: string, caseSens: boolean, limba: string): Observable<Intrebare[]>{
+  public filterQuestions(nivelDif: number[], limbaj: string, tehnologie: string, domeniu: string, nrRasp: number[], dupaCuv: string, caseSens: boolean, limba: string): Observable<Intrebare[]>{
     var niv="";
     var nrR="";
     for(var i=0;i<nivelDif.length;i++) {
@@ -85,7 +89,7 @@ export class BackendService {
       niv="___";
     }
     if(limbaj.length == 0){
-      limbaj.push("___");
+      limbaj = "___";
     }
     if(tehnologie.length == 0){
       tehnologie = "___";

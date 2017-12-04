@@ -37,8 +37,9 @@
   type="checkbox" [checked]="answer4.valoareAdevar" (change)="answer4.valoareAdevar = !answer4.valoareAdevar"/>
 <br>
 <label>Points:</label>
-<input class="w3-input w3-border" type="text" [(ngModel)]="questionToAdd.punctaj" placeholder="Points">
+<input class="w3-input w3-border" type="text" ngDefaultControl [(ngModel)]="questionToAdd.punctaj" placeholder="Points">
 <br>
-<button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="addQuestion()">&#10004; Add
+<button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="addQuestion1()">&#10004; Add
   Question
 </button>
+
