@@ -3,6 +3,7 @@ package Proiect731.QuizManager;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import Proiect731.entity.Intrebare;
 import Proiect731.entity.TraducereIntrebare;
 import Proiect731.service.TraducereIntrebareService;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TraducereIntrebareTest {

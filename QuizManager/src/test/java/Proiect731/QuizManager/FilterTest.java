@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,15 @@ import Proiect731.service.IntrebareService;
 import Proiect731.service.RaspunsService;
 import Proiect731.service.TraducereIntrebareService;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FilterTest {
+
+    @Test
+    public void test() {
+
+    }
 
 //	@Autowired
 //	private IntrebareService serviceIntreb;
