@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "traducere_intrebare")
 public class TraducereIntrebare {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_traducere")
@@ -67,6 +68,7 @@ public class TraducereIntrebare {
 		this.limba = limba;
 	}
 
+	@JsonIgnore
 	public Intrebare getIdIntrebare() {
 		return intrebare;
 	}

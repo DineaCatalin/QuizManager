@@ -16,10 +16,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "intrebare")
 public class Intrebare {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_intrebare")
@@ -40,13 +43,15 @@ public class Intrebare {
 	@Column(name = "punctaj")
 	private int punctaj;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare", fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare",fetch = FetchType.LAZY)
 	private Set<Raspuns> raspuns = new HashSet<Raspuns>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare", fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare",fetch = FetchType.LAZY)
 	private Set<TraducereIntrebare> traduceri = new HashSet<TraducereIntrebare>();
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "intrebare_quiz", joinColumns = { @JoinColumn(name = "id_intrebare",nullable=false) }, inverseJoinColumns = {
 			@JoinColumn(name = "id_quiz",nullable=false) })
 	private Set<Quiz> quizes = new HashSet<>();
@@ -113,6 +118,7 @@ public class Intrebare {
 	public void setpunctaj(int punctaj) {
 		this.punctaj = punctaj;
 	}
+
 
 	public Set<TraducereIntrebare> getTraducere() {
 		return traduceri;

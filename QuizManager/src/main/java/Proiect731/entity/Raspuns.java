@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "raspuns")
 public class Raspuns {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_raspuns")
@@ -36,8 +37,8 @@ public class Raspuns {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY, targetEntity = Intrebare.class)
 	@JoinColumn(name = "id_intrebare", nullable = false)
 	private Intrebare intrebare;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "raspuns")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "raspuns", fetch = FetchType.LAZY)
 	private Set<TraducereRaspuns> traduceri = new HashSet<TraducereRaspuns>();
 
 	public Raspuns() {
@@ -74,7 +75,7 @@ public class Raspuns {
 	public void setValoareAdevar(boolean valoareAdevar) {
 		this.valoareAdevar = valoareAdevar;
 	}
-
+	@JsonIgnore
 	public Intrebare getIntrebare() {
 		return intrebare;
 	}
@@ -83,6 +84,7 @@ public class Raspuns {
 		this.intrebare = intrebare;
 	}
 
+	@JsonIgnore
 	public Set<TraducereRaspuns> getTraduceri() {
 		return traduceri;
 	}
