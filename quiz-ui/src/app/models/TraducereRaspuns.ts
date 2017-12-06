@@ -4,13 +4,12 @@ export class TraducereRaspuns {
   idTraducere: number;
   enunt: string;
   limba: string;
-  raspuns: Raspuns;
 
 
-  constructor(idTraducere: number, enunt: string, limba: string, raspuns: Raspuns) {
+
+  constructor(idTraducere: number, enunt: string, limba: string) {
     this.idTraducere = idTraducere;
     this.enunt = enunt;
     this.limba = limba;
-    this.raspuns = raspuns;
   }
 }

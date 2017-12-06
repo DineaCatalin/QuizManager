@@ -15,11 +15,54 @@ export class EditQuestionComponentComponent implements OnInit {
 
   @Input() intrebare: Intrebare;
 
+
+
   @Output() finishEditing: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private backend: BackendService) { }
 
   ngOnInit() {
+  }
+
+  updateQuestion():void {
+    if(this.intrebare.punctaj > 100 || this.intrebare.punctaj <= 0) {
+      alert("Points must be between 1 and 100");
+    } else {
+
+      var intreb = new Intrebare(this.intrebare.nivelDificultate, this.intrebare.limbaj, this.intrebare.domeniu, this.intrebare.tehnologie, this.intrebare.punctaj, this.intrebare.raspuns, this.intrebare.traduceri);
+
+      var tradIntreb = new TraducereIntrebare(null, this.intrebare.traduceri[0].enunt, this.intrebare.traduceri[0].limba);
+
+
+
+      var ans1= new Raspuns(null,this.intrebare.raspuns[0].valoareAdevar,this.intrebare.raspuns[0].traduceri);
+
+      var ans2= new Raspuns(null,this.intrebare.raspuns[1].valoareAdevar,this.intrebare.raspuns[1].traduceri);
+
+      var ans3= new Raspuns(null,this.intrebare.raspuns[2].valoareAdevar,this.intrebare.raspuns[2].traduceri);
+
+      var ans4= new Raspuns(null,this.intrebare.raspuns[3].valoareAdevar,this.intrebare.raspuns[3].traduceri);
+
+      var tradAns1= new TraducereRaspuns(null,this.intrebare.raspuns[0].traduceri[0].enunt,this.intrebare.raspuns[0].traduceri[0].limba);
+      var tradAns2= new TraducereRaspuns(null,this.intrebare.raspuns[1].traduceri[0].enunt,this.intrebare.raspuns[1].traduceri[0].limba);
+      var tradAns3= new TraducereRaspuns(null,this.intrebare.raspuns[2].traduceri[0].enunt,this.intrebare.raspuns[2].traduceri[0].limba);
+      var tradAns4= new TraducereRaspuns(null,this.intrebare.raspuns[3].traduceri[0].enunt,this.intrebare.raspuns[3].traduceri[0].limba);
+
+
+
+
+
+      //console.log(intreb);
+      this.backend.updateQuestion(this.intrebare).subscribe((res:string)=>{
+        if(res==null){
+          res="nu e ceva ok";
+        }
+        console.log(res);
+        //
+      });
+
+      alert("Question edited successfully");
+    }
   }
 
   addQuestion(): void {

@@ -23,7 +23,7 @@ public class Utilizator {
 	@Column(name = "rangacces")
 	private int rangAcces;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "utilizator")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "utilizator")
 	private Set<Quiz> quizes = new HashSet<Quiz>();
 
 	public Utilizator() {

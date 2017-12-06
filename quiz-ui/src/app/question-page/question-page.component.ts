@@ -119,11 +119,11 @@ export class QuestionPageComponent implements OnInit {
     this.backend.filterQuestions(difs, this.programmingLanguage, this.tehnologie, this.domeniu, ans, this.dupaCuvant, this.checkboxCaseSens, this.limbaIntrebare).subscribe((res: Intrebare[]) => {
       this.questions = res;
     })
-    this.questions.forEach((intrebare: Intrebare) => {
+    /*this.questions.forEach((intrebare: Intrebare) => {
       this.backend.getTranslationsOfQuestion(intrebare.idIntrebare).subscribe(res => {
         intrebare.traduceri = res;
       });
-    });
+    });*/
 
     return this.questions;
   }
@@ -173,6 +173,29 @@ export class QuestionPageComponent implements OnInit {
 
   hideAnswers(question: Intrebare): void {
     question.showAnswers = false;
+  }
+
+  checkValues(): void{
+    var isOk = true;
+    var checkList = [];
+    for (var i = 0; i < this.checkboxes1.length; i++) {
+      checkList.push(this.checkboxes1[i].checked);
+    }
+    for (var i = 0; i < this.checkboxes2.length; i++) {
+      checkList.push(this.checkboxes2[i].checked);
+    }
+    checkList.push(this.checkboxCaseSens);
+    for(var i = 0; i < checkList.length; i++){
+      if(checkList[i] == false){
+        isOk = false;
+      }
+    }
+    if(isOk == false){
+      this.selectDeselect = false;
+    }
+    else{
+      this.selectDeselect = true;
+    }
   }
 
 }

@@ -26,8 +26,6 @@ public class Raspuns {
 	@Column(name = "id_raspuns")
 	private int idRaspuns;
 
-	@Column(name = "enunt")
-	private String enunt;
 
 	@Column(name = "valoareadevar")
 	private boolean valoareAdevar;
@@ -37,7 +35,7 @@ public class Raspuns {
 	@JoinColumn(name = "id_intrebare", nullable = false)
 	private Intrebare intrebare;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "raspuns", fetch = FetchType.EAGER)
+	@OneToMany(cascade =CascadeType.ALL, mappedBy = "raspuns", fetch = FetchType.EAGER)
 	private Set<TraducereRaspuns> traduceri = new HashSet<TraducereRaspuns>();
 	
 	
@@ -46,8 +44,7 @@ public class Raspuns {
 
 	}
 
-	public Raspuns(String enunt, boolean valoareAdevar, Intrebare intrebare) {
-		this.enunt = enunt;
+	public Raspuns(boolean valoareAdevar, Intrebare intrebare) {
 		this.valoareAdevar = valoareAdevar;
 		this.intrebare = intrebare;
 	}
@@ -60,13 +57,6 @@ public class Raspuns {
 		this.idRaspuns = idRaspuns;
 	}
 
-	public String getEnunt() {
-		return enunt;
-	}
-
-	public void setEnunt(String enunt) {
-		this.enunt = enunt;
-	}
 
 	public boolean isValoareAdevar() {
 		return valoareAdevar;
@@ -85,7 +75,7 @@ public class Raspuns {
 		this.intrebare = intrebare;
 	}
 
-	@JsonIgnore
+	
 	public Set<TraducereRaspuns> getTraduceri() {
 		return traduceri;
 	}
@@ -96,7 +86,7 @@ public class Raspuns {
 
 	@Override
 	public String toString() {
-		return "Raspuns [idRaspuns=" + idRaspuns + ", enunt=" + enunt + ", valoareAdevar=" + valoareAdevar
+		return "Raspuns [idRaspuns=" + idRaspuns + ", valoareAdevar=" + valoareAdevar
 				+ ", idIntrebare=" + intrebare + "]";
 	}
 

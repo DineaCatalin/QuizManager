@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -42,11 +43,9 @@ public class Intrebare {
 	@Column(name = "punctaj")
 	private int punctaj;
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare",fetch = FetchType.EAGER)
 	private Set<Raspuns> raspuns = new HashSet<Raspuns>();
 
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare",fetch = FetchType.EAGER)
 	private Set<TraducereIntrebare> traduceri = new HashSet<TraducereIntrebare>();
 
@@ -115,20 +114,21 @@ public class Intrebare {
 		this.idIntrebare = idIntrebare;
 	}
 	
-	public Set<TraducereIntrebare> getTraducere() {
+	public Set<TraducereIntrebare> getTraduceri() {
 		return traduceri;
 	}
-	
+
 	public void setTraduceri(Set<TraducereIntrebare> trad) {
 		this.traduceri=trad;
 	}
 	
 	
-	public Set<Raspuns> getRaspunsuri() {
+	public Set<Raspuns> getRaspuns() {
 		return raspuns;
 	}
 	
-	public void setRaspunsuri(Set<Raspuns> rasp) {
+	
+	public void setRaspuns(Set<Raspuns> rasp) {
 		this.raspuns=rasp;
 	}
 	

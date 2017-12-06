@@ -55,7 +55,7 @@
       <table class="w3-table w3-striped">
         <tr>
           <td *ngFor="let checkbox of checkboxes1">
-            <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked"> {{checkbox.nume}}</td>
+            <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked; checkValues()"> {{checkbox.nume}}</td>
         </tr>
       </table>
       <p><label class="bold-text">Programming language:</label>
@@ -73,12 +73,12 @@
       <table class="w3-table w3-striped">
         <tr>
           <td *ngFor="let checkbox of checkboxes2">
-            <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked"> {{checkbox.nume}}</td>
+            <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked; checkValues()"> {{checkbox.nume}}</td>
         </tr>
       </table>
       <p><label class="bold-text">Sequence of characters:</label>
         <input class="w3-input w3-border" type="text" [(ngModel)]="dupaCuvant" placeholder="Sequence of characters">
-        <input type="checkbox" [checked]="checkboxCaseSens" (change)="checkboxCaseSens = !checkboxCaseSens"> <label>Case-sensitive</label>
+        <input type="checkbox" [checked]="checkboxCaseSens" (change)="checkboxCaseSens = !checkboxCaseSens; checkValues()"> <label>Case-sensitive</label>
       </p>
       <p>
         <select  class="w3-dropdown-hover" [(ngModel)]="limbaIntrebare">

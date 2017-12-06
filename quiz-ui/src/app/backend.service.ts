@@ -27,8 +27,8 @@ export class BackendService {
     }).catch(this.handleError);
   }
 
-  public  updateQuestion(question: Intrebare): Observable<any>{
-    return this.http.put("http://localhost:9090/updateIntrebare", question, this.options).map(response => response.json()).catch(this.handleError);
+  public  updateQuestion(question: Intrebare): Observable<string>{
+    return this.http.put("http://localhost:9090/updateIntrebare", question, this.options).map(response=>response.toString());
   }
 
   public addQuestion(question: Intrebare): Observable<any> {
@@ -105,6 +105,10 @@ export class BackendService {
         nrR+=nrRasp[i];
       }
     }
+    if(nrR.length==0){
+      nrR="___";
+    }
+
     if(dupaCuv.length == 0){
       dupaCuv= "___";
     }

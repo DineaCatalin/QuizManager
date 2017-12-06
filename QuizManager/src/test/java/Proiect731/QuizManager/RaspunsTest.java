@@ -23,7 +23,7 @@ public class RaspunsTest {
 	public void testGetAllRaspunsuri() {
 
 		Intrebare intrebare = new Intrebare();
-		Raspuns raspuns = new Raspuns("Enunt", true, intrebare);
+		Raspuns raspuns = new Raspuns(true, intrebare);
 
 		raspuns = serviceRaspuns.saveOrUpdateRaspuns(raspuns);
 

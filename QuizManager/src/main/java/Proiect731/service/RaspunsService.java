@@ -39,12 +39,12 @@ public class RaspunsService {
     	if(intreb==null) {
     		System.out.println("avemNull");
     		intreb=IntrebService.saveOrUpdateIntrebare(idIntreb);
-    		return RaspunsRepository.save(new Raspuns(raspuns.getEnunt(), raspuns.isValoareAdevar(), intreb));
+    		return RaspunsRepository.save(new Raspuns(raspuns.isValoareAdevar(), intreb));
     	}
     	else {
     		System.out.println(intreb.getIdIntrebare());
     	}
-    	return RaspunsRepository.save(new Raspuns(raspuns.getEnunt(), raspuns.isValoareAdevar(), intreb));
+    	return RaspunsRepository.save(new Raspuns(raspuns.isValoareAdevar(), intreb));
     	
     }
     public void deleteRaspuns(int id) {
