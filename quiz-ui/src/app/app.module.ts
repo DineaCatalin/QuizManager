@@ -11,8 +11,10 @@ import {Http, HttpModule} from "@angular/http";
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { EditQuestionComponentComponent } from './question-page/edit-question-component/edit-question-component.component';
 import { CreateQuestionComponent } from './question-page/create-question/create-question.component';
-import { QuizComponent } from './generateQuiz/quiz.component';
-import {QuizService} from './quiz.service';
+import { QuizComponent } from './quiz/generateQuiz/quiz.component';
+import {QuizService} from './quiz/quiz.service';
+import { ShowQuizComponent } from './quiz/show-quiz/show-quiz.component';
+import { PrettyprintPipe } from './quiz/prettyprint.pipe';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import {QuizService} from './quiz.service';
     MenuPageComponent,
     EditQuestionComponentComponent,
     CreateQuestionComponent,
-    QuizComponent
+    QuizComponent,
+    ShowQuizComponent,
+    PrettyprintPipe
   ],
   imports: [
     BrowserModule,

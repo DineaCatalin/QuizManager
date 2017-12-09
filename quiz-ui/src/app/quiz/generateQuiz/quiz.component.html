@@ -1,0 +1,13 @@
+<div>
+  <input [(ngModel)]="nrInterbari" type="text" placeholder="nr intrebari">
+  <input [(ngModel)]="nivelDificultate" type="nivelDificultate" placeholder="nivel dificultate">
+  <input [(ngModel)]="limbaj" type="text" placeholder="limbaj">
+  <input [(ngModel)]="domeniu" type="text" placeholder="domeniu">
+  <input [(ngModel)]="tehnologie" type="text" placeholder="tehnologie">
+</div>
+
+<div>
+<button (click)="generateQuiz()" class="btn btn-primary"></button>
+</div>
+
+<p>{{toShow | json}}</p>

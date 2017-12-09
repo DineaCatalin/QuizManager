@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Quiz} from './models/quiz';
+import {Quiz} from '../models/quiz';
 import {Http} from '@angular/http';
 
 
@@ -37,5 +37,17 @@ export class QuizService {
 
 
   }
+
+
+  // stringify(what): string {
+  //   return JSON.stringify(what);
+  // }
+  //
+  // public toPerson(data: string): Person {
+  //   let jsonData = JSON.parse(data);
+  //
+  //   personData = new Person(jsonData.name, jsonData.surname, jsonData.birthdate);
+  //   return personData;
+  // }
 
 }

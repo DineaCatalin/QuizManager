@@ -1,4 +1,4 @@
-.navigation-sidebar{
+.navigation-sidebar {
   display: inline-grid;
   background-color: #0f213f;
   height: 100vh;
@@ -11,7 +11,7 @@
   z-index: 50;
 }
 
-.nav-btn{
+.nav-btn {
   width: 100%;
   border-radius: 0px;
   background-color: #0f213f;
@@ -29,18 +29,18 @@
   height: 50px;
 }
 
-.nav-btn:hover{
+.nav-btn:hover {
   background-color: #14305e;
 }
 
-.nav-btn-active{
+.nav-btn-active {
   background-color: #14305e;
 }
 
-a:link{
+a:link {
   text-decoration: none;
 }
 
-.nav-btn:focus{
+.nav-btn:focus {
   outline: 0;
 }
