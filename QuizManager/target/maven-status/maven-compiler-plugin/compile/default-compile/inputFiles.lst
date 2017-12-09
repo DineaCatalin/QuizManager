@@ -1,27 +1,27 @@
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\controllers\UtilizatorController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\repository\RaspunsRepo.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\QuizManager\QuizManagerApplication.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\entity\Utilizator.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\controllers\RaspunsController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\entity\TraducereRaspuns.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\QuizManager\QuizManagerController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\controllers\QuizController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\repository\TraducereRaspunsRepo.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\repository\UtilizatorRepo.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\service\QuizService.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\service\TraducereRaspunsService.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\controllers\TraducereRaspunsController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\entity\Intrebare.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\controllers\QuizManagerController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\repository\QuizRepo.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\controllers\IntrebareController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\service\RaspunsService.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\controllers\TraducereIntrebareController.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\service\UtilizatorService.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\entity\Raspuns.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\service\IntrebareService.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\repository\IntrebareRepo.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\entity\Quiz.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\entity\TraducereIntrebare.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\repository\TraducereIntrebareRepo.java
-C:\Users\stefi\Desktop\QuizManager\src\main\java\Proiect731\service\TraducereIntrebareService.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\entity\Utilizator.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\service\TraducereRaspunsService.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\controllers\IntrebareController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\controllers\QuizManagerController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\repository\TraducereRaspunsRepo.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\entity\Raspuns.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\service\TraducereIntrebareService.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\controllers\TraducereIntrebareController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\repository\UtilizatorRepo.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\service\UtilizatorService.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\repository\QuizRepo.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\entity\Quiz.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\service\RaspunsService.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\QuizManager\QuizManagerController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\entity\TraducereIntrebare.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\QuizManager\QuizManagerApplication.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\service\QuizService.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\entity\Intrebare.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\repository\IntrebareRepo.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\controllers\RaspunsController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\controllers\TraducereRaspunsController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\service\IntrebareService.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\repository\TraducereIntrebareRepo.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\repository\RaspunsRepo.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\controllers\QuizController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\controllers\UtilizatorController.java
+E:\an3 sem1\proiect colectiv\master\ProiectColectiv731\QuizManager\src\main\java\Proiect731\entity\TraducereRaspuns.java
