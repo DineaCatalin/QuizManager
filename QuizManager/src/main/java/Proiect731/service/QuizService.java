@@ -1,10 +1,8 @@
 package Proiect731.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
+import Proiect731.entity.Intrebare;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,37 +13,57 @@ import javassist.compiler.ast.ASTList;
 @Service
 public class QuizService {
 
-	@Autowired
-	private QuizRepo quizRepo;
+    @Autowired
+    private QuizRepo quizRepo;
+    @Autowired
+    private IntrebareService intrebareService;
 
-	/**
-	 * generatesa a lsit of random quizzes
-	 * 
-	 * @return List<Quiz>
-	 */
-	public List<Quiz> generateRandomQuizzes() {
-		List<Quiz> generatedQuizzes = new ArrayList<>();
-		Iterable<Quiz> itQuiezzes = getAllQuizzes();
+    public Quiz generateQuiz(Integer nrIntrebari, Integer nivelDificultate, String limbaje, String tehnologii) {
 
-		itQuiezzes.forEach(q -> generatedQuizzes.add(q));
-		Collections.shuffle(generatedQuizzes);
+        Intrebare intrebare = new Intrebare();
+        intrebare.setNivelDificultate(nivelDificultate);
+        intrebare.setLimbaj(limbaje);
+        intrebare.setTehnologie(tehnologii);
 
-		return generatedQuizzes;
-	}
+        Quiz quiz = new Quiz();
 
-	public Iterable<Quiz> getAllQuizzes() {
-		return quizRepo.findAll();
-	}
+        Set<Intrebare> intrebareSet = new HashSet<>();
+        intrebareSet.add(intrebare);
 
-	public Quiz getQuiz(int id) {
-		return quizRepo.findOne(id);
-	}
+        quiz.setIntrebari(intrebareSet);
+        quizRepo.save(quiz);
+        return quiz;
 
-	public Quiz saveOrUpdateQuiz(Quiz quiz) {
-		return quizRepo.save(quiz);
-	}
+    }
 
-	public void deleteQuiz(int id) {
-		quizRepo.delete(id);
-	}
+    /**
+     * generatesa a lsit of random quizzes
+     *
+     * @return List<Quiz>
+     */
+    public List<Quiz> generateRandomQuizzes() {
+        List<Quiz> generatedQuizzes = new ArrayList<>();
+        Iterable<Quiz> itQuiezzes = getAllQuizzes();
+
+        itQuiezzes.forEach(q -> generatedQuizzes.add(q));
+        Collections.shuffle(generatedQuizzes);
+
+        return generatedQuizzes;
+    }
+
+    public Iterable<Quiz> getAllQuizzes() {
+        return quizRepo.findAll();
+    }
+
+    public Quiz getQuiz(int id) {
+        return quizRepo.findOne(id);
+    }
+
+    public Quiz saveOrUpdateQuiz(Quiz quiz) {
+        return quizRepo.save(quiz);
+    }
+
+    public void deleteQuiz(int id) {
+        quizRepo.delete(id);
+    }
 }

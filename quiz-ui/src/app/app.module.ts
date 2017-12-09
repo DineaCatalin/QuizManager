@@ -11,6 +11,8 @@ import {Http, HttpModule} from "@angular/http";
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { EditQuestionComponentComponent } from './question-page/edit-question-component/edit-question-component.component';
 import { CreateQuestionComponent } from './question-page/create-question/create-question.component';
+import { QuizComponent } from './generateQuiz/quiz.component';
+import {QuizService} from './quiz.service';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { CreateQuestionComponent } from './question-page/create-question/create-
     QuestionPageComponent,
     MenuPageComponent,
     EditQuestionComponentComponent,
-    CreateQuestionComponent
+    CreateQuestionComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { CreateQuestionComponent } from './question-page/create-question/create-
     FormsModule,
     HttpModule
   ],
-  providers: [BackendService],
+  providers: [BackendService, QuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
