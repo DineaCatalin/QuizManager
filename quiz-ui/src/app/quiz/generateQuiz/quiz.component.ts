@@ -23,7 +23,7 @@ export class QuizComponent implements OnInit {
   }
 
   result: Quiz;
-  toShow: string = '';
+  toShow: string;
   intrebari: Intrebare[];
 
   nrInterbari;
@@ -50,8 +50,11 @@ export class QuizComponent implements OnInit {
       this.result = resp;
       if (this.result != null) {
 
-        this.toShow = this.result.informatiiGenerale + this.result.punctajTotal;
-        this.toShow += this.result.intrebari[0].limbaj;
+        this.toShow = ''
+        this.toShow += 'informatii generale: ' + this.result.informatiiGenerale + ', punctaj total: ' + this.result.punctajTotal +
+          ', intrebari: ';
+        this.result.intrebari.forEach(intreb => this.toShow += 'nivel dificultate:  ' + intreb.nivelDificultate + ',limbaj: '
+          + intreb.limbaj + ', domenniu: ' + intreb.domeniu + ', tehnologie: ' + intreb.tehnologie + ', puncatj: ' + intreb.punctaj + '');
       }
     });
     // this.result = JSON.stringify(this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe());
