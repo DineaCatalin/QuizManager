@@ -18,7 +18,33 @@ public class QuizService {
     @Autowired
     private IntrebareService intrebareService;
 
-    public Quiz generateQuiz(Integer nrIntrebari, Integer nivelDificultate, String limbaje, String tehnologii) {
+    /**
+     * method that generates a quiz
+     *
+     * @param nrIntrebari
+     * @param nivelDificultate
+     * @param limbaje
+     * @param tehnologii
+     * @return
+     */
+    public Quiz generateQuiz(Integer nrIntrebari, List<String> nivelDificultate, List<String> limbaje, List<String> domenii, List<String> tehnologii) {
+        Quiz quiz = new Quiz();
+
+        Set<Intrebare> intrebariToAdd = new HashSet<>();
+
+        for (int i = 0; i < nrIntrebari; i++) {
+            List<Intrebare> intrebariDinCareAleg= (List<Intrebare>) intrebareService.filter(nivelDificultate.get(i),limbaje.get(i), domenii.get(i), tehnologii.get(i),"___", "___", false, "___");
+            int randomNum = 0 + (int)(Math.random() * intrebariDinCareAleg.size());
+            Intrebare intrebare = new Intrebare(intrebariDinCareAleg.get(randomNum).getNivelDificultate(),intrebariDinCareAleg.get(randomNum).getLimbaj(), intrebariDinCareAleg.get(randomNum).getDomeniu(), intrebariDinCareAleg.get(randomNum).getTehnologie(), intrebariDinCareAleg.get(randomNum).getPunctaj());
+            intrebariToAdd.add(intrebare);
+
+        }
+        quiz.setIntrebari(intrebariToAdd);
+        return quiz;
+
+    }
+
+    public Quiz generateQuiz2(Integer nrIntrebari, Integer nivelDificultate, String limbaje, String tehnologii) {
 
         Intrebare intrebare = new Intrebare();
         intrebare.setNivelDificultate(nivelDificultate);

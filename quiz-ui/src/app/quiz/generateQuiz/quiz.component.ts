@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {QuizService} from '../quiz.service';
-import {PrettyprintPipe} from '../prettyprint.pipe';
 import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 
@@ -26,17 +25,62 @@ export class QuizComponent implements OnInit {
   toShow: string;
   intrebari: Intrebare[];
 
-  nrInterbari;
-  nivelDificultate;
-  limbaj;
-  domeniu;
-  tehnologie;
+  nrInterbari: number;
+  niveleDificultate: number[] = [];
+  limbaje: string[] = [];
+  domenii: string[] = [];
+  tehnologii: string[] = [];
 
-  // formatJSON() {
-  //   this.toShow = this.result.informatiiGenerale.toString() + this.result.punctajTotal.toString();
-  //   this.intrebari = this.result.intrebari;
-  //   this.intrebari.forEach(i=> this.toShow.concat(i.limbaj));
-  // }
+
+  addNivelDificultate() {
+      this.niveleDificultate.push(this.nivelDificultate);
+      this.nivelDificultate = null;
+      this.niveleDificultate.push(this.nivelDificultate2);
+      this.nivelDificultate2 = null;
+      this.niveleDificultate.push(this.nivelDificultate3);
+      this.nivelDificultate3 = null;
+    // this.niveleDif.push(this.nivelDificultate3);
+    // this.nivelDificultate = null;
+    // this.niveleDif.push(this.nivelDificultate3);
+    // this.nivelDificultate = null;
+    // this.niveleDif.push(this.nivelDificultate3);
+    // this.nivelDificultate = null;
+    // this.niveleDif.push(this.nivelDificultate7);
+    // this.nivelDificultate7 = null;
+    // this.niveleDif.push(this.nivelDificultate8);
+    // this.nivelDificultate8 = null;
+    // this.niveleDif.push(this.nivelDificultate9);
+    // this.nivelDificultate9 = null;
+    // this.niveleDif.push(this.nivelDificultate10);
+    // this.nivelDificultate10 = null;
+  }
+
+  addLimbaj() {
+    this.limbaje.push(this.limbaj);
+    this.limbaj = null;
+    this.limbaje.push(this.limbaj2)
+    this.limbaj2 = null;
+    this.limbaje.push(this.limbaj3)
+    this.limbaj3 = null;
+  }
+
+  addDomeniu() {
+    this.domenii.push(this.domeniu);
+    this.domeniu = null;
+    this.domenii.push(this.domeniu2);
+    this.domeniu2 = null;
+    this.domenii.push(this.domeniu3);
+    this.domeniu3 = null;
+  }
+
+  addTehnologie() {
+    this.tehnologii.push(this.tehnologie);
+    this.tehnologie = null;
+    this.tehnologii.push(this.tehnologie2);
+    this.tehnologie2 = null;
+    this.tehnologii.push(this.tehnologie3);
+    this.tehnologie3 = null;
+  }
 
 
   /**
@@ -44,13 +88,17 @@ export class QuizComponent implements OnInit {
    * this function should be modified
    */
   generateQuiz() {
-    // this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe();
-    this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe(resp => {
+
+    this.addNivelDificultate();
+    this.addLimbaj();
+    this.addDomeniu();
+    this.addTehnologie();
+    this.quizService.generateQuiz(this.nrInterbari, this.niveleDificultate, this.limbaje, this.domenii, this.tehnologii).subscribe(resp => {
       console.log(resp);
       this.result = resp;
       if (this.result != null) {
 
-        this.toShow = ''
+        this.toShow = '';
         this.toShow += 'informatii generale: ' + this.result.informatiiGenerale + ', punctaj total: ' + this.result.punctajTotal +
           ', intrebari: ';
         this.result.intrebari.forEach(intreb => this.toShow += 'nivel dificultate:  ' + intreb.nivelDificultate + ',limbaj: '
@@ -60,42 +108,55 @@ export class QuizComponent implements OnInit {
     // this.result = JSON.stringify(this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe());
   }
 
-  // stringify(something): string {
-  //   // return JSON.parse(something);
-  //   let variable: any = JSON.stringify(something);
-  //   variable.replace('{','');
-  //   variable.replace('}','');
-  //   variable.replace('[','');
-  //   variable.replace(']','');
-  //   variable.replace('"','');
-  //   // variable.replace('}','');
-  //   // variable.replace('}','');
-  //   // JSON.stringify()
-  //   return variable;
-  // }
+  nivelDificultate;
+  limbaj;
+  domeniu;
+  tehnologie;
 
+  nivelDificultate2;
+  limbaj2;
+  domeniu2;
+  tehnologie2;
 
-  // syntaxHighlight(json) {
-  //   if (typeof json != 'string') {
-  //     json = JSON.stringify(json, undefined, 2);
-  //   }
-  //   json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  //   return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-  //     var cls = 'number';
-  //     if (/^"/.test(match)) {
-  //       if (/:$/.test(match)) {
-  //         cls = 'key';
-  //       } else {
-  //         cls = 'string';
-  //       }
-  //     } else if (/true|false/.test(match)) {
-  //       cls = 'boolean';
-  //     } else if (/null/.test(match)) {
-  //       cls = 'null';
-  //     }
-  //     return '<span class="' + cls + '">' + match + '</span>';
-  //   });
-  // }
+  nivelDificultate3;
+  limbaj3;
+  domeniu3;
+  tehnologie3;
+
+  nivelDificultate4;
+  limbaj4;
+  domeniu4;
+  tehnologie4;
+
+  nivelDificultate5;
+  limbaj5;
+  domeniu5;
+  tehnologie5;
+
+  nivelDificultate6;
+  limbaj6;
+  domeniu6;
+  tehnologie6;
+
+  nivelDificultate7;
+  limbaj7;
+  domeniu7;
+  tehnologie7;
+
+  nivelDificultate8;
+  limbaj8;
+  domeniu8;
+  tehnologie8;
+
+  nivelDificultate9;
+  limbaj9;
+  domeniu9;
+  tehnologie9;
+
+  nivelDificultate10;
+  limbaj10;
+  domeniu10;
+  tehnologie10;
 
 
 }

@@ -30,11 +30,11 @@ public class QuizController {
 
 //    method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE
 
-@RequestMapping(value = "/generateQuiz", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-@ResponseBody
-public Quiz generateQuiz(@RequestBody Receive receive) {
-    return service.generateQuiz(receive.getNrIntrebari(), receive.getNivelDificultate(), receive.getLimbaje(), receive.getTehnologii());
-}
+    @RequestMapping(value = "/generateQuiz", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Quiz generateQuiz(@RequestBody Receive receive) {
+        return service.generateQuiz(receive.getNrInterbari(), receive.getNiveleDificultate(), receive.getLimbaje(), receive.getDomenii(), receive.getTehnologii());
+    }
 
     @GetMapping("/getQuiz/{id}")
     public String getById(@PathVariable("id") int id) {

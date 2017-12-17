@@ -5,10 +5,11 @@ import {Http} from '@angular/http';
 
 
 class ReturnClass {
-  nrIntrebari: number;
-  nivelDificultate: number;
-  limbaje: string;
-  tehnologii: string;
+  nrInterbari: number;
+  niveleDificultate: number[];
+  limbaje: string[];
+  domenii: string[];
+  tehnologii: string[];
 }
 
 @Injectable()
@@ -17,7 +18,7 @@ export class QuizService {
   constructor(private http: Http) {
   }
 
-  generateQuiz(nrIntrebari: number, nivelDificultate: number, limbaje: string,domenui: string, tehnologii: string): Observable<Quiz> {
+  generateQuiz(nrIntrebari: number, niveleDificultate: number[], limbaje: string[], domenii: string[], tehnologii: string[]): Observable<Quiz> {
 
 
     // let r: ReturnClass;
@@ -27,9 +28,10 @@ export class QuizService {
     // r.tehnologii = tehnologii;
 
     const r: ReturnClass = {
-      'nrIntrebari': nrIntrebari,
-      'nivelDificultate': nivelDificultate,
+      'nrInterbari': nrIntrebari,
+      'niveleDificultate': niveleDificultate,
       'limbaje': limbaje,
+      'domenii': domenii,
       'tehnologii': tehnologii
     };
 
