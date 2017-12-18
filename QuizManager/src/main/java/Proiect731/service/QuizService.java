@@ -33,30 +33,13 @@ public class QuizService {
         Set<Intrebare> intrebariToAdd = new HashSet<>();
 
         for (int i = 0; i < nrIntrebari; i++) {
-            List<Intrebare> intrebariDinCareAleg= (List<Intrebare>) intrebareService.filter(nivelDificultate.get(i),limbaje.get(i), domenii.get(i), tehnologii.get(i),"___", "___", false, "___");
+            List<Intrebare> intrebariDinCareAleg= (List<Intrebare>) intrebareService.filter(nivelDificultate.get(i),"___", domenii.get(i), tehnologii.get(i),"___", "___", false, "___");
             int randomNum = 0 + (int)(Math.random() * intrebariDinCareAleg.size());
             Intrebare intrebare = new Intrebare(intrebariDinCareAleg.get(randomNum).getNivelDificultate(),intrebariDinCareAleg.get(randomNum).getLimbaj(), intrebariDinCareAleg.get(randomNum).getDomeniu(), intrebariDinCareAleg.get(randomNum).getTehnologie(), intrebariDinCareAleg.get(randomNum).getPunctaj());
             intrebariToAdd.add(intrebare);
 
         }
         quiz.setIntrebari(intrebariToAdd);
-        return quiz;
-
-    }
-
-    public Quiz generateQuiz2(Integer nrIntrebari, Integer nivelDificultate, String limbaje, String tehnologii) {
-
-        Intrebare intrebare = new Intrebare();
-        intrebare.setNivelDificultate(nivelDificultate);
-        intrebare.setLimbaj(limbaje);
-        intrebare.setTehnologie(tehnologii);
-
-        Quiz quiz = new Quiz();
-
-        Set<Intrebare> intrebareSet = new HashSet<>();
-        intrebareSet.add(intrebare);
-
-        quiz.setIntrebari(intrebareSet);
         quizRepo.save(quiz);
         return quiz;
 

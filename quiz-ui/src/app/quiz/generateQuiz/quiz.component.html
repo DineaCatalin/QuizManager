@@ -1,28 +1,33 @@
-<div>
-  <input [(ngModel)]="nrInterbari" type="text" placeholder="nr intrebari">
-  <br>
-  <input [(ngModel)]="nivelDificultate" type="text" placeholder="nivel dificultate">
-  <input [(ngModel)]="limbaj" type="text" placeholder="limbaj">
-  <input [(ngModel)]="domeniu" type="text" placeholder="domeniu">
-  <input [(ngModel)]="tehnologie" type="text" placeholder="tehnologie">
-</div>
-<br>
-<div>
-  <input [(ngModel)]="nivelDificultate2" type="text" placeholder="nivel dificultate">
-  <input [(ngModel)]="limbaj2" type="text" placeholder="limbaj">
-  <input [(ngModel)]="domeniu2" type="text" placeholder="domeniu">
-  <input [(ngModel)]="tehnologie2" type="text" placeholder="tehnologie">
-</div>
-<br>
-<div>
-  <input [(ngModel)]="nivelDificultate3" type="text" placeholder="nivel dificultate">
-  <input [(ngModel)]="limbaj3" type="text" placeholder="limbaj">
-  <input [(ngModel)]="domeniu3" type="text" placeholder="domeniu">
-  <input [(ngModel)]="tehnologie3" type="text" placeholder="tehnologie">
-</div>
+<p class="para"> ENTER </p>
+<p class="para"> ENTER </p>
 
 <div>
-<button (click)="generateQuiz()" class="btn btn-primary"></button>
+  <input [(ngModel)]="nrInterbari" type="text" placeholder="nr intrebari" class="inputfields">
+  <br>
+  <input [(ngModel)]="nivelDificultate" type="text" placeholder="nivel dificultate" class="inputfields">
+  <input [(ngModel)]="limbaj" type="text" placeholder="limbaj" class="inputfields">
+  <input [(ngModel)]="domeniu" type="text" placeholder="domeniu" class="inputfields">
+  <input [(ngModel)]="tehnologie" type="text" placeholder="tehnologie" class="inputfields">
+</div>
+<br>
+<div>
+  <input [(ngModel)]="nivelDificultate2" type="text" placeholder="nivel dificultate" class="inputfields">
+  <input [(ngModel)]="limbaj2" type="text" placeholder="limbaj" class="inputfields">
+  <input [(ngModel)]="domeniu2" type="text" placeholder="domeniu" class="inputfields">
+  <input [(ngModel)]="tehnologie2" type="text" placeholder="tehnologie" class="inputfields">
+</div>
+<br>
+<div>
+  <input [(ngModel)]="nivelDificultate3" type="text" placeholder="nivel dificultate" class="inputfields">
+  <input [(ngModel)]="limbaj3" type="text" placeholder="limbaj" class="inputfields">
+  <input [(ngModel)]="domeniu3" type="text" placeholder="domeniu" class="inputfields">
+  <input [(ngModel)]="tehnologie3" type="text" placeholder="tehnologie" class="inputfields">
+</div>
+
+<p class="para"> ENTER </p>
+
+<div>
+<button (click)="generateQuiz()" class="button" text="Generate">Generate</button>
 </div>
 
 <p>{{toShow}}</p>
