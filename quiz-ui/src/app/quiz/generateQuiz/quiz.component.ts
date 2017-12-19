@@ -2,6 +2,7 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {QuizService} from '../quiz.service';
 import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
+import {Router, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -15,7 +16,7 @@ import {Intrebare} from '../../models/Intrebare';
 })
 export class QuizComponent implements OnInit {
 
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService, private router: Router) {
   }
 
   ngOnInit() {
@@ -98,6 +99,7 @@ export class QuizComponent implements OnInit {
       this.result = resp;
       if (this.result != null) {
 
+        this.router.navigate(['./showQuiz']);
         this.toShow = '';
         this.toShow += 'informatii generale: ' + this.result.informatiiGenerale + ', punctaj total: ' + this.result.punctajTotal +
           ', intrebari: ';
