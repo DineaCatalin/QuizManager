@@ -5,60 +5,50 @@ import java.util.List;
 public class Receive {
 
     private int nrInterbari;
-    private List<String> niveleDificultate;
-    private List<String> limbaje;
-    private List<String> domenii;
-    private List<String> tehnologii;
+    private Integer nivelDificultate;
+    private String limbaj;
+    private String tehnologie;
 
     public Receive() {
 
     }
 
-    public Receive(Integer nrInterbari, List<String> niveleDificultate, List<String> limbaje, List<String> domenii, List<String> tehnologii) {
+    public Receive(int nrInterbari, Integer nivelDificultate, String limbaj, String tehnologie) {
         this.nrInterbari = nrInterbari;
-        this.niveleDificultate = niveleDificultate;
-        this.limbaje = limbaje;
-        this.domenii = domenii;
-        this.tehnologii = tehnologii;
+        this.nivelDificultate = nivelDificultate;
+        this.limbaj = limbaj;
+        this.tehnologie = tehnologie;
     }
 
-    public Integer getNrInterbari() {
+    public int getNrInterbari() {
         return nrInterbari;
     }
 
-    public void setNrInterbari(Integer nrInterbari) {
+    public void setNrInterbari(int nrInterbari) {
         this.nrInterbari = nrInterbari;
     }
 
-    public List<String> getNiveleDificultate() {
-        return niveleDificultate;
+    public Integer getNivelDificultate() {
+        return nivelDificultate;
     }
 
-    public void setNiveleDificultate(List<String> niveleDificultate) {
-        this.niveleDificultate = niveleDificultate;
+    public void setNivelDificultate(Integer nivelDificultate) {
+        this.nivelDificultate = nivelDificultate;
     }
 
-    public List<String> getLimbaje() {
-        return limbaje;
+    public String getLimbaj() {
+        return limbaj;
     }
 
-    public void setLimbaje(List<String> limbaje) {
-        this.limbaje = limbaje;
+    public void setLimbaj(String limbaj) {
+        this.limbaj = limbaj;
     }
 
-    public List<String> getDomenii() {
-        return domenii;
+    public String getTehnologie() {
+        return tehnologie;
     }
 
-    public void setDomenii(List<String> domenii) {
-        this.domenii = domenii;
-    }
-
-    public List<String> getTehnologii() {
-        return tehnologii;
-    }
-
-    public void setTehnologii(List<String> tehnologii) {
-        this.tehnologii = tehnologii;
+    public void setTehnologie(String tehnologie) {
+        this.tehnologie = tehnologie;
     }
 }

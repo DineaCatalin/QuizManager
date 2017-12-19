@@ -18,28 +18,30 @@ public class QuizService {
     @Autowired
     private IntrebareService intrebareService;
 
-    /**
-     * method that generates a quiz
-     *
-     * @param nrIntrebari
-     * @param nivelDificultate
-     * @param limbaje
-     * @param tehnologii
-     * @return
-     */
-    public Quiz generateQuiz(Integer nrIntrebari, List<String> nivelDificultate, List<String> limbaje, List<String> domenii, List<String> tehnologii) {
+    public Quiz generateQuiz(final Integer nrIntrebari, final Integer nivelDificultate, final String limbaj, final String tehnologii) {
         Quiz quiz = new Quiz();
 
-        Set<Intrebare> intrebariToAdd = new HashSet<>();
 
+        final List<Intrebare> toateIntrebarile = (List<Intrebare>) intrebareService.getIntrebareRepository().findAll();
+        List<Intrebare> intrebariFiltrate = new ArrayList<>();
+        Set<Intrebare> interbariToAdd = new HashSet<>();
+
+
+        toateIntrebarile.forEach(intrebare -> {
+            if ((intrebare.getNivelDificultate() == nivelDificultate.intValue()) && (intrebare.getLimbaj().equals(limbaj)) && (intrebare.getTehnologie().equals(tehnologii))) {
+                intrebariFiltrate.add(intrebare);
+            }
+        });
+
+        //TODO: nu imi face filtrarea cum trebuie=> intrebariFiltrare = null ----
         for (int i = 0; i < nrIntrebari; i++) {
-            List<Intrebare> intrebariDinCareAleg= (List<Intrebare>) intrebareService.filter(nivelDificultate.get(i),"___", domenii.get(i), tehnologii.get(i),"___", "___", false, "___");
-            int randomNum = 0 + (int)(Math.random() * intrebariDinCareAleg.size());
-            Intrebare intrebare = new Intrebare(intrebariDinCareAleg.get(randomNum).getNivelDificultate(),intrebariDinCareAleg.get(randomNum).getLimbaj(), intrebariDinCareAleg.get(randomNum).getDomeniu(), intrebariDinCareAleg.get(randomNum).getTehnologie(), intrebariDinCareAleg.get(randomNum).getPunctaj());
-            intrebariToAdd.add(intrebare);
+            if (intrebariFiltrate.size() > 0) {
 
+                int randomNum = 0 + (int) (Math.random() * (intrebariFiltrate.size() - 1));
+                interbariToAdd.add(intrebariFiltrate.get(randomNum));
+            }
         }
-        quiz.setIntrebari(intrebariToAdd);
+        quiz.setIntrebari(interbariToAdd);
         quizRepo.save(quiz);
         return quiz;
 

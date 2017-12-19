@@ -28,12 +28,11 @@ public class QuizController {
         return service.getAllQuizzes();
     }
 
-//    method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE
 
     @RequestMapping(value = "/generateQuiz", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Quiz generateQuiz(@RequestBody Receive receive) {
-        return service.generateQuiz(receive.getNrInterbari(), receive.getNiveleDificultate(), receive.getLimbaje(), receive.getDomenii(), receive.getTehnologii());
+        return service.generateQuiz(receive.getNrInterbari(), receive.getNivelDificultate(), receive.getLimbaj(), receive.getTehnologie());
     }
 
     @GetMapping("/getQuiz/{id}")
