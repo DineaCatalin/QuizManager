@@ -42,17 +42,12 @@ export class QuizComponent implements OnInit {
     this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe(resp => {
       console.log(resp);
       this.result = resp;
+      this.quizService.setQuiz(this.result);
       if (this.result != null) {
 
         this.router.navigate(['./showQuiz']);
-        // this.toShow = '';
-        // this.toShow += 'informatii generale: ' + this.result.informatiiGenerale + ', punctaj total: ' + this.result.punctajTotal +
-        //   ', intrebari: ';
-        // this.result.intrebari.forEach(intreb => this.toShow += 'nivel dificultate:  ' + intreb.nivelDificultate + ',limbaj: '
-        //   + intreb.limbaj + ', domenniu: ' + intreb.domeniu + ', tehnologie: ' + intreb.tehnologie + ', puncatj: ' + intreb.punctaj + '');
       }
     });
-    // this.result = JSON.stringify(this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe());
   }
 
 

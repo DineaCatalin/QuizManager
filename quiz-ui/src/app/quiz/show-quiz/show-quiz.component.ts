@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {QuizService} from '../quiz.service';
+import {Quiz} from '../../models/quiz';
+import {Intrebare} from '../../models/Intrebare';
 
 @Component({
   selector: 'app-show-quiz',
@@ -8,9 +11,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class ShowQuizComponent implements OnInit {
 
-  constructor() { }
+  quiz: Quiz = this.quizService.result;
+  intrebari: Intrebare[] = this.quiz.intrebari;
+
+  constructor(private quizService: QuizService) {
+  }
 
   ngOnInit() {
   }
+
 
 }
