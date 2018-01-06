@@ -23,6 +23,11 @@ public class QuizService {
         Iterable<Intrebare> intrebari = intrebareService.filter(nivelDificultate.toString(), limbaj, "___", tehnologii, "___", "___", false, "");
         Set<Intrebare> intrebariToAdd = toSet(intrebari);
 
+        int punctajTotal = 0;
+        for (Intrebare i : intrebariToAdd) {
+            punctajTotal += i.getPunctaj();
+        }
+        quiz.setPunctajTotal(punctajTotal);
         quiz.setIntrebari(intrebariToAdd);
         quizRepo.save(quiz);
         return quiz;

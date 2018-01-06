@@ -15,6 +15,8 @@ class ReturnClass {
 @Injectable()
 export class QuizService {
 
+  result: Quiz;
+
   constructor(private http: Http) {
   }
 
@@ -29,8 +31,10 @@ export class QuizService {
     };
 
     return this.http.post('http://localhost:9090/generateQuiz', r).map(response => response.json());
+  }
 
-
+  setQuiz(quiz: Quiz): void {
+    this.result = quiz;
   }
 
 
