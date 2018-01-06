@@ -20,31 +20,27 @@ public class QuizService {
 
     public Quiz generateQuiz(final Integer nrIntrebari, final Integer nivelDificultate, final String limbaj, final String tehnologii) {
         Quiz quiz = new Quiz();
+        Iterable<Intrebare> intrebari = intrebareService.filter(nivelDificultate.toString(), limbaj, "___", tehnologii, "___", "___", false, "");
+        Set<Intrebare> intrebariToAdd = toSet(intrebari);
 
-
-        final List<Intrebare> toateIntrebarile = (List<Intrebare>) intrebareService.getIntrebareRepository().findAll();
-        List<Intrebare> intrebariFiltrate = new ArrayList<>();
-        Set<Intrebare> interbariToAdd = new HashSet<>();
-
-
-        toateIntrebarile.forEach(intrebare -> {
-            if ((intrebare.getNivelDificultate() == nivelDificultate.intValue()) && (intrebare.getLimbaj().equals(limbaj)) && (intrebare.getTehnologie().equals(tehnologii))) {
-                intrebariFiltrate.add(intrebare);
-            }
-        });
-
-        //TODO: nu imi face filtrarea cum trebuie=> intrebariFiltrare = null ----
-        for (int i = 0; i < nrIntrebari; i++) {
-            if (intrebariFiltrate.size() > 0) {
-
-                int randomNum = 0 + (int) (Math.random() * (intrebariFiltrate.size() - 1));
-                interbariToAdd.add(intrebariFiltrate.get(randomNum));
-            }
-        }
-        quiz.setIntrebari(interbariToAdd);
+        quiz.setIntrebari(intrebariToAdd);
         quizRepo.save(quiz);
         return quiz;
 
+    }
+
+    /**
+     * conerts from iterable to set
+     *
+     * @param collection
+     * @param <T>
+     * @return
+     */
+    public <T> Set<T> toSet(Iterable<T> collection) {
+        HashSet<T> set = new HashSet<T>();
+        for (T item : collection)
+            set.add(item);
+        return set;
     }
 
     /**
