@@ -2,18 +2,19 @@
 
 
 <h1 class="quizhead">Quiz</h1>
-<p>nicel dificultate</p> <p>{{quiz.punctajTotal}}</p>
-<p>tehnologii:</p>
-<p>limbaje: </p>
-<p>nr max de puncte ce poate sa fie obinut (aici adun toate punctele de la toate intrebarile)</p>
+<p>tehnologii: {{tehnologii}}</p>
+<p>limbaje: {{limbaje}}</p>
+<p>punctaj total: {{quiz.punctajTotal}}</p>
 <ul>
   <!--*ngFor="intrebare in intrebari"-->
-  <li><h3>Question 1</h3>
+  <li *ngFor="let intrebare of intrebari"><h3>Question 1</h3>
 
-    <input type="checkbox"><br>
-    <input type="checkbox">Answer B<br>
-    <input type="checkbox">Answer C<br>
-    <input type="checkbox">Answer D<br>
+    <div *ngFor="let rasp of intrebare.raspuns">
+    <input type="checkbox">{{rasp.traduceri}}<br>
+    <!--<input type="checkbox">Answer B<br>-->
+    <!--<input type="checkbox">Answer C<br>-->
+    <!--<input type="checkbox">Answer D<br>-->
+    </div>
   </li>
 </ul>
 <div>

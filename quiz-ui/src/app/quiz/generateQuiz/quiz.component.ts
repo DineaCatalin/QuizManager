@@ -26,11 +26,11 @@ export class QuizComponent implements OnInit {
   toShow: string;
   intrebari: Intrebare[];
 
-  nrInterbari: number;
-  nivelDificultate: number;
-  limbaj: string;
-  domeniu: string;
-  tehnologie: string;
+  nrInterbari: number = null;
+  nivelDificultate: number = null;
+  limbaj: string = null;
+  domeniu: string = null;
+  tehnologie: string = null;
 
 
   /**
@@ -38,16 +38,19 @@ export class QuizComponent implements OnInit {
    * this function should be modified
    */
   generateQuiz() {
+    if (this.nrInterbari == null || this.nivelDificultate == null || this.limbaj == null || this.tehnologie == null || this.limbaj.length == 0 || this.tehnologie.length == 0) {
+      alert('One field is empty!');
+    } else {
+      this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe(resp => {
+        console.log(resp);
+        this.result = resp;
+        this.quizService.setQuiz(this.result);
+        if (this.result != null) {
 
-    this.quizService.generateQuiz(this.nrInterbari, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe(resp => {
-      console.log(resp);
-      this.result = resp;
-      this.quizService.setQuiz(this.result);
-      if (this.result != null) {
-
-        this.router.navigate(['./showQuiz']);
-      }
-    });
+          this.router.navigate(['./showQuiz']);
+        }
+      });
+    }
   }
 
 
