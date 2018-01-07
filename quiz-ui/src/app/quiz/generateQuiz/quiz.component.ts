@@ -1,26 +1,19 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {QuizService} from '../quiz.service';
 import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 import {Router, RouterLinkActive} from '@angular/router';
+
+
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css'],
   encapsulation: ViewEncapsulation.None,
-  // template: `
-  //   <div [innerHTML]="obj | prettyprint"></div>
-  // `,
-  // pipes: [PrettyprintPipe]
+
 })
 export class QuizComponent implements OnInit {
-
-  constructor(private quizService: QuizService, private router: Router) {
-  }
-
-  ngOnInit() {
-  }
 
   result: Quiz;
   toShow: string;
@@ -31,6 +24,14 @@ export class QuizComponent implements OnInit {
   limbaj: string = null;
   domeniu: string = null;
   tehnologie: string = null;
+
+
+
+  constructor(private quizService: QuizService, private router: Router, private elementRef: ElementRef) {
+  }
+
+  ngOnInit() {
+  }
 
 
   /**

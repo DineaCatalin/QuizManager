@@ -7,20 +7,21 @@
 <p>punctaj total: {{quiz.punctajTotal}}</p>
 <ul>
   <!--*ngFor="intrebare in intrebari"-->
-  <li *ngFor="let intrebare of intrebari"><h3>Question 1</h3>
+  <div *ngFor="let intrebare of intrebari">
+    <li *ngFor="let translatedQuestions of intrebare.traduceri"><h3>{{translatedQuestions.enunt}}</h3>
 
-    <div *ngFor="let rasp of intrebare.raspuns">
-    <input type="checkbox">{{rasp.traduceri}}<br>
-    <!--<input type="checkbox">Answer B<br>-->
-    <!--<input type="checkbox">Answer C<br>-->
-    <!--<input type="checkbox">Answer D<br>-->
-    </div>
-  </li>
+      <div *ngFor="let rasp of intrebare.raspuns">
+        <div *ngFor="let trad of rasp.traduceri">
+          <input type="checkbox">{{trad.enunt}}<br>
+        </div>
+      </div>
+    </li>
+  </div>
 </ul>
 <div>
-  <button (click)="generateQuiz()">Submit</button>
+  <button >Submit</button>
 </div>
-
+<br>
 
 </body>
 
