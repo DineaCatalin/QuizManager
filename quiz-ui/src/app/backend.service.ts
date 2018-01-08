@@ -2,20 +2,22 @@ import {Headers, Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Intrebare} from "./models/Intrebare";
 import {TraducereIntrebare} from "./models/TraducereIntrebare";
 import {Raspuns} from "./models/Raspuns";
 import {TraducereRaspuns} from "./models/TraducereRaspuns";
+import {Quiz} from "./models/quiz";
 
 @Injectable()
 export class BackendService {
 
-  headers = new Headers({ 'Content-Type': 'application/json' });
-  options = new RequestOptions({ headers: this.headers });
+  headers = new Headers({'Content-Type': 'application/json'});
+  options = new RequestOptions({headers: this.headers});
 
 
-  constructor(private http: Http){}
+  constructor(private http: Http) {
+  }
 
   public getAllQuestions(): Observable<Intrebare[]> {
     return this.http.get("http://localhost:9090/getIntrebari", this.options).map(response => response.json()).catch(this.handleError);
@@ -27,8 +29,8 @@ export class BackendService {
     }).catch(this.handleError);
   }
 
-  public  updateQuestion(question: Intrebare): Observable<string>{
-    return this.http.put("http://localhost:9090/updateIntrebare", question, this.options).map(response=>response.toString());
+  public updateQuestion(question: Intrebare): Observable<string> {
+    return this.http.put("http://localhost:9090/updateIntrebare", question, this.options).map(response => response.toString());
   }
 
   public addQuestion(question: Intrebare): Observable<any> {
@@ -48,36 +50,36 @@ export class BackendService {
   }
 
   public getAnswersByQuestion(id: number): Observable<any> {
-    let link = "http://localhost:9090/getRaspunsByIntrebare/"+id;
+    let link = "http://localhost:9090/getRaspunsByIntrebare/" + id;
     return this.http.get(link).map(response => response.json()).catch(this.handleError);
   }
 
   public getTranslationsOfQuestion(id: number): Observable<any> {
-    let link = "http://localhost:9090/getIntrebariTraduseByIntrebare/"+id;
+    let link = "http://localhost:9090/getIntrebariTraduseByIntrebare/" + id;
     return this.http.get(link).map(response => response.json()).catch(this.handleError);
   }
 
   public getTranslationsOfAnswer(id: number): Observable<any> {
-    let link = "http://localhost:9090/getRaspunsTraduseByRaspuns/"+id;
+    let link = "http://localhost:9090/getRaspunsTraduseByRaspuns/" + id;
     return this.http.get(link).map(response => {
       return response.json()
     }).catch(this.handleError);
   }
 
   public deleteQuestion(id: number) {
-    let link = "http://localhost:9090/deleteIntrebare/"+id;
+    let link = "http://localhost:9090/deleteIntrebare/" + id;
     return this.http.get(link);
   }
 
-  private handleError(error: any): Observable<any>{
+  private handleError(error: any): Observable<any> {
     // console.error(error);
     return error.message || error;
   }
 
-  public filterQuestions(nivelDif: number[], limbaj: string, tehnologie: string, domeniu: string, nrRasp: number[], dupaCuv: string, caseSens: boolean, limba: string): Observable<Intrebare[]>{
-    var niv="";
-    var nrR="";
-    for(var i=0;i<nivelDif.length;i++) {
+  public filterQuestions(nivelDif: number[], limbaj: string, tehnologie: string, domeniu: string, nrRasp: number[], dupaCuv: string, caseSens: boolean, limba: string): Observable<Intrebare[]> {
+    var niv = "";
+    var nrR = "";
+    for (var i = 0; i < nivelDif.length; i++) {
       if (i < nivelDif.length - 1) {
         niv += nivelDif[i] + ",";
       }
@@ -85,36 +87,97 @@ export class BackendService {
         niv += nivelDif[i];
       }
     }
-    if(niv.length == 0){
-      niv="___";
+    if (niv.length == 0) {
+      niv = "___";
     }
-    if(limbaj.length == 0){
+    if (limbaj.length == 0) {
       limbaj = "___";
     }
-    if(tehnologie.length == 0){
+    if (tehnologie.length == 0) {
       tehnologie = "___";
     }
-    if(domeniu.length == 0){
+    if (domeniu.length == 0) {
       domeniu = "___";
     }
-    for(var i=0;i<nrRasp.length;i++){
-      if(i<nrRasp.length-1){
-        nrR+=nrRasp[i]+",";
+    for (var i = 0; i < nrRasp.length; i++) {
+      if (i < nrRasp.length - 1) {
+        nrR += nrRasp[i] + ",";
       }
       else {
-        nrR+=nrRasp[i];
+        nrR += nrRasp[i];
       }
     }
-    if(nrR.length==0){
-      nrR="___";
+    if (nrR.length == 0) {
+      nrR = "___";
     }
 
-    if(dupaCuv.length == 0){
-      dupaCuv= "___";
+    if (dupaCuv.length == 0) {
+      dupaCuv = "___";
     }
-    let link = "http://localhost:9090/filter/"+niv+"/"+limbaj+"/"+domeniu+"/"+tehnologie+"/"+nrR+"/"+dupaCuv+"/"+caseSens+"/"+limba;
+    let link = "http://localhost:9090/filter/" + niv + "/" + limbaj + "/" + domeniu + "/" + tehnologie + "/" + nrR + "/" + dupaCuv + "/" + caseSens + "/" + limba;
     console.log(link);
     return this.http.get(link, this.options).map(response => response.json()).catch(this.handleError);
+  }
+
+  public getHistory(idUtilizator: number): Quiz[] {
+    // return this.http.get("http://localhost:9090/gethistory/"+idUtilizator, this.options).map(response => response.json()).catch(this.handleError);
+    let quiz: Quiz[] = [
+      {
+        punctajTotal: 20,
+        informatiiGenerale: "Descriere",
+        intrebari: [],
+        idUtilizator: 1
+      },
+      {
+        punctajTotal: 11,
+        informatiiGenerale: "Descriere1",
+        intrebari: [],
+        idUtilizator: 1
+      },
+      {
+        punctajTotal: 12,
+        informatiiGenerale: "Descriere2",
+        intrebari: [],
+        idUtilizator: 1
+      }
+    ];
+    return quiz;
+  }
+  public getWholeHistory(): Quiz[] {
+    // return this.http.get("http://localhost:9090/gethistory/", this.options).map(response => response.json()).catch(this.handleError);
+    let quiz: Quiz[] = [
+      {
+        punctajTotal: 20,
+        informatiiGenerale: "Descriere",
+        intrebari: [],
+        idUtilizator: 1
+      },
+      {
+        punctajTotal: 11,
+        informatiiGenerale: "Descriere1",
+        intrebari: [],
+        idUtilizator: 1
+      },
+      {
+        punctajTotal: 12,
+        informatiiGenerale: "Descriere2",
+        intrebari: [],
+        idUtilizator: 1
+      },
+      {
+        punctajTotal: 43,
+        informatiiGenerale: "Descriere3",
+        intrebari: [],
+        idUtilizator: 2
+      },
+      {
+        punctajTotal: 55,
+        informatiiGenerale: "Descriere4",
+        intrebari: [],
+        idUtilizator: 2
+      }
+    ];
+    return quiz;
   }
 
 }

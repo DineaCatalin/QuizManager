@@ -15,6 +15,7 @@ import { QuizComponent } from './quiz/generateQuiz/quiz.component';
 import {QuizService} from './quiz/quiz.service';
 import { ShowQuizComponent } from './quiz/show-quiz/show-quiz.component';
 import { PrettyprintPipe } from './quiz/prettyprint.pipe';
+import { HistoryPageComponent } from './history-page/history-page.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PrettyprintPipe } from './quiz/prettyprint.pipe';
     CreateQuestionComponent,
     QuizComponent,
     ShowQuizComponent,
-    PrettyprintPipe
+    PrettyprintPipe,
+    HistoryPageComponent
   ],
   imports: [
     BrowserModule,

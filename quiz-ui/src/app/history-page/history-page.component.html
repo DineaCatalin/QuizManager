@@ -1,0 +1,26 @@
+<div>
+  <table class="table table-hover">
+    <tr>
+      <th>
+        Punctaj Total
+      </th>
+      <th>
+        Informatii Generale
+      </th>
+      <th>
+        ID Utilizator
+      </th>
+    </tr>
+    <tr *ngFor="let element of historyList">
+      <td>
+        {{element.punctajTotal}}
+      </td>
+      <td>
+        {{element.informatiiGenerale}}
+      </td>
+      <td>
+        {{element.idUtilizator}}
+      </td>
+    </tr>
+  </table>
+</div>
