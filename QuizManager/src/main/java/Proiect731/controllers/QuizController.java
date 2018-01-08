@@ -32,7 +32,7 @@ public class QuizController {
     @RequestMapping(value = "/generateQuiz", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Quiz generateQuiz(@RequestBody Receive receive) {
-        return service.generateQuiz(receive.getNrInterbari(), receive.getNivelDificultate(), receive.getLimbaj(), receive.getTehnologie());
+        return service.generateQuiz(receive.getNrInterbari(), receive.getNivelDificultate(), receive.getLimbaj(), receive.getTehnologie(),receive.getLimba());
     }
 
     @GetMapping("/getQuiz/{id}")
