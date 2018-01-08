@@ -8,16 +8,18 @@ public class Receive {
     private Integer nivelDificultate;
     private String limbaj;
     private String tehnologie;
+    private String limba;
 
     public Receive() {
 
     }
 
-    public Receive(int nrInterbari, Integer nivelDificultate, String limbaj, String tehnologie) {
+    public Receive(int nrInterbari, Integer nivelDificultate, String limbaj, String tehnologie, String limba) {
         this.nrInterbari = nrInterbari;
         this.nivelDificultate = nivelDificultate;
         this.limbaj = limbaj;
         this.tehnologie = tehnologie;
+        this.limba = limba;
     }
 
     public int getNrInterbari() {
@@ -50,5 +52,13 @@ public class Receive {
 
     public void setTehnologie(String tehnologie) {
         this.tehnologie = tehnologie;
+    }
+
+    public String getLimba() {
+        return limba;
+    }
+
+    public void setLimba(String limba) {
+        this.limba = limba;
     }
 }

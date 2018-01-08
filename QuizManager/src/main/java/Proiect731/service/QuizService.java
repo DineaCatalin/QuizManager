@@ -18,9 +18,11 @@ public class QuizService {
     @Autowired
     private IntrebareService intrebareService;
 
-    public Quiz generateQuiz(final Integer nrIntrebari, final Integer nivelDificultate, final String limbaj, final String tehnologii) {
+    public Quiz generateQuiz(final Integer nrIntrebari, final Integer nivelDificultate, final String limbaj, final String tehnologii, final String limba)
+
+    {
         Quiz quiz = new Quiz();
-        Iterable<Intrebare> intrebari = intrebareService.filter(nivelDificultate.toString(), limbaj, "___", tehnologii, "___", "___", false, "");
+        Iterable<Intrebare> intrebari = intrebareService.filter(nivelDificultate.toString(), limbaj, "___", tehnologii, "___", "___", true, limba);
         Set<Intrebare> intrebariToAdd = toSet(intrebari);
 
         int punctajTotal = 0;
