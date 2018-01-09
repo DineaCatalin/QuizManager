@@ -5,6 +5,7 @@ import {Intrebare} from '../../models/Intrebare';
 import {Router, RouterLinkActive} from '@angular/router';
 
 
+
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -24,8 +25,8 @@ export class QuizComponent implements OnInit {
   domeniu: string = null;
   tehnologie: string = null;
 
-
   nivelD: number[] = [1, 2, 3, 4];
+
 
 
   constructor(private quizService: QuizService, private router: Router, private elementRef: ElementRef) {

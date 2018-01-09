@@ -3,7 +3,6 @@ import {QuizService} from '../quiz.service';
 import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 import {Router} from '@angular/router';
-import {Raspuns} from '../../models/Raspuns';
 
 @Component({
   selector: 'app-show-quiz',
