@@ -12,16 +12,23 @@
 
       <div *ngFor="let rasp of intrebare.raspuns">
         <div *ngFor="let trad of rasp.traduceri">
-          <input type="checkbox">{{trad.enunt}}<br>
+          <!--<div *ngFor="let checkboxoption of checkboxOptions">-->
+            <input (change)="intrebare.raspuns" type="checkbox">{{trad.enunt}}<br>
+          <!--</div>-->
         </div>
       </div>
     </li>
   </div>
 </ul>
 <div>
-  <button>Submit</button>
+  <button (click)="calculateScore2()" class="form-group">Submit</button>
 </div>
 <br>
+
+
+
+
+
 
 </body>
 

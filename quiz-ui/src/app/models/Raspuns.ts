@@ -6,7 +6,6 @@ export class Raspuns {
   valoareAdevar: boolean;
   traduceri: TraducereRaspuns[]=[];
 
-
   constructor(idRaspuns: number, valoareAdevar: boolean, traduceri: TraducereRaspuns[]) {
     this.idRaspuns = idRaspuns;
     this.valoareAdevar = valoareAdevar;
