@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChildren, ViewEncapsulation} from '@angular/core';
 import {QuizService} from '../quiz.service';
 import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 import {Router} from '@angular/router';
+import {Raspuns} from '../../models/Raspuns';
 
 @Component({
   selector: 'app-show-quiz',
@@ -21,6 +22,9 @@ export class ShowQuizComponent implements OnInit {
   score: number = null;
 
   checkboxOptions: boolean[] = [];
+  questions: Intrebare[] = [];
+
+  raspunsToCheck: Raspuns[] = [];
 
   constructor(private quizService: QuizService, private router: Router) {
   }
@@ -48,16 +52,65 @@ export class ShowQuizComponent implements OnInit {
       return index === self.indexOf(elem);
     });
 
+    // set the checkboxOptions size
     this.intrebari.forEach(i =>
       i.raspuns.forEach(r =>
         this.checkboxOptions.push(false)
       )
     );
+    // console.log(this.checkboxOptions);
 
+    // var index1: number = 0;
+    // while (index1 < this.intrebari.length) {
+    //   var index2: number = 0;
+    //   while (index2 < this.intrebari[index1].raspuns.length) {
+    //     this.questions[index1].raspuns[index2].idRaspuns = this.intrebari[index1].raspuns[index2].idRaspuns;
+    //     this.questions[index1].raspuns[index2].valoareAdevar = this.intrebari[index1].raspuns[index2].valoareAdevar;
+    //     index2++;
+    //   }
+    //   index1++;
+    // }
+
+
+
+    this.questions = this.intrebari;
+    // initialize this.raspunsToCheck
+    // this.intrebari.forEach(i=>{
+    //   this.raspunsToCheck.push(i.raspuns);
+    // })
+    // this.raspunsToCheck
   }
 
 
-  questions: Intrebare[] = this.intrebari;
+  @ViewChildren('myItem') item;
+  selectedIds = [];
+  selectedIds2: boolean[] = [];
+
+  OnCheckboxSelect(id, idRaspuns: number, event) {
+    if (event.target.checked === true) {
+      this.questions.forEach(q => {
+        q.raspuns.forEach(r => {
+            if (r.idRaspuns == idRaspuns) {
+              r.valoareAdevar = true;
+            }
+          });
+      });
+      // this.selectedIds.push({id: id, checked: event.target.checked});
+      // console.log('Selected Ids ', this.selectedIds);
+    }
+    if (event.target.checked === false) {
+      this.questions.forEach(q => {
+        q.raspuns.forEach(r => {
+          if (r.idRaspuns == idRaspuns) {
+            r.valoareAdevar = false;
+          }
+        });
+      });
+      // this.selectedIds = this.selectedIds.filter((item) => item.id !== id);
+    }
+    console.log(this.questions);
+  }
+
 
   calculateScore2() {
 
@@ -76,59 +129,32 @@ export class ShowQuizComponent implements OnInit {
         index2++;
       }
       if (goodQuestion == true) {
-        this.score += this.questions[index].punctaj;
+        this.score += this.intrebari[index].punctaj;
       }
 
       index++;
     }
 
     console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+    console.log(this.score);
+
 
   }
+
+
 
   public clalculateScore() {
 
-    // let intrebareTrue;
-    // let index: number;
-    // while (index < this.checkboxOptions.length) {
-    //   this.intrebari.forEach(i => {
-    //       intrebareTrue = true;
-    //       i.raspuns.forEach(r => {
-    //           if (this.checkboxOptions[index] != r.valoareAdevar) {
-    //             intrebareTrue = false;
-    //           }
-    //           index++;
-    //         }
-    //       );
-    //       if (intrebareTrue == true) {
-    //         this.score += i.punctaj;
-    //       }
-    //       ;
-    //     }
-    //   );
-    // }
-  }
-
-
-  randomAlg() {
-    // let intrebariToCompare: Intrebare[];
-    //
-    // this.intrebari.forEach(i => {
-    //   let intrebare: Intrebare;
-    //   i.raspuns.forEach(r => {
-    //     let raspuns: Raspuns;
-    //     raspuns.valoareAdevar = false;
-    //     intrebare.raspuns.push(raspuns);
-    //   });
-    //
-    //   intrebariToCompare.push(intrebare);
-    // });
 
   }
-
-
-  // this.raspunsuri = this.quiz.intrebari;
-  // }
 
 
 }

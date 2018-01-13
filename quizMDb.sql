@@ -1,3 +1,6 @@
+CREATE DATABASE quizmanagerdb;
+use quizmanagerdb;
+
 CREATE TABLE intrebare (
 id_intrebare int NOT NULL auto_increment,
 nivelDificultate INTEGER,
@@ -9,7 +12,7 @@ PRIMARY KEY (id_intrebare));
 
 CREATE TABLE raspuns (
 id_raspuns int NOT NULL auto_increment,
-valoareAdevar binary,
+valoareAdevar boolean,
 id_intrebare int, 
 FOREIGN KEY (id_intrebare) REFERENCES intrebare(id_intrebare),
 PRIMARY KEY (id_raspuns));
