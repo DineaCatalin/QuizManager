@@ -2,7 +2,7 @@ import {Headers, Http, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Intrebare} from './models/Intrebare';
 import {TraducereIntrebare} from './models/TraducereIntrebare';
 import {Raspuns} from './models/Raspuns';
@@ -12,11 +12,12 @@ import {Utilizator} from './models/Utilizator';
 @Injectable()
 export class BackendService {
 
-  headers = new Headers({ 'Content-Type': 'application/json' });
-  options = new RequestOptions({ headers: this.headers });
+  headers = new Headers({'Content-Type': 'application/json'});
+  options = new RequestOptions({headers: this.headers});
   user = 'test';
 
-  constructor(private http: Http){}
+  constructor(private http: Http) {
+  }
 
   public getAllQuestions(): Observable<Intrebare[]> {
     return this.http.get('http://localhost:9090/getIntrebari', this.options).map(response => response.json()).catch(this.handleError);
@@ -28,7 +29,7 @@ export class BackendService {
     }).catch(this.handleError);
   }
 
-  public  updateQuestion(question: Intrebare): Observable<string>{
+  public updateQuestion(question: Intrebare): Observable<string> {
     return this.http.put('http://localhost:9090/updateIntrebare', question, this.options).map(response => response.toString());
   }
 
@@ -70,12 +71,12 @@ export class BackendService {
     return this.http.get(link);
   }
 
-  private handleError(error: any): Observable<any>{
+  private handleError(error: any): Observable<any> {
     // console.error(error);
     return error.message || error;
   }
 
-  public filterQuestions(nivelDif: number[], limbaj: string, tehnologie: string, domeniu: string, nrRasp: number[], dupaCuv: string, caseSens: boolean, limba: string): Observable<Intrebare[]>{
+  public filterQuestions(nivelDif: number[], limbaj: string, tehnologie: string, domeniu: string, nrRasp: number[], dupaCuv: string, caseSens: boolean, limba: string): Observable<Intrebare[]> {
     let niv = '';
     let nrR = '';
     for (let i = 0; i < nivelDif.length; i++) {
@@ -86,31 +87,31 @@ export class BackendService {
         niv += nivelDif[i];
       }
     }
-    if (niv.length == 0){
+    if (niv.length == 0) {
       niv = '___';
     }
-    if (limbaj.length == 0){
+    if (limbaj.length == 0) {
       limbaj = '___';
     }
-    if (tehnologie.length == 0){
+    if (tehnologie.length == 0) {
       tehnologie = '___';
     }
-    if (domeniu.length == 0){
+    if (domeniu.length == 0) {
       domeniu = '___';
     }
-    for (let i = 0; i < nrRasp.length; i++){
-      if (i < nrRasp.length - 1){
+    for (let i = 0; i < nrRasp.length; i++) {
+      if (i < nrRasp.length - 1) {
         nrR += nrRasp[i] + ',';
       }
       else {
         nrR += nrRasp[i];
       }
     }
-    if (nrR.length == 0){
+    if (nrR.length == 0) {
       nrR = '___';
     }
 
-    if (dupaCuv.length == 0){
+    if (dupaCuv.length == 0) {
       dupaCuv = '___';
     }
     const link = 'http://localhost:9090/filter/' + niv + '/' + limbaj + '/' + domeniu + '/' + tehnologie + '/' + nrR + '/' + dupaCuv + '/' + caseSens + '/' + limba;
@@ -118,9 +119,9 @@ export class BackendService {
     return this.http.get(link, this.options).map(response => response.json()).catch(this.handleError);
   }
 
-  login(username: string, encodedPass: string) {
-    const link = 'http://localhost:9090/';
-    return this.http.get(link);
+  login(username: string, encodedPass: string): Observable<any> {
+    const link = 'http://localhost:9090/login/' + username + '/' + encodedPass;
+    return this.http.get(link, this.options).map(response => response.json()).catch(this.handleError);
   }
 
   public createUser(user: Utilizator): Observable<any> {

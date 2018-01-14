@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {BackendService} from '../backend.service';
+import {Intrebare} from '../models/Intrebare';
+
 // import {Md5} from 'ts-md5/dist/md5';
 
 @Component({
@@ -21,10 +23,18 @@ export class LoginComponent implements OnInit {
 
 
   login(): void {
-
+    alert('TRYING TO LOGIN');
     // const encodedPass = Md5.hashStr(this.password) ;
-    this.backend.login(this.username, this.password);
-  }
+    this.backend.login(this.username, this.password).subscribe((res: boolean) => {
+      alert('tried to login, after method call');
+        if (res) {
+          alert('Logged in successfully');
+        } else {
+          alert('username or password are incorrect');
+        }
+      }
+    );
 
+  }
 
 }
