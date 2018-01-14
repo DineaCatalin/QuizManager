@@ -10,10 +10,13 @@ class ReturnClass {
   limbaj: string;
   domeniu: string;
   tehnologie: string;
+  limba: string;
 }
 
 @Injectable()
 export class QuizService {
+
+  result: Quiz;
 
   constructor(private http: Http) {
   }
@@ -25,12 +28,15 @@ export class QuizService {
       'nivelDificultate': nivelDificultate,
       'limbaj': limbaj,
       'domeniu': domeniu,
-      'tehnologie': tehnologie
+      'tehnologie': tehnologie,
+      'limba': 'English'
     };
 
     return this.http.post('http://localhost:9090/generateQuiz', r).map(response => response.json());
+  }
 
-
+  setQuiz(quiz: Quiz): void {
+    this.result = quiz;
   }
 
 

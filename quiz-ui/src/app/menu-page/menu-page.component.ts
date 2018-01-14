@@ -19,7 +19,8 @@ export class MenuPageComponent implements OnInit {
     { active: false, url: "create-question-page", text: "Add Question" },
     { active: false, url: "generateQuiz", text: "Generate Quiz" },
     { active: false, url: "create-user-page", text: "Create user" },
-    { active: false, url: "create-logout-page", text: "Logout" }
+    { active: false, url: "create-logout-page", text: "Logout" },
+    {active: false, url: "history", text: "History"}
   ];
 
   constructor(private route: ActivatedRoute, private router: Router) { }

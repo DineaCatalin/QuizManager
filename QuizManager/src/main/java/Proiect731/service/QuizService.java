@@ -1,5 +1,6 @@
 package Proiect731.service;
 
+import java.nio.channels.InterruptedByTimeoutException;
 import java.util.*;
 
 import Proiect731.entity.Intrebare;
@@ -18,33 +19,56 @@ public class QuizService {
     @Autowired
     private IntrebareService intrebareService;
 
-    public Quiz generateQuiz(final Integer nrIntrebari, final Integer nivelDificultate, final String limbaj, final String tehnologii) {
+    public Quiz generateQuiz(final Integer nrIntrebari, final Integer nivelDificultate, final String limbaj, final String tehnologii, final String limba)
+
+    {
         Quiz quiz = new Quiz();
+        Iterable<Intrebare> intrebari = intrebareService.filter(nivelDificultate.toString(), limbaj, "___", tehnologii, "___", "___", true, limba);
+        Set<Intrebare> intrebariToAdd = toSet(intrebari);
 
-
-        final List<Intrebare> toateIntrebarile = (List<Intrebare>) intrebareService.getIntrebareRepository().findAll();
-        List<Intrebare> intrebariFiltrate = new ArrayList<>();
-        Set<Intrebare> interbariToAdd = new HashSet<>();
-
-
-        toateIntrebarile.forEach(intrebare -> {
-            if ((intrebare.getNivelDificultate() == nivelDificultate.intValue()) && (intrebare.getLimbaj().equals(limbaj)) && (intrebare.getTehnologie().equals(tehnologii))) {
-                intrebariFiltrate.add(intrebare);
-            }
-        });
-
-        //TODO: nu imi face filtrarea cum trebuie=> intrebariFiltrare = null ----
-        for (int i = 0; i < nrIntrebari; i++) {
-            if (intrebariFiltrate.size() > 0) {
-
-                int randomNum = 0 + (int) (Math.random() * (intrebariFiltrate.size() - 1));
-                interbariToAdd.add(intrebariFiltrate.get(randomNum));
-            }
+        int punctajTotal = 0;
+        for (Intrebare i : intrebariToAdd) {
+            punctajTotal += i.getPunctaj();
         }
-        quiz.setIntrebari(interbariToAdd);
+        quiz.setPunctajTotal(punctajTotal);
+        quiz.setIntrebari(intrebariToAdd);
         quizRepo.save(quiz);
         return quiz;
 
+    }
+
+    /**
+     * conerts from iterable to set
+     *
+     * @param collection
+     * @param <T>
+     * @return
+     */
+    public <T> Set<T> toSet(Iterable<T> collection) {
+        HashSet<T> set = new HashSet<T>();
+        for (T item : collection)
+            set.add(item);
+        return set;
+    }
+
+    /**
+     * Converts {@link Iterable} to {@link List}
+     *
+     * @param iterable
+     * @param <E>
+     * @return
+     */
+    public static <E> List<E> toList(Iterable<E> iterable) {
+        if (iterable instanceof List) {
+            return (List<E>) iterable;
+        }
+        ArrayList<E> list = new ArrayList<E>();
+        if (iterable != null) {
+            for (E e : iterable) {
+                list.add(e);
+            }
+        }
+        return list;
     }
 
     /**

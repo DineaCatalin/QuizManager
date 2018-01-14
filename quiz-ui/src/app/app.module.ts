@@ -17,6 +17,7 @@ import { ShowQuizComponent } from './quiz/show-quiz/show-quiz.component';
 import { PrettyprintPipe } from './quiz/prettyprint.pipe';
 import {LoginComponent} from './login/login.component';
 import {CreateUserComponent} from './user-page/create-user/create-user.component';
+import { HistoryPageComponent } from './history-page/history-page.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {CreateUserComponent} from './user-page/create-user/create-user.component
     CreateQuestionComponent,
     QuizComponent,
     ShowQuizComponent,
+    HistoryPageComponent,
     PrettyprintPipe,
     LoginComponent,
     CreateUserComponent

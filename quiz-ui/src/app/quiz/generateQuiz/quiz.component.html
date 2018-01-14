@@ -1,16 +1,32 @@
-<p class="para"> ENTER </p>
-<p class="para"> ENTER </p>
-
+<h2>Generate A Quiz:</h2>
+<br>
+<br>
 <div>
-  <input [(ngModel)]="nrInterbari" type="text" placeholder="nr intrebari" class="inputfields">
-  <br>
-  <input [(ngModel)]="nivelDificultate" type="text" placeholder="nivel dificultate" class="inputfields">
-  <input [(ngModel)]="limbaj" type="text" placeholder="limbaj" class="inputfields">
-  <input [(ngModel)]="tehnologie" type="text" placeholder="tehnologie" class="inputfields">
+  <p><label class="bold-text">Number of Questions:</label>
+    <br>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="nrInterbari" placeholder="Number of Questions">
+  </p>
+
+  <p><label class="bold-text">Difficulty Level:</label>
+    <br>
+
+    <select class="w3-input w3-border" [(ngModel)]="nivelDificultate">
+      <option *ngFor="let niveleDificultate of nivelD" [ngValue]="niveleDificultate">
+        {{niveleDificultate}}
+      </option>
+    </select>
+  </p>
+  <p><label class="bold-text">Language:</label>
+    <br>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="limbaj" placeholder="Language">
+  </p>
+  <p><label class="bold-text">Technology:</label>
+    <br>
+    <input class="w3-input w3-border" type="text" [(ngModel)]="tehnologie" placeholder="Technology">
+  </p>
 </div>
 <br>
 <div>
-<button (click)="generateQuiz()" class="button" text="Generate">Generate</button>
+  <button (click)="generateQuiz()" class="w3-btn w3-green w3-ripple w3-margin-top" type="submit">Generate</button>
 </div>
-
 <p>{{toShow}}</p>
