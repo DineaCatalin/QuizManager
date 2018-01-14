@@ -180,4 +180,10 @@ export class BackendService {
     return quiz;
   }
 
+  public quizSearch( nivelDificultate: number , limbaj: string , domeniu: string, tehnologie: string ): Observable<any> {
+     return this.http.get("http://localhost:9090//searchQuizes/" + limbaj + "/" + domeniu + "/" + tehnologie + "/" + nivelDificultate,
+       this.options).map(response => response.json()).catch(this.handleError);
+  }
+
 }
+
