@@ -14,7 +14,6 @@ import {BackendService} from '../../backend.service';
 export class CreateUserComponent implements OnInit {
 
 
-  userToAdd: Utilizator = new Utilizator(null, null, null);
   username: string;
   password: string;
   confirmpassword: string;
@@ -26,14 +25,14 @@ export class CreateUserComponent implements OnInit {
   }
 
   createUser(): void {
-  //  userToAdd: Utilizator = new Utilizator(this.username, this.password, 2);
+    const userToAdd: Utilizator = new Utilizator(this.username, this.password, 2);
     if (this.password !== this.confirmpassword) {
       alert('Password and Confirmpassword are not the same');
     }
     else {
       alert('User was added');
     }
-    this.backend.createUser(this.userToAdd).subscribe((res: Utilizator) => {
+    this.backend.createUser(userToAdd).subscribe((res: Utilizator) => {
       //
       window.location.reload();
     });
