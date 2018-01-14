@@ -26,44 +26,39 @@ public class UtilizatorController {
 		return service.getAllUtilizatori();
 	}
 
-	@GetMapping("/getUtilizator/{id}")
-	public String getById(@PathVariable("id") int id) {
-		Utilizator utilizator = service.getUtilizator(id);
-		if (utilizator == null) {
-			return "Utilizator not found!";
-		}
-
-		return "" + utilizator;
+	@GetMapping("/getUtilizator/{username}")
+	public Utilizator getByUsername(@PathVariable("username") String username) {
+		Utilizator utilizator = service.getUtilizator(username);
+		return utilizator;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String create(@RequestBody Utilizator utilizator) {
-		String utilizatorId = "";
+		String username = "";
 		try {
 			service.saveOrUpdateUtilizator(utilizator);
-			utilizatorId = String.valueOf(utilizator.getIdUtilizator());
+			username = String.valueOf(utilizator.getUsername());
 		} catch (Exception ex) {
 			return "Error creating the utilizator: " + ex.toString();
 		}
-		return "User succesfully created with id = " + utilizatorId;
+		return "User succesfully created with id = " + username;
 	}
 
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable("id") int id) {
+	@GetMapping("/delete/{username}")
+	public String delete(@PathVariable("username") String username) {
 		try {
-			service.deleteUtilizator(id);
+			service.deleteUtilizator(username);
 		} catch (Exception ex) {
 			return "Error deleting the utilizator : " + ex.toString();
 		}
 		return "Utilizator succesfully deleted!";
 	}
 
-	@RequestMapping("/update/{id}")
+	@RequestMapping("/update/{username}")
 	@ResponseBody
-	public String Update(@RequestBody Utilizator object, @PathVariable int id) {
+	public String Update(@RequestBody Utilizator object, @PathVariable String username) {
 		try {
-			object.setIdUtilizator(id);
 			service.saveOrUpdateUtilizator(object);
 		} catch (Exception ex) {
 			return "Error updating Utilizator" + ex.toString();
