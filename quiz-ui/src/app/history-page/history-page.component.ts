@@ -23,13 +23,16 @@ export class HistoryPageComponent implements OnInit {
   limbaj: string;
   domeniu: string;
   tehnologie: string;
+  utilizator = 'plsNotMe'
 
   ngOnInit() {
-    this.historyList = this.backend.getHistory(1);
+    this.backend.getHistory(this.utilizator).subscribe((res: Quiz[]) => {
+      this.historyList = res;
+    });
   }
 
   searchQuizes() {
-    this.backend.quizSearch(this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe((res: Quiz[]) => {
+    this.backend.quizSearch(this.utilizator, this.nivelDificultate, this.limbaj, this.domeniu, this.tehnologie).subscribe((res: Quiz[]) => {
       this.historyList = res;
     });
 

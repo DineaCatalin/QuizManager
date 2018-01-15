@@ -120,29 +120,9 @@ export class BackendService {
     return this.http.get(link, this.options).map(response => response.json()).catch(this.handleError);
   }
 
-  public getHistory(idUtilizator: number): Quiz[] {
-    // return this.http.get('http://localhost:9090/gethistory/'+idUtilizator, this.options).map(response => response.json()).catch(this.handleError);
-    let quiz: Quiz[] = [
-      {
-        punctajTotal: 20,
-        informatiiGenerale: 'Descriere',
-        intrebari: [],
-        utilizator: 'user'
-      },
-      {
-        punctajTotal: 11,
-        informatiiGenerale: 'Descriere1',
-        intrebari: [],
-        utilizator: 'user'
-      },
-      {
-        punctajTotal: 12,
-        informatiiGenerale: 'Descriere2',
-        intrebari: [],
-        utilizator: 'user'
-      }
-    ];
-    return quiz;
+  public getHistory(utilizator: string): Observable<Quiz[]> {
+    return this.http.get('http://localhost:9090/getQuizes/' + utilizator, this.options)
+      .map(response => response.json()).catch(this.handleError);
   }
 
   public getWholeHistory(): Quiz[] {
@@ -182,8 +162,8 @@ export class BackendService {
     return quiz;
   }
 
-  public quizSearch(nivelDificultate: number, limbaj: string, domeniu: string, tehnologie: string): Observable<any> {
-    return this.http.get('http://localhost:9090//searchQuizes/' + limbaj + '/' + domeniu + '/' + tehnologie + '/' + nivelDificultate,
+  public quizSearch(user: string, nivelDificultate: number, limbaj: string, domeniu: string, tehnologie: string): Observable<any> {
+    return this.http.get('http://localhost:9090//searchQuizes/' + user + '/' + limbaj + '/' + domeniu + '/' + tehnologie + '/' + nivelDificultate,
       this.options).map(response => response.json()).catch(this.handleError);
   }
 

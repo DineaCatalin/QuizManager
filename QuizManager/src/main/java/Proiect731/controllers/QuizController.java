@@ -76,12 +76,12 @@ public class QuizController {
         return "Quiz succesfully updated!";
     }
 
-    @GetMapping(path = "/searchQuizes/{language}/{domain}/{technology}/{difficultyLevel}")
+    @GetMapping(path = "/searchQuizes/{user}/{language}/{domain}/{technology}/{difficultyLevel}")
     public @ResponseBody
-    List<Quiz> searchQuizes(@PathVariable String language, @PathVariable String domain, @PathVariable String technology, @PathVariable Integer difficultyLevel) {
+    List<Quiz> searchQuizes(@PathVariable String user, @PathVariable String language, @PathVariable String domain, @PathVariable String technology, @PathVariable Integer difficultyLevel) {
 
         ArrayList<Quiz> filteredQuizes = new ArrayList<>();
-        Iterable<Quiz> allQuizzes = service.getAllQuizzes();
+        Iterable<Quiz> allQuizzes = getQuizesForUser(user);
 
         allQuizzes.iterator().forEachRemaining(
                 quiz -> filteredQuizes.add(filterQuizData(quiz, language, domain, technology, difficultyLevel)));
@@ -99,13 +99,13 @@ public class QuizController {
         return foundQuestions.size() > 0 ? quiz : null;
     }
     @GetMapping("/getQuizes/{user}")
-    public List<Quiz> getById(@PathVariable("user") String user) {
+    public List<Quiz> getQuizesForUser(@PathVariable("user") String user) {
         Iterable<Quiz> allQuizzes = service.getAllQuizzes();
         ArrayList<Quiz> filteredQuizes = new ArrayList<>();
 
         allQuizzes.iterator().forEachRemaining(
                 quiz -> filteredQuizes.add(quiz.getUtilizator().getUsername().equals(user) ? quiz : null));
 
-        return filteredQuizes;
+        return filteredQuizes.stream().filter(value -> value != null).collect(Collectors.toList());
     }
 }
