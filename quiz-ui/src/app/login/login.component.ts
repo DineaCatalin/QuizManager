@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     alert('TRYING TO LOGIN');
     // const encodedPass = Md5.hashStr(this.password) ;
-    this.backend.login(this.username, this.password).subscribe((res: boolean) => {
+    this.backend.login(this.username, this.password).subscribe((res: string) => {
       alert('tried to login, after method call');
         if (res) {
           alert('Logged in successfully');
