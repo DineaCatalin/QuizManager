@@ -1,18 +1,6 @@
 package Proiect731.controllers;
 
 import Proiect731.entity.Intrebare;
-import com.fasterxml.jackson.annotation.JsonValue;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import Proiect731.entity.Quiz;
 import Proiect731.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +104,7 @@ public class QuizController {
         ArrayList<Quiz> filteredQuizes = new ArrayList<>();
 
         allQuizzes.iterator().forEachRemaining(
-                quiz -> filteredQuizes.add(quiz.getIdUtilizator().getUsername().equals(user) ? quiz : null));
+                quiz -> filteredQuizes.add(quiz.getUtilizator().getUsername().equals(user) ? quiz : null));
 
         return filteredQuizes;
     }

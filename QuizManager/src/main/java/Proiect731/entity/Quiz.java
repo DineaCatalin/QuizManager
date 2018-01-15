@@ -1,11 +1,9 @@
 package Proiect731.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Set;
 
 @Entity
 @Table(name = "quiz")
@@ -24,7 +22,7 @@ public class Quiz {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Utilizator.class)
-    @JoinColumn(name = "id_utilizator", nullable = false)
+    @JoinColumn(name = "username", nullable = false)
     private Utilizator utilizator;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -65,11 +63,11 @@ public class Quiz {
         this.informatiiGenerale = informatiiGenerale;
     }
 
-    public Utilizator getIdUtilizator() {
+    public Utilizator getUtilizator() {
         return utilizator;
     }
 
-    public void setIdUtilizator(Utilizator utilizator) {
+    public void setUtilizator(Utilizator utilizator) {
         this.utilizator = utilizator;
     }
 

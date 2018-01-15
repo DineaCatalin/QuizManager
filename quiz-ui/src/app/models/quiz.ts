@@ -5,12 +5,12 @@ export class Quiz {
   punctajTotal: number;
   informatiiGenerale: string;
   intrebari: Intrebare[];
-  idUtilizator: number;
+  utilizator: string;
 
-  constructor(punctajTotal: number, informatiiGenerale: string, intrebari: Intrebare[], idUtilizator: number) {
+  constructor(punctajTotal: number, informatiiGenerale: string, intrebari: Intrebare[], utilizator: string) {
     this.punctajTotal = punctajTotal;
     this.informatiiGenerale = informatiiGenerale;
     this.intrebari = intrebari;
-    this.idUtilizator = idUtilizator;
+    this.utilizator = utilizator;
   }
 }
