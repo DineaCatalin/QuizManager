@@ -4,6 +4,7 @@ import {Raspuns} from "../models/Raspuns";
 import {TraducereIntrebare} from "../models/TraducereIntrebare";
 import {TraducereRaspuns} from "../models/TraducereRaspuns";
 import {BackendService} from "../backend.service";
+import {TranslateService} from "../quiz/translate.service";
 
 @Component({
   selector: 'app-question-page',
@@ -49,11 +50,13 @@ export class QuestionPageComponent implements OnInit {
 
   editableQuestion: Intrebare;
 
-  constructor(private backend: BackendService) {
+  constructor(private backend: BackendService, private translateService: TranslateService) {
   }
+
 
   ngOnInit() {
     this.refresh();
+     this.translateService.Language='en';
   }
 
   checkUncheck(): void{

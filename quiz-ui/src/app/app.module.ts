@@ -16,7 +16,7 @@ import {QuizService} from './quiz/quiz.service';
 import { ShowQuizComponent } from './quiz/show-quiz/show-quiz.component';
 import { PrettyprintPipe } from './quiz/prettyprint.pipe';
 import { HistoryPageComponent } from './history-page/history-page.component';
-
+import {TranslateService} from './quiz/translate.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { HistoryPageComponent } from './history-page/history-page.component';
     FormsModule,
     HttpModule
   ],
-  providers: [BackendService, QuizService],
+  providers: [BackendService, QuizService, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

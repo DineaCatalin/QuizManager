@@ -2,9 +2,12 @@
   <div *ngIf="!edit">
     <h3>Question List</h3>
 
+    <button class="w3-btn w3-ripple" (click)="this.translateService.Language='de'"> German</button>
+    <button class="w3-btn w3-ripple" (click)="this.translateService.Language='en'"> English</button>
+
   <table class="w3-table w3-bordered w3-striped">
     <tr>
-      <th>Edit</th>
+      <th>{{this.translateService.GetTranslations("lbl.Edit")}}</th>
       <th>Delete</th>
       <th>Question</th>
       <th>Difficulty</th>
