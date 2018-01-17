@@ -1,20 +1,11 @@
 package Proiect731.controllers;
 
 import Proiect731.entity.Intrebare;
-import com.fasterxml.jackson.annotation.JsonValue;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import Proiect731.entity.Quiz;
 import Proiect731.service.QuizService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,12 +76,12 @@ public class QuizController {
         return "Quiz succesfully updated!";
     }
 
-    @GetMapping(path = "/searchQuizes/{language}/{domain}/{technology}/{difficultyLevel}")
+    @GetMapping(path = "/searchQuizes/{user}/{language}/{domain}/{technology}/{difficultyLevel}")
     public @ResponseBody
-    List<Quiz> searchQuizes(@PathVariable String language, @PathVariable String domain, @PathVariable String technology, @PathVariable Integer difficultyLevel) {
+    List<Quiz> searchQuizes(@PathVariable String user, @PathVariable String language, @PathVariable String domain, @PathVariable String technology, @PathVariable Integer difficultyLevel) {
 
         ArrayList<Quiz> filteredQuizes = new ArrayList<>();
-        Iterable<Quiz> allQuizzes = service.getAllQuizzes();
+        Iterable<Quiz> allQuizzes = getQuizesForUser(user);
 
         allQuizzes.iterator().forEachRemaining(
                 quiz -> filteredQuizes.add(filterQuizData(quiz, language, domain, technology, difficultyLevel)));
@@ -108,13 +99,13 @@ public class QuizController {
         return foundQuestions.size() > 0 ? quiz : null;
     }
     @GetMapping("/getQuizes/{user}")
-    public List<Quiz> getById(@PathVariable("user") String user) {
+    public List<Quiz> getQuizesForUser(@PathVariable("user") String user) {
         Iterable<Quiz> allQuizzes = service.getAllQuizzes();
         ArrayList<Quiz> filteredQuizes = new ArrayList<>();
 
         allQuizzes.iterator().forEachRemaining(
-                quiz -> filteredQuizes.add(quiz.getIdUtilizator().getUsername().equals(user) ? quiz : null));
+                quiz -> filteredQuizes.add(quiz.getUtilizator().getUsername().equals(user) ? quiz : null));
 
-        return filteredQuizes;
+        return filteredQuizes.stream().filter(value -> value != null).collect(Collectors.toList());
     }
 }

@@ -21,7 +21,7 @@ PRIMARY KEY (id_raspuns));
 
 CREATE TABLE traducere_raspuns (
 id_traducere int NOT NULL auto_increment,
-enunt VARCHAR(100),
+enunt VARCHAR(500),
 limba varchar(20),
 id_raspuns int, 
 FOREIGN KEY (id_raspuns) REFERENCES raspuns(id_raspuns),
@@ -36,18 +36,17 @@ FOREIGN KEY (id_intrebare) REFERENCES intrebare(id_intrebare),
 PRIMARY KEY (id_traducere));
 
 CREATE TABLE utilizator (
-id_utilizator int NOT NULL auto_increment,
-username varchar(20),
+username varchar(20) NOT NULL,
 parola varchar(20),
 rangAcces int,
-PRIMARY KEY (id_utilizator));
+PRIMARY KEY (username));
 
 CREATE TABLE quiz (
 id_quiz int NOT NULL auto_increment,
 punctajTotal int,
 informatiiGenerale varchar(100),
-id_utilizator int,
-FOREIGN KEY (id_utilizator) REFERENCES utilizator(id_utilizator),
+username varchar(20),
+FOREIGN KEY (username) REFERENCES utilizator(username),
 PRIMARY KEY (id_quiz));
 
 CREATE TABLE intrebare_quiz (

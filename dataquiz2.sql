@@ -1,18 +1,18 @@
 use quizmanagerdb;
 
 -- UTILIZATORI :
-INSERT INTO utilizator (id_utilizator , username , parola , rangAcces)
-VALUES (1, 'plsNotMe', 'plsNotMe123', 1);
-INSERT INTO utilizator (id_utilizator , username , parola , rangAcces)
-VALUES (2, 'flaviu', 'flaviu123', 2);
+INSERT INTO utilizator (username , parola , rangAcces)
+VALUES ('plsNotMe', 'plsNotMe123', 1);
+INSERT INTO utilizator (username , parola , rangAcces)
+VALUES ('flaviu', 'flaviu123', 2);
 
 
 
 -- QUIZURI :
-INSERT INTO quiz (id_quiz , punctajTotal , informatiiGENerale  , id_utilizator)
-VALUES (DEfault, 100, 'Intrebari Java', 1);
-INSERT INTO quiz (id_quiz , punctajTotal , informatiiGENerale  , id_utilizator)
-VALUES (DEfault, 100, 'Intrebari DB-Sql', 2);
+INSERT INTO quiz (id_quiz , punctajTotal , informatiiGENerale  , username)
+VALUES (DEfault, 100, 'Intrebari Java', 'plsNotMe');
+INSERT INTO quiz (id_quiz , punctajTotal , informatiiGENerale  , username)
+VALUES (DEfault, 100, 'Intrebari DB-Sql', 'flaviu');
 
 
 -- INTREBARE 1 :
@@ -425,7 +425,7 @@ VALUES (40, false, 10);
 INSERT INTO traducere_raspuns (id_traducere, ENunt, limba, id_raspuns)
 VALUES (79, 'Eliminates direct calls to classless functions', 'English', 40);
 INSERT INTO traducere_raspuns (id_traducere, ENunt, limba, id_raspuns)
-VALUES (80, 'Beseitigt direkte Anrufe zu klassENlosEN FunktionEN', 'German', 40);
+VALUES (80, 'Beseitigtintrebare_quiz direkte Anrufe zu klassENlosEN FunktionEN', 'German', 40);
 
 
 

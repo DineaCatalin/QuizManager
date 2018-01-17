@@ -1,19 +1,14 @@
 package Proiect731.entity;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "utilizator")
 public class Utilizator {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_utilizator")
-	private int idUtilizator;
-
 	@Column(name = "username", length = 25)
 	private String username;
 
@@ -23,7 +18,7 @@ public class Utilizator {
 	@Column(name = "rangacces")
 	private int rangAcces;
 
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "utilizator")
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, mappedBy = "utilizator")
 	private Set<Quiz> quizes = new HashSet<Quiz>();
 
 	public Utilizator() {
@@ -35,14 +30,6 @@ public class Utilizator {
 		this.parola = parola;
 		this.rangAcces = rangAcces;
 		this.quizes = new HashSet<Quiz>(0);
-	}
-
-	public int getIdUtilizator() {
-		return idUtilizator;
-	}
-
-	public void setIdUtilizator(int idUtilizator) {
-		this.idUtilizator = idUtilizator;
 	}
 
 	public String getUsername() {
@@ -71,7 +58,7 @@ public class Utilizator {
 
 	@Override
 	public String toString() {
-		return "Utilizator [idUtilizator=" + idUtilizator + ", username=" + username + ", parola=" + parola
+		return "Utilizator [username=" + username + ", parola=" + parola
 				+ ", rangAcces=" + rangAcces + "]";
 	}
 

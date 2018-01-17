@@ -16,15 +16,15 @@ public class UtilizatorService {
 		return utilizatorRepository.findAll();
 	}
 
-	public Utilizator getUtilizator(int id) {
-		return utilizatorRepository.findOne(id);
+	public Utilizator getUtilizator(String username) {
+		return utilizatorRepository.findOne(username);
 	}
 
 	public Utilizator saveOrUpdateUtilizator(Utilizator utilizator) {
 		return utilizatorRepository.save(utilizator);
 	}
 
-	public void deleteUtilizator(int id) {
-		utilizatorRepository.delete(id);
+	public void deleteUtilizator(String username) {
+		utilizatorRepository.delete(username);
 	}
 }

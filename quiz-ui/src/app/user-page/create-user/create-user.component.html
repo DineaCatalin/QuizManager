@@ -1,0 +1,15 @@
+<label>CreateUser</label>
+<br>
+<label>Username:</label>
+<input class="w3-input w3-border" type="text" [(ngModel)]="username" placeholder="Username">
+<br>
+<label>Password:</label>
+<input class="w3-input w3-border" type="password" [(ngModel)]="password" placeholder="Password">
+<br>
+<label>ConfirmPassword:</label>
+<input class="w3-input w3-border" type="password" [(ngModel)]="confirmpassword" placeholder="ConfirmPassword">
+<br>
+
+<button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="createUser()">&#10004; Create user
+</button>
+

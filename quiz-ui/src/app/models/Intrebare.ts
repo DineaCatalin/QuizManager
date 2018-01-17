@@ -1,5 +1,5 @@
-import {TraducereIntrebare} from "./TraducereIntrebare";
-import {Raspuns} from "./Raspuns";
+import {TraducereIntrebare} from './TraducereIntrebare';
+import {Raspuns} from './Raspuns';
 
 export class Intrebare {
   idIntrebare: number;
@@ -8,8 +8,8 @@ export class Intrebare {
   domeniu: string;
   tehnologie: string;
   punctaj: number;
-  raspuns: Raspuns[]=[];
-  traduceri: TraducereIntrebare[]=[];
+  raspuns: Raspuns[] = [];
+  traduceri: TraducereIntrebare[] = [];
 
   showAnswers: boolean = false;
 

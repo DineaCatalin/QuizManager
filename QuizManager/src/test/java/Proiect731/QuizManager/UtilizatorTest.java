@@ -1,8 +1,7 @@
 package Proiect731.QuizManager;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
+import Proiect731.entity.Utilizator;
+import Proiect731.service.UtilizatorService;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import Proiect731.entity.Utilizator;
-import Proiect731.service.UtilizatorService;
+import static org.junit.Assert.assertNotNull;
 
 @Ignore
 @RunWith(SpringRunner.class)
@@ -35,7 +33,7 @@ public class UtilizatorTest {
 		Iterable<Utilizator> utilizatoriList = service.getAllUtilizatori();//finAll()
 		assertNotNull(utilizatoriList);
 		//System.out.println(service.getAllUtilizatori());
-		service.deleteUtilizator(u1.getIdUtilizator());//delete
-		assertNull(service.getUtilizator(u1.getIdUtilizator()));//getUtilizator
+//		service.deleteUtilizator(u1.getIdUtilizator());//delete
+//		assertNull(service.getUtilizator(u1.getIdUtilizator()));//getUtilizator
 	}
 }
