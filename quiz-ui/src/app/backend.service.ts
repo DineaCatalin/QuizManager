@@ -173,5 +173,20 @@ export class BackendService {
   public createUser(user: Utilizator): Observable<any> {
     return this.http.put('http://localhost:9090/create', user, this.options).map(response => response.json()).catch(this.handleError);
   }
+
+  public calculate(historyList: Quiz[]) {
+
+    let s = 0;
+    if (historyList.length === 0) {
+      return 0;
+    }
+
+    for (let i of historyList) {
+      s = s + i.punctajTotal;
+
+    }
+
+    return s / historyList.length;
+  }
 }
 
