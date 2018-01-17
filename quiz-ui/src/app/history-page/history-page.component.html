@@ -19,8 +19,47 @@
         {{element.informatiiGenerale}}
       </td>
       <td>
-        {{element.idUtilizator}}
+        {{element.idUtilizator.username}}
       </td>
     </tr>
   </table>
 </div>
+
+<p><label class="bold-text">Difficulty Level:</label>
+  <br>
+
+  <select class="w3-input w3-border" [(ngModel)]="nivelDificultate">
+    <option *ngFor="let niveleDificultate of nivelD" [ngValue]="niveleDificultate">
+      {{niveleDificultate}}
+    </option>
+  </select>
+
+</p>
+<p><label class="bold-text">Language:</label>
+  <br>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="limbaj" placeholder="Language">
+</p>
+<p><label class="bold-text">Domain:</label>
+  <br>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="domeniu" placeholder="Domain">
+</p>
+<p><label class="bold-text">Technology:</label>
+  <br>
+  <input class="w3-input w3-border" type="text" [(ngModel)]="tehnologie" placeholder="Technology">
+</p>
+<button (click)="searchQuizes()" class="w3-btn w3-green w3-ripple w3-margin-top" type="submit">Search</button>
+
+<!--
+<div ng-app="quizApp" ng-controller="quizFormCtrl" class="container">
+  <h1>Search Quiz</h1>
+    <form>
+      <input type="text" ng-model="nivelDificultate" ng-required="true" placeholder="Nivel Dificultate">
+      <br>
+      <input type="text" ng-model="limbaj" ng-required="true" placeholder="Limbaj">
+      <br>
+      <input type="text" ng-model="tehnologie" ng-required="true" placeholder="Tehnologie">
+      <br>
+      <button type="submit" ng-click="submit()" class="w3-btn w3-green w3-ripple">Search <span class="fa fa-search searchIcon"></span></button>
+    </form>
+</div>
+-->
