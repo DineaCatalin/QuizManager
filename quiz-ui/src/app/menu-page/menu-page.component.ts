@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 
 class menuItem {
   url: string;
@@ -15,12 +15,12 @@ class menuItem {
 })
 export class MenuPageComponent implements OnInit {
   urls: menuItem[] = [
-    { active: false, url: "question-page", text: "Filter and list questions" },
-    { active: false, url: "create-question-page", text: "Add Question" },
-    { active: false, url: "generateQuiz", text: "Generate Quiz" },
-    { active: false, url: "create-user-page", text: "Create user" },
-    { active: false, url: "create-logout-page", text: "Logout" },
-    {active: false, url: "history", text: "History"}
+    { active: false, url: 'question-page', text: 'Filter and list questions' },
+    { active: false, url: 'create-question-page', text: 'Add Question' },
+    { active: false, url: 'generateQuiz', text: 'Generate Quiz' },
+    { active: false, url: 'create-user-page', text: 'Create user' },
+    { active: false, url: 'logout-page', text: 'Logout' },
+    {active: false, url: 'history', text: 'History'}
   ];
 
   constructor(private route: ActivatedRoute, private router: Router) { }
@@ -30,10 +30,13 @@ export class MenuPageComponent implements OnInit {
   }
 
   navigate(url: menuItem) {
-    for(let i = 0; i < this.urls.length;  i++){
-      this.urls[i].active = false;
+    const data = sessionStorage.length;
+    if (data !== 0) {
+      for (let i = 0; i < this.urls.length; i++) {
+        this.urls[i].active = false;
+      }
+      this.urls[this.urls.indexOf(url)].active = true;
+      this.router.navigate(['/' + url.url]);
     }
-    this.urls[this.urls.indexOf(url)].active = true;
-    this.router.navigate(["/" + url.url]);
   }
 }

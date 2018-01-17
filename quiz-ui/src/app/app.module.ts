@@ -18,6 +18,7 @@ import { PrettyprintPipe } from './quiz/prettyprint.pipe';
 import {LoginComponent} from './login/login.component';
 import {CreateUserComponent} from './user-page/create-user/create-user.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
+import { LogoutComponent } from './logout-page/logout.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { HistoryPageComponent } from './history-page/history-page.component';
     HistoryPageComponent,
     PrettyprintPipe,
     LoginComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

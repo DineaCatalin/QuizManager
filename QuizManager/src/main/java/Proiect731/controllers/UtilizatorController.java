@@ -37,8 +37,11 @@ public class UtilizatorController {
 	public String create(@RequestBody Utilizator utilizator) {
 		String username = "";
 		try {
+			if (service.getUtilizator(utilizator.getUsername()) != null)
+				return "The user already exists!";
 			service.saveOrUpdateUtilizator(utilizator);
 			username = String.valueOf(utilizator.getUsername());
+
 		} catch (Exception ex) {
 			return "Error creating the utilizator: " + ex.toString();
 		}

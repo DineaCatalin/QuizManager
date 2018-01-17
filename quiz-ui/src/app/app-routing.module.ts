@@ -5,9 +5,10 @@ import {MenuPageComponent} from './menu-page/menu-page.component';
 import {CreateQuestionComponent} from './question-page/create-question/create-question.component';
 import {QuizComponent} from './quiz/generateQuiz/quiz.component';
 import {ShowQuizComponent} from './quiz/show-quiz/show-quiz.component';
-import {HistoryPageComponent} from "./history-page/history-page.component";
+import {HistoryPageComponent} from './history-page/history-page.component';
 import {LoginComponent} from './login/login.component';
 import {CreateUserComponent} from './user-page/create-user/create-user.component';
+import {LogoutComponent} from './logout-page/logout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'showQuiz', component: ShowQuizComponent},
   { path: 'history', component: HistoryPageComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'logout-page', component: LogoutComponent},
   {path: 'create-user-page', component: CreateUserComponent}
 ];
 
