@@ -3,7 +3,7 @@ import {QuizService} from '../quiz.service';
 import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 import {Router, RouterLinkActive} from '@angular/router';
-
+import {TranslateService} from "../translate.service";
 
 
 @Component({
@@ -29,7 +29,7 @@ export class QuizComponent implements OnInit {
 
 
 
-  constructor(private quizService: QuizService, private router: Router, private elementRef: ElementRef) {
+  constructor(private quizService: QuizService, private router: Router, private elementRef: ElementRef, private translateService: TranslateService) {
   }
 
   ngOnInit() {

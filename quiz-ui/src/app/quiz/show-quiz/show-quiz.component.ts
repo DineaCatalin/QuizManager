@@ -4,6 +4,7 @@ import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 import {Router} from '@angular/router';
 import {Raspuns} from '../../models/Raspuns';
+import {TranslateService} from "../translate.service";
 
 @Component({
   selector: 'app-show-quiz',
@@ -27,7 +28,7 @@ export class ShowQuizComponent implements OnInit {
   showResult: boolean;
 
 
-  constructor(private quizService: QuizService, private router: Router) {
+  constructor(private quizService: QuizService, private router: Router, private translateService: TranslateService) {
   }
 
   clone(obj) {

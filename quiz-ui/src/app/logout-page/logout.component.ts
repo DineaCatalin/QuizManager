@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import {BackendService} from '../backend.service';
+import {TranslateService} from '../quiz/translate.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import {BackendService} from '../backend.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private backend: BackendService) {
+  constructor(private backend: BackendService, private translateService: TranslateService) {
     this.logout();
   }
 

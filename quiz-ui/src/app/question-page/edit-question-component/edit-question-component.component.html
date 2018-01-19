@@ -1,8 +1,8 @@
 <div>
-  <label>Question:</label>
+  <label>{{this.translateService.GetTranslations("lbl.Question")}}:</label>
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.traduceri[0].enunt" placeholder="Question">
   <br>
-  <label>Difficulty:</label>
+  <label>{{this.translateService.GetTranslations("lbl.Difficulty")}}:</label>
   <select [(ngModel)]="intrebare.nivelDificultate" class="w3-dropdown-hover">
     <option value="1">
       Junior
@@ -18,16 +18,16 @@
     </option>
   </select>
   <br>
-  <label>Language:</label>
+  <label>{{this.translateService.GetTranslations("lbl.Language")}}:</label>
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.limbaj" placeholder="Language">
   <br>
-  <label>Technology:</label>
+  <label>{{this.translateService.GetTranslations("lbl.Technology")}}:</label>
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.tehnologie" placeholder="Technology">
   <br>
-  <label>Domain:</label>
+  <label>{{this.translateService.GetTranslations("lbl.Domain")}}:</label>
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.domeniu" placeholder="Domain">
   <br>
-  <label>Answers:</label>
+  <label>{{this.translateService.GetTranslations("lbl.Answers")}}:</label>
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.raspuns[0].traduceri[0].enunt" placeholder="Answer 1"><input
   type="checkbox" [checked]="intrebare.raspuns[0].valoareAdevar" (change)="intrebare.raspuns[0].valoareAdevar = !intrebare.raspuns[0].valoareAdevar"/>
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.raspuns[1].traduceri[0].enunt" placeholder="Answer 2"><input
@@ -37,10 +37,9 @@
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.raspuns[3].traduceri[0].enunt" placeholder="Answer 4"><input
   type="checkbox" [checked]="intrebare.raspuns[3].valoareAdevar" (change)="intrebare.raspuns[3].valoareAdevar = !intrebare.raspuns[3].valoareAdevar"/>
   <br>
-  <label>Points:</label>
+  <label>{{this.translateService.GetTranslations("lbl.Points")}}:</label>
   <input class="w3-input w3-border" type="text" [(ngModel)]="intrebare.punctaj" placeholder="Points">
   <br>
-  <button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="updateQuestion()">&#10004; Edit
-    Question
+  <button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="updateQuestion()">&#10004; {{this.translateService.GetTranslations("lbl.EditQuestion")}}
   </button>
 </div>

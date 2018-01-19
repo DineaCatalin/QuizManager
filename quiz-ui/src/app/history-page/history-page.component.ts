@@ -3,6 +3,7 @@ import {BackendService} from '../backend.service';
 import {Quiz} from '../models/quiz';
 import {Observable} from 'rxjs/Observable';
 import {Intrebare} from '../models/Intrebare';
+import {TranslateService} from '../quiz/translate.service';
 
 @Component({
   selector: 'app-history-page',
@@ -12,7 +13,7 @@ import {Intrebare} from '../models/Intrebare';
 })
 export class HistoryPageComponent implements OnInit {
 
-  constructor(private backend: BackendService) {
+  constructor(private backend: BackendService, private translateService: TranslateService) {
   }
 
   historyList: Quiz[];

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {TranslateService} from '../quiz/translate.service';
 
 class menuItem {
   url: string;
@@ -23,7 +24,7 @@ export class MenuPageComponent implements OnInit {
     {active: false, url: 'history', text: 'History'}
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private translateService: TranslateService) { }
 
   ngOnInit() {
     console.log(this.urls);

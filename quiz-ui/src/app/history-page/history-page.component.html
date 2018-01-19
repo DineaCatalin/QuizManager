@@ -1,13 +1,13 @@
-<p><b>Utilizator: {{utilizator}}</b></p>
+<p><b>{{this.translateService.GetTranslations("lbl.User")}}: {{utilizator}}</b></p>
 
 <div>
   <table class="table table-hover">
     <tr>
       <th>
-        Punctaj Total
+        {{this.translateService.GetTranslations("lbl.TotalPoints")}}
       </th>
       <th>
-        Informatii Generale
+        {{this.translateService.GetTranslations("lbl.GeneralInfo")}}
       </th>
     </tr>
     <tr *ngFor="let element of historyList">
@@ -20,12 +20,12 @@
     </tr>
   </table>
 </div>
-<p><label class="bold-text">Media Punctajelor :</label>
+<p><label class="bold-text">{{this.translateService.GetTranslations("lbl.AveragePoints")}} :</label>
   {{media}}
 </p>
 
 
-<p><label class="bold-text">Difficulty Level:</label>
+<p><label class="bold-text">{{this.translateService.GetTranslations("lbl.DifficultyLevel")}}:</label>
   <br>
 
   <select class="w3-input w3-border" [(ngModel)]="nivelDificultate">
@@ -35,18 +35,18 @@
   </select>
 
 </p>
-<p><label class="bold-text">Language:</label>
+<p><label class="bold-text">{{this.translateService.GetTranslations("lbl.Language")}}:</label>
   <br>
   <input class="w3-input w3-border" type="text" [(ngModel)]="limbaj" placeholder="Language">
 </p>
-<p><label class="bold-text">Domain:</label>
+<p><label class="bold-text">{{this.translateService.GetTranslations("lbl.Domain")}}:</label>
   <br>
   <input class="w3-input w3-border" type="text" [(ngModel)]="domeniu" placeholder="Domain">
 </p>
-<p><label class="bold-text">Technology:</label>
+<p><label class="bold-text">{{this.translateService.GetTranslations("lbl.Technology")}}:</label>
   <br>
   <input class="w3-input w3-border" type="text" [(ngModel)]="tehnologie" placeholder="Technology">
 </p>
-<button (click)="searchQuizes()" class="w3-btn w3-green w3-ripple w3-margin-top" type="submit">Search</button>
+<button (click)="searchQuizes()" class="w3-btn w3-green w3-ripple w3-margin-top" type="submit">{{this.translateService.GetTranslations("lbl.Search")}}</button>
 
 

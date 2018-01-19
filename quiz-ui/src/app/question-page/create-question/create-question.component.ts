@@ -4,6 +4,7 @@ import {Intrebare} from "../../models/Intrebare";
 import {Raspuns} from "../../models/Raspuns";
 import {TraducereRaspuns} from "../../models/TraducereRaspuns";
 import {BackendService} from "../../backend.service";
+import {TranslateService} from "../../quiz/translate.service";
 
 @Component({
   selector: 'app-create-question',
@@ -25,7 +26,7 @@ export class CreateQuestionComponent implements OnInit {
   answer4: Raspuns = new Raspuns(null, false, null);
   answerTrans4: TraducereRaspuns = new TraducereRaspuns(null, null, 'English');
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService, private translateService: TranslateService) { }
 
   ngOnInit() {
   }

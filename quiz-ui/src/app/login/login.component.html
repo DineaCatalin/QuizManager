@@ -1,12 +1,12 @@
-<b>LOGIN:</b>
+<b>{{this.translateService.GetTranslations("lbl.Login")}}:</b>
 
-<label>Username:</label>
+<label>{{this.translateService.GetTranslations("lbl.Username")}}:</label>
 <input class="w3-input w3-border" type="text" [(ngModel)]="username" placeholder="Username">
 <br>
-<label>Password:</label>
+<label>{{this.translateService.GetTranslations("lbl.Password")}}:</label>
 <input class="w3-input w3-border" type="password" [(ngModel)]="password" placeholder="Password">
 <br>
 
-<button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="login()">&#10004;Login
+<button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="login()">&#10004;{{this.translateService.GetTranslations("lbl.Login")}}
 </button>
 
