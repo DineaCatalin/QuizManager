@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import {BackendService} from '../backend.service';
+import {MenuPageComponent} from '../menu-page/menu-page.component';
 
 
 @Component({
@@ -10,12 +11,11 @@ import {BackendService} from '../backend.service';
   encapsulation: ViewEncapsulation.None
 })
 export class LogoutComponent implements OnInit {
-
   constructor(private backend: BackendService) {
-    this.logout();
   }
 
   ngOnInit() {
+    this.logout();
   }
   logout(): void {
     sessionStorage.clear();

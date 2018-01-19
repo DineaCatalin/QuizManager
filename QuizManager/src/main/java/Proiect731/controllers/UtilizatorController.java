@@ -39,6 +39,7 @@ public class UtilizatorController {
 		try {
 			if (service.getUtilizator(utilizator.getUsername()) != null)
 				return "The user already exists!";
+			utilizator.setRangAcces(2); //user
 			service.saveOrUpdateUtilizator(utilizator);
 			username = String.valueOf(utilizator.getUsername());
 

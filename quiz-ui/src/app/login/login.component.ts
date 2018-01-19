@@ -24,12 +24,11 @@ export class LoginComponent implements OnInit {
           alert('Logged in successfully');
           this.backend.login(this.username, encodedPass);
           sessionStorage.setItem(this.username, this.username);
+          window.location.reload();
         } else {
-          alert('username or password are incorrect');
+          alert('Username or Password are incorrect');
         }
       }
     );
-
   }
-
 }
