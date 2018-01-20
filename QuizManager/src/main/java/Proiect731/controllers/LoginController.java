@@ -18,12 +18,12 @@ public class LoginController {
 
 	@GetMapping(path = "/login/{username}/{encodedPassword}")
 	@ResponseBody
-	public String login(@PathVariable("username") String username, @PathVariable("encodedPassword") String encodedPassword) {
+	public Utilizator login(@PathVariable("username") String username, @PathVariable("encodedPassword") String encodedPassword) {
 
 		Utilizator user = service.getUtilizator(username);
 
-			if(user != null && user.getParola().equals(encodedPassword))
-				return "true";
-		return "false";
+		if(user != null && user.getParola().equals(encodedPassword))
+			return user;
+		return null; 
 	}
 }

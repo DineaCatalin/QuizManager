@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {BackendService} from '../backend.service';
+import {Utilizator} from '../models/Utilizator';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,11 @@ export class LoginComponent implements OnInit {
   }
   login(): void {
     const encodedPass = btoa(this.password) ;
-    this.backend.login(this.username, encodedPass).subscribe((res: string) => {
-        if (res) {
-          alert('Logged in successfully');
+    this.backend.login(this.username, encodedPass).subscribe((res: Utilizator) => {
+        if (res !== null) {
+          // alert('Logged in successfully');
           this.backend.login(this.username, encodedPass);
-          sessionStorage.setItem(this.username, this.username);
+          sessionStorage.setItem(this.username, JSON.stringify(res));
           window.location.reload();
         } else {
           alert('Username or Password are incorrect');

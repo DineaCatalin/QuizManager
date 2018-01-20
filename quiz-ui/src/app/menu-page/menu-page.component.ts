@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BackendService} from '../backend.service';
-import {LoginComponent} from '../login/login.component';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {Utilizator} from '../models/Utilizator';
 
 class menuItem {
   url: string;
@@ -27,14 +25,19 @@ export class MenuPageComponent implements OnInit {
 
   ngOnInit() {
     const data = sessionStorage.length;
+    sessionStorage.getItem(sessionStorage.key(0));
     if (data === 1) {
       this.removeComponent({active: false, url: 'login', text: 'Login'});
       this.removeComponent({active: false, url: 'create-user-page', text: 'Create user'});
       this.addComponent({active: false, url: 'logout-page', text: 'Logout'});
       this.addComponent({active: false, url: 'generateQuiz', text: 'Generate Quiz'});
       this.addComponent({active: false, url: 'question-page', text: 'Filter and list questions'});
-      this.addComponent({active: false, url: 'create-question-page', text: 'Add Question'});
       this.addComponent({active: false, url: 'history', text: 'History'});
+      const obj = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
+      if (obj.rangacces === 1) {
+        this.addComponent({active: false, url: 'create-question-page', text: 'Add Question'});
+      }
+      this.router.navigate(['/login/' + obj.username + '/' + obj.parola]);
     } else {
       this.removeComponent({active: false, url: 'generateQuiz', text: 'Generate Quiz'});
       this.removeComponent({active: false, url: 'question-page', text: 'Filter and list questions'});
