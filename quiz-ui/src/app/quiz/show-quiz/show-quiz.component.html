@@ -18,8 +18,8 @@
           <div *ngFor="let trad of rasp.traduceri">
 
             <div *ngIf="trad.limba === language">
-              <input  (change)="OnCheckboxSelect(item.id, rasp.idRaspuns, $event)"
-                   type="checkbox"/>
+              <input (change)="OnCheckboxSelect(item.id, rasp.idRaspuns, $event)"
+                     type="checkbox"/>
               {{trad.enunt}}
             </div>
 
@@ -30,7 +30,7 @@
   </div>
 </ul>
 <div>
-  <button (click)="calculateScore()" class="form-group">Submit</button>
+  <button (click)="calculateScore()" class="w3-btn w3-green w3-ripple w3-margin-top">Submit</button>
 </div>
 <br>
 <label>{{score}}</label>
