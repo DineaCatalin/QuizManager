@@ -1,29 +1,11 @@
 package Proiect731.controllers;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
+import Proiect731.entity.Intrebare;
+import Proiect731.service.IntrebareService;
+import Proiect731.service.TraducereIntrebareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import Proiect731.entity.Intrebare;
-import Proiect731.entity.Raspuns;
-import Proiect731.entity.TraducereIntrebare;
-import Proiect731.entity.TraducereRaspuns;
-import Proiect731.service.IntrebareService;
-import Proiect731.service.RaspunsService;
-import Proiect731.service.TraducereIntrebareService;
-import Proiect731.service.TraducereRaspunsService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -34,9 +16,6 @@ public class IntrebareController {
 
 	@Autowired
 	private TraducereIntrebareService serviceTradIntreb;
-
-	@Autowired
-	private RaspunsService raspunsService;
 
 	@GetMapping(path = "/getIntrebari")
 	public @ResponseBody Iterable<Intrebare> getAllIntrebari() {

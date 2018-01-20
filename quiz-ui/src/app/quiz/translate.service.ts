@@ -12,10 +12,8 @@ export class TranslateService {
       de:"Fragenliste",
       en:"Question List"},
 
-
-
     {ID:"lbl.Edit",
-      de:"Verandern",
+      de:"Verändern",
       en:"Edit"},
 
     {ID:"lbl.Delete",
@@ -154,7 +152,7 @@ export class TranslateService {
       de:"Frage hinzufügen",
       en:"Add Question"},
 
-    {ID:"lbl.genenrateQuiz",
+    {ID:"lbl.generateQuiz",
       de:"Quiz generieren",
       en:"Generate Quiz"},
 
@@ -201,6 +199,10 @@ export class TranslateService {
     {ID:"lbl.Username",
       de:"Benutzername",
       en:"Username"},
+
+    {ID:"lbl.User",
+      de:"Benutzer",
+      en:"User"},
 
     {ID:"lbl.Password",
       de:"Passwort",

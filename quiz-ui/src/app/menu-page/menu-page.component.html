@@ -1,8 +1,8 @@
 <div class="navigation-sidebar">
   <h3>Quiz App Admin</h3>
   <div style="display: inline-block">
-    <button class="lang-btn-de" (click)="this.translateService.Language='de'">DE</button>
-    <button class="lang-btn-en" (click)="this.translateService.Language='en'">EN</button>
+    <button class="lang-btn-de" (click)="this.ChangeLanguage('de')">DE</button>
+    <button class="lang-btn-en" (click)="this.ChangeLanguage('en')">EN</button>
   </div>
 
   <span *ngFor="let url of urls">

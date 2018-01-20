@@ -16,8 +16,8 @@ VALUES (DEfault, 100, 'Intrebari DB-Sql', 'flaviu');
 
 
 -- INTREBARE 1 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (1, 1, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (1, 1, 'Java' 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 1,2:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (1,'Is Java a platform dependent language?', 'English',1);
@@ -54,8 +54,8 @@ VALUES (8, 'Ja, weil es ein Datenbank ist', 'German', 4);
 
 
 -- INTREBARE 2 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (2, 1, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (2, 1, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 3,4:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (3,'How to Initialize Pointers in JAVA?', 'English',2);
@@ -92,8 +92,8 @@ VALUES (16, 'mit dem Operator %', 'German', 8);
 
 
 -- INTREBARE 3 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (3, 1, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (3, 1, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 5,6:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (5,'What types of JAVA apps are there?', 'English',3);
@@ -130,8 +130,8 @@ VALUES (24, 'Apps die auf dem Client ausgeführt werden', 'German', 12);
 
 
 -- INTREBARE 4 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (4, 3, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (4, 3, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 7,8:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (7,'How can an applet called UnApplet.class be run?', 'English',4);
@@ -171,8 +171,8 @@ VALUES (32, 'keine', 'German', 16);
 
 
 -- INTREBARE 5 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (5, 2, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj domENiu, tehnologie, punctaj)
+VALUES (5, 2, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 9,10:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (9,'With what command can we disassemble a binary code JAVA?', 'English',5);
@@ -214,8 +214,8 @@ VALUES (40, 'rmic', 'German', 20);
 
 
 -- INTREBARE 6 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (6, 2, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (6, 2, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 11,12:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (11,'A program written in Java will be launched with the command:', 'English',6);
@@ -258,8 +258,8 @@ VALUES (48, 'java Test.class', 'German', 24);
 
 
 -- INTREBARE 7 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (7, 2, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (7, 2, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 13,14:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (13,'A program written in Java will be compiled with the command:', 'English',7);
@@ -302,8 +302,8 @@ VALUES (56, 'java Test.class', 'German', 28);
 
 
 -- INTREBARE 8 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (8, 1, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (8, 1, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 15,16:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (15,'Java applications can run on the following operating system:', 'English',8);
@@ -345,8 +345,8 @@ VALUES (64, 'Keine', 'German', 32);
 
 
 -- INTREBARE 9 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (9, 1, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (9, 1,'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 17,18:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (17,'What method does the browser call on a newly uploaded applet?', 'English',9);
@@ -389,8 +389,8 @@ VALUES (72, 'Paint', 'German', 36);
 
 
 -- INTREBARE 10 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, domENiu, tehnologie, punctaj)
-VALUES (10, 1, 'OOP', 'Java', 10);
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
+VALUES (10, 1, 'Java', 'OOP', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 19,20:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
 VALUES (19,'What is the role of statements?', 'English',10);

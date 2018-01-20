@@ -9,6 +9,7 @@ import {HistoryPageComponent} from './history-page/history-page.component';
 import {LoginComponent} from './login/login.component';
 import {CreateUserComponent} from './user-page/create-user/create-user.component';
 import {LogoutComponent} from './logout-page/logout.component';
+import {HistoryQuizQuestionsComponent} from './history-page/history-quiz-questions/history-quiz-questions.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'history', component: HistoryPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout-page', component: LogoutComponent},
-  {path: 'create-user-page', component: CreateUserComponent}
+  {path: 'create-user-page', component: CreateUserComponent},
+  {path: 'history-quiz-questions', component: HistoryQuizQuestionsComponent}
 ];
 
 @NgModule({
