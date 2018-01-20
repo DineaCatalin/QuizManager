@@ -171,7 +171,7 @@ VALUES (32, 'keine', 'German', 16);
 
 
 -- INTREBARE 5 :
-INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj domENiu, tehnologie, punctaj)
+INSERT INTO intrebare (id_intrebare, nivelDificultate, limbaj, domENiu, tehnologie, punctaj)
 VALUES (5, 2, 'Java', 'Back-End', 'Eclipse', 10);
 -- TRADUCERE INTREBARE 9,10:
 INSERT INTO traducere_intrebare (id_traducere, ENunt, limba, id_intrebare)
