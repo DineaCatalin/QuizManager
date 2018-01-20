@@ -21,7 +21,7 @@ export class BackendService {
   }
 
   public getAllQuestions(): Observable<Intrebare[]> {
-    return this.http.get('http://localhost:9090/getIntrebari', this.options).map(response => response.json()).catch(this.handleError);
+    return this.http.get('http://localhost:9090/getIntrebari', this.options).map(response => response.json());
   }
 
   public test(): Observable<any> {
@@ -55,8 +55,8 @@ export class BackendService {
     return this.http.get(link).map(response => response.json()).catch(this.handleError);
   }
 
-  public getTranslationsOfQuestion(id: number): Observable<any> {
-    const link = 'http://localhost:9090/getIntrebariTraduseByIntrebare/' + id;
+  public getTranslationsOfQuestion(id: number, lang: string): Observable<any> {
+    const link = 'http://localhost:9090/getIntrebariTraduseByIntrebare/' + id + '/' + lang;
     return this.http.get(link).map(response => response.json()).catch(this.handleError);
   }
 
@@ -172,6 +172,21 @@ export class BackendService {
 
   public createUser(user: Utilizator): Observable<any> {
     return this.http.put('http://localhost:9090/create', user, this.options).map(response => response.json()).catch(this.handleError);
+  }
+
+  public calculate(historyList: Quiz[]) {
+
+    let s = 0;
+    if (historyList.length === 0) {
+      return 0;
+    }
+
+    for (let i of historyList) {
+      s = s + i.punctajTotal;
+
+    }
+
+    return s / historyList.length;
   }
 }
 

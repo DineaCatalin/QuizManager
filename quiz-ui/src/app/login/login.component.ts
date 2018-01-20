@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {BackendService} from '../backend.service';
+import {TranslateService} from '../quiz/translate.service';
 import {Utilizator} from '../models/Utilizator';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  constructor(private backend: BackendService) {
+  constructor(private backend: BackendService, private translateService: TranslateService) {
   }
 
   ngOnInit() {

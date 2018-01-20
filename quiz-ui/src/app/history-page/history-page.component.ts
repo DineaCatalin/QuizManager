@@ -3,6 +3,7 @@ import {BackendService} from '../backend.service';
 import {Quiz} from '../models/quiz';
 import {Observable} from 'rxjs/Observable';
 import {Intrebare} from '../models/Intrebare';
+import {TranslateService} from '../quiz/translate.service';
 
 @Component({
   selector: 'app-history-page',
@@ -12,7 +13,7 @@ import {Intrebare} from '../models/Intrebare';
 })
 export class HistoryPageComponent implements OnInit {
 
-  constructor(private backend: BackendService) {
+  constructor(private backend: BackendService, private translateService: TranslateService) {
   }
 
   historyList: Quiz[];
@@ -24,12 +25,14 @@ export class HistoryPageComponent implements OnInit {
   domeniu: string;
   tehnologie: string;
   utilizator: string;
+  media: number;
 
   ngOnInit() {
     const obj = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
     this.utilizator = obj.username;
     this.backend.getHistory(this.utilizator).subscribe((res: Quiz[]) => {
       this.historyList = res;
+      this.media = this.backend.calculate(this.historyList);
     });
   }
 

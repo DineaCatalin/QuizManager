@@ -1,22 +1,23 @@
 <div ng-app="myApp" ng-controller="userCtrl" class="w3-container">
   <div *ngIf="!edit">
-    <h3>Question List</h3>
+    <h3>{{this.translateService.GetTranslations("question-page.lbl.title")}}</h3>
 
   <table class="w3-table w3-bordered w3-striped">
     <tr>
-      <th>Edit</th>
-      <th>Delete</th>
-      <th>Question</th>
-      <th>Difficulty</th>
-      <th>Points</th>
-      <th>Answers</th>
+
+      <th>{{this.translateService.GetTranslations("lbl.Edit")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Delete")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Question")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Difficulty")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Points")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Answers")}}</th>
     </tr>
     <tr *ngFor="let question of questions">
       <td>
-        <button class="w3-btn w3-ripple" (click)="editQuestion(question)">&#9998; Edit</button>
+        <button class="w3-btn w3-ripple" (click)="editQuestion(question)">&#9998; {{this.translateService.GetTranslations("lbl.Edit")}}</button>
       </td>
       <td>
-        <button class="w3-btn w3-ripple" (click)="deleteQuestion(question)">&#9998; Delete</button>
+        <button class="w3-btn w3-ripple" (click)="deleteQuestion(question)">&#9998; {{this.translateService.GetTranslations("lbl.Delete")}}</button>
       </td>
       <td>
         <span *ngFor="let traducere of question.traduceri">{{traducere.enunt}}</span>
@@ -24,16 +25,17 @@
       <td>{{ getDificultate(question.nivelDificultate) }}</td>
       <td>{{ question.punctaj }}</td>
       <td>
-        <button *ngIf="!question.showAnswers" (click)="showAnswersMethod(question)" class="w3-btn w3-green w3-ripple">Show Answers</button>
-        <button *ngIf="question.showAnswers" (click)="hideAnswers(question)" class="w3-btn w3-green w3-ripple">Hide Answers</button>
+        <button *ngIf="!question.showAnswers" (click)="showAnswersMethod(question)" class="w3-btn w3-green w3-ripple">{{this.translateService.GetTranslations("lbl.ShowAnswers")}}</button>
+        <button *ngIf="question.showAnswers" (click)="hideAnswers(question)" class="w3-btn w3-green w3-ripple">{{this.translateService.GetTranslations("lbl.HideAnswers")}}</button>
         <table *ngIf="question.showAnswers">
           <tr>
-            <th>Answer</th>
-            <th>True</th>
+            <th>{{this.translateService.GetTranslations("lbl.Answer")}}</th>
+            <th>{{this.translateService.GetTranslations("lbl.True")}}</th>
           </tr>
           <tr *ngFor="let answer of question.raspuns">
             <td>
               <span *ngFor="let traducere of answer.traduceri">{{traducere.enunt}}</span>
+
             </td>
             <td>{{answer.valoareAdevar}}</td>
           </tr>
@@ -44,13 +46,13 @@
   <br>
   </div>
 <edit-question *ngIf="edit" [intrebare]="editableQuestion" (finishEditing)="finishEditing()"></edit-question>
-  <button class="w3-btn w3-green w3-ripple w3-margin-top"  type="submit" (click)="showHide = !showHide">Filter options</button>
-  <button class="w3-btn w3-green w3-ripple w3-margin-top" type="submit" (click)="refresh()">Clear filter</button>
+  <button class="w3-btn w3-green w3-ripple w3-margin-top"  type="submit" (click)="showHide = !showHide">{{this.translateService.GetTranslations("lbl.FilterOptions")}}</button>
+  <button class="w3-btn w3-green w3-ripple w3-margin-top" type="submit" (click)="refresh()">{{this.translateService.GetTranslations("lbl.ClearFilter")}}</button>
   <div *ngIf="showHide" class="w3-container">
     <h1 class="bold-text">Filter:</h1>
     <div>
       <p>
-        <label class="bold-text">Difficulty:</label>
+        <label class="bold-text">{{this.translateService.GetTranslations("lbl.Difficulty")}}:</label>
       </p>
       <table class="w3-table w3-striped">
         <tr>
@@ -58,17 +60,17 @@
             <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked; checkValues()"> {{checkbox.nume}}</td>
         </tr>
       </table>
-      <p><label class="bold-text">Programming language:</label>
+      <p><label class="bold-text">{{this.translateService.GetTranslations("lbl.ProgrammingLanguage")}}:</label>
         <input class="w3-input w3-border" type="text" [(ngModel)]="programmingLanguage" placeholder="Programming language">
       </p>
-      <p><label class="bold-text">Domain:</label>
+      <p><label class="bold-text">{{this.translateService.GetTranslations("lbl.Domain")}}:</label>
         <input class="w3-input w3-border" type="text" [(ngModel)]="domeniu" placeholder="Domain">
       </p>
-      <p><label class="bold-text">Technology:</label>
+      <p><label class="bold-text">{{this.translateService.GetTranslations("lbl.Technology")}}:</label>
         <input class="w3-input w3-border" type="text" [(ngModel)]="tehnologie" placeholder="Technology">
       </p>
       <p>
-        <label class="bold-text">Number of correct answers:</label>
+        <label class="bold-text">{{this.translateService.GetTranslations("lbl.NumberOfCorrectAnswers")}}:</label>
       </p>
       <table class="w3-table w3-striped">
         <tr>
@@ -76,9 +78,9 @@
             <input type="checkbox" [checked]="checkbox.checked" (change)="checkbox.checked = !checkbox.checked; checkValues()"> {{checkbox.nume}}</td>
         </tr>
       </table>
-      <p><label class="bold-text">Sequence of characters:</label>
+      <p><label class="bold-text">{{this.translateService.GetTranslations("lbl.SequenceOfCharacters")}}:</label>
         <input class="w3-input w3-border" type="text" [(ngModel)]="dupaCuvant" placeholder="Sequence of characters">
-        <input type="checkbox" [checked]="checkboxCaseSens" (change)="checkboxCaseSens = !checkboxCaseSens; checkValues()"> <label>Case-sensitive</label>
+        <input type="checkbox" [checked]="checkboxCaseSens" (change)="checkboxCaseSens = !checkboxCaseSens; checkValues()"> <label>{{this.translateService.GetTranslations("lbl.CaseSensitive")}}</label>
       </p>
       <p>
         <select  class="w3-dropdown-hover" [(ngModel)]="limbaIntrebare">
@@ -88,11 +90,11 @@
         </select>
       </p>
       <p>
-        <input type="checkbox" [checked]="selectDeselect" (change)="checkUncheck()"/> <label>Select/Deselect all</label>
+        <input type="checkbox" [checked]="selectDeselect" (change)="checkUncheck()"/> <label>{{this.translateService.GetTranslations("lbl.SelectDeselectAll")}}</label>
       </p>
       <p>
-        <button class="w3-btn w3-green w3-ripple" type="submit" (click)="clearSearch()">Reset parameters</button>
-        <button class="w3-btn w3-green w3-ripple" type="submit" (click)="filter()">Search</button>
+        <button class="w3-btn w3-green w3-ripple" type="submit" (click)="clearSearch()">{{this.translateService.GetTranslations("lbl.ResetParameters")}}</button>
+        <button class="w3-btn w3-green w3-ripple" type="submit" (click)="filter()">{{this.translateService.GetTranslations("lbl.Search")}}</button>
       </p>
     </div>
   </div>

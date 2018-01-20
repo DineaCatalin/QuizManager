@@ -44,3 +44,26 @@ a:link {
 .nav-btn:focus {
   outline: 0;
 }
+
+.lang-btn-en {
+  border-radius: 22px;
+  background-color: #0f213f;
+  color: white;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-botton: 10px;
+}
+
+.lang-btn-de {
+  border-radius: 22px;
+  background-color: #0f213f;
+  color: white;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-botton: 10px;
+}
+

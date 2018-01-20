@@ -3,6 +3,8 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Utilizator} from '../../models/Utilizator';
 
 import {BackendService} from '../../backend.service';
+import {TranslateService} from "../../quiz/translate.service";
+
 
 @Component({
   selector: 'app-create-user',
@@ -17,7 +19,7 @@ export class CreateUserComponent implements OnInit {
   password: string;
   confirmpassword: string;
 
-  constructor(private backend: BackendService) {
+  constructor(private backend: BackendService, private translateService: TranslateService) {
   }
 
   ngOnInit() {
