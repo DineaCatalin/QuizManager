@@ -29,7 +29,7 @@ export class CreateUserComponent implements OnInit {
       alert('Password and Confirmpassword are not the same');
       window.location.reload();
     } else {
-      // alert('User was added');
+      alert('User was added');
       userToAdd.parola = btoa(this.password);
       this.backend.createUser(userToAdd).subscribe((res: Utilizator) => {
           window.location.reload();

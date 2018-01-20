@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     const encodedPass = btoa(this.password) ;
     this.backend.login(this.username, encodedPass).subscribe((res: Utilizator) => {
         if (res !== null) {
-          // alert('Logged in successfully');
+          alert('Logged in successfully');
           this.backend.login(this.username, encodedPass);
           sessionStorage.setItem(this.username, JSON.stringify(res));
           window.location.reload();

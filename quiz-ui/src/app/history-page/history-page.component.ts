@@ -23,9 +23,11 @@ export class HistoryPageComponent implements OnInit {
   limbaj: string;
   domeniu: string;
   tehnologie: string;
-  utilizator = 'plsNotMe'
+  utilizator: string;
 
   ngOnInit() {
+    const obj = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
+    this.utilizator = obj.username;
     this.backend.getHistory(this.utilizator).subscribe((res: Quiz[]) => {
       this.historyList = res;
     });
