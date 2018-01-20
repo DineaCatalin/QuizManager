@@ -20,7 +20,7 @@ import {CreateUserComponent} from './user-page/create-user/create-user.component
 import {HistoryPageComponent} from './history-page/history-page.component';
 import {LogoutComponent} from './logout-page/logout.component';
 import {TranslateService} from './quiz/translate.service';
-import {HistoryQuizQuestionsComponent} from './history-page/history-quiz-questions/history-quiz-questions.component'
+import {HistoryQuizQuestionsComponent} from './history-page/history-quiz-questions/history-quiz-questions.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import {HistoryQuizQuestionsComponent} from './history-page/history-quiz-questio
     FormsModule,
     HttpModule
   ],
-  providers: [BackendService, QuizService, TranslateService, QuestionPageComponent],
+  providers: [BackendService, QuizService, TranslateService, QuestionPageComponent, ShowQuizComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

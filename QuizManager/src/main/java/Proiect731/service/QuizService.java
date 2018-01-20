@@ -2,6 +2,8 @@ package Proiect731.service;
 
 import java.nio.channels.InterruptedByTimeoutException;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import Proiect731.entity.Intrebare;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,18 @@ public class QuizService {
     {
         Quiz quiz = new Quiz();
         Iterable<Intrebare> intrebari = intrebareService.filter(nivelDificultate.toString(), limbaj, "___", tehnologii, "___", "___", true, limba);
-        Set<Intrebare> intrebariToAdd = toSet(intrebari);
+
+        Set<Intrebare> intrebariToAdd = new HashSet<>();
+
+        List<Intrebare> filteredQuiestions = toListFromIterable(intrebari);
+
+
+        int index = 0;
+        while (index < nrIntrebari && index < filteredQuiestions.size()) {
+            intrebariToAdd.add(filteredQuiestions.get(index));
+            index++;
+        }
+
 
         int punctajTotal = 0;
         for (Intrebare i : intrebariToAdd) {
@@ -35,6 +48,18 @@ public class QuizService {
         quizRepo.save(quiz);
         return quiz;
 
+    }
+
+    /**
+     * Converts Iterable to list.
+     *
+     * @param iterable
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> toListFromIterable(final Iterable<T> iterable) {
+        return StreamSupport.stream(iterable.spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     /**
