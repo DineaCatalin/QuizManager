@@ -1,0 +1,38 @@
+
+  <div>
+    <h3>{{this.translateService.GetTranslations("question-page.lbl.title")}}</h3>
+
+  <table class="w3-table w3-bordered w3-striped">
+    <tr>
+      <th>{{this.translateService.GetTranslations("lbl.Question")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Difficulty")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Points")}}</th>
+      <th>{{this.translateService.GetTranslations("lbl.Answers")}}</th>
+    </tr>
+    <tr *ngFor="let question of questions">
+      <td>
+        <span *ngFor="let traducere of question.traduceri">{{traducere.enunt}}</span>
+      </td>
+      <td>{{ getDificultate(question.nivelDificultate) }}</td>
+      <td>{{ question.punctaj }}</td>
+      <td>
+        <button *ngIf="!question.showAnswers" (click)="showAnswersMethod(question)" class="w3-btn w3-green w3-ripple">Show Answers</button>
+        <button *ngIf="question.showAnswers" (click)="hideAnswers(question)" class="w3-btn w3-green w3-ripple">Hide Answers</button>
+        <table *ngIf="question.showAnswers">
+          <tr>
+            <th>{{this.translateService.GetTranslations("lbl.Answer")}}</th>
+            <th>{{this.translateService.GetTranslations("lbl.True")}}</th>
+          </tr>
+          <tr *ngFor="let answer of question.raspuns">
+            <td>
+              <span *ngFor="let traducere of answer.traduceri">{{traducere.enunt}}</span>
+            </td>
+            <td>{{answer.valoareAdevar}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  </div>
+

@@ -10,12 +10,12 @@
         {{this.translateService.GetTranslations("lbl.GeneralInfo")}}
       </th>
     </tr>
-    <tr *ngFor="let element of historyList">
+    <tr *ngFor="let element of historyList" >
       <td>
         {{element.punctajTotal}}
       </td>
       <td>
-        {{element.informatiiGenerale}}
+        <Button (click)="getQuestionsOfQuiz(element)" class="w3-btn w3-green w3-ripple">{{element.informatiiGenerale}}</Button> 
       </td>
     </tr>
   </table>
