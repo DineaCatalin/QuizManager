@@ -87,16 +87,16 @@ export class QuestionPageComponent implements OnInit {
   getDifList(): number[] {
     var difList = [];
     for (var i = 0; i < this.checkboxes1.length; i++) {
-      if (this.checkboxes1[i].checked == true && this.checkboxes1[i].nume == 'Junior') {
+      if (this.checkboxes1[i].checked === true && this.checkboxes1[i].nume === 'Junior') {
         difList.push(1);
       }
-      if (this.checkboxes1[i].checked == true && this.checkboxes1[i].nume == 'Intermediary') {
+      if (this.checkboxes1[i].checked === true && this.checkboxes1[i].nume === 'Intermediary') {
         difList.push(2);
       }
-      if (this.checkboxes1[i].checked == true && this.checkboxes1[i].nume == 'Senior') {
+      if (this.checkboxes1[i].checked === true && this.checkboxes1[i].nume === 'Senior') {
         difList.push(3);
       }
-      if (this.checkboxes1[i].checked == true && this.checkboxes1[i].nume == 'Architect') {
+      if (this.checkboxes1[i].checked === true && this.checkboxes1[i].nume === 'Architect') {
         difList.push(4);
       }
     }
@@ -114,8 +114,8 @@ export class QuestionPageComponent implements OnInit {
   }
 
   filter(): Intrebare[] {
-    var difs = this.getDifList();
-    var ans = this.getAnsList();
+    const difs = this.getDifList();
+    const ans = this.getAnsList();
     this.backend.filterQuestions(difs, this.programmingLanguage, this.tehnologie, this.domeniu, ans, this.dupaCuvant, this.checkboxCaseSens, this.limbaIntrebare).subscribe((res: Intrebare[]) => {
       this.questions = res;
     });
@@ -148,8 +148,13 @@ export class QuestionPageComponent implements OnInit {
   }
 
   editQuestion(Question: Intrebare): void {
-    this.edit = true;
-    this.editableQuestion = Question;
+    const user = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
+    if (user.rangAccess === 1) {
+      this.edit = true;
+      this.editableQuestion = Question;
+    } else {
+      alert('You are not allowed to edit questions!');
+    }
   }
 
   finishEditing(): void {
@@ -161,10 +166,15 @@ export class QuestionPageComponent implements OnInit {
   }
 
   deleteQuestion(Question: Intrebare): void {
-    this.backend.deleteQuestion(Question.idIntrebare).subscribe(res => {
-      alert('Delete successful');
-      this.refresh();
-    });
+    const user = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
+    if (user.rangAccess === 1) {
+      this.backend.deleteQuestion(Question.idIntrebare).subscribe(res => {
+        alert('Delete successful');
+        this.refresh();
+      });
+    } else {
+      alert('You are not allowed to delete questions!');
+    }
   }
 
   showAnswersMethod(question: Intrebare): void {
@@ -176,8 +186,8 @@ export class QuestionPageComponent implements OnInit {
   }
 
   checkValues(): void {
-    var isOk = true;
-    var checkList = [];
+    let isOk = true;
+    const checkList = [];
     for (var i = 0; i < this.checkboxes1.length; i++) {
       checkList.push(this.checkboxes1[i].checked);
     }
@@ -186,14 +196,13 @@ export class QuestionPageComponent implements OnInit {
     }
     checkList.push(this.checkboxCaseSens);
     for (var i = 0; i < checkList.length; i++) {
-      if (checkList[i] == false) {
+      if (checkList[i] === false) {
         isOk = false;
       }
     }
-    if (isOk == false) {
+    if (isOk === false) {
       this.selectDeselect = false;
-    }
-    else {
+    } else {
       this.selectDeselect = true;
     }
   }
