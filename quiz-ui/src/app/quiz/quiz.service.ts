@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Quiz} from '../models/quiz';
-import {Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 
 
 class ReturnClass {
@@ -18,6 +18,14 @@ export class QuizService {
 
   result: Quiz;
 
+  headers = new Headers({'Content-Type': 'application/json'});
+  options = new RequestOptions({headers: this.headers});
+
+  private handleError(error: any): Observable<any> {
+    // console.error(error);
+    return error.message || error;
+  }
+
   constructor(private http: Http) {
   }
 
@@ -32,11 +40,17 @@ export class QuizService {
       'limba': 'English'
     };
 
-    return this.http.post('http://localhost:9090/generateQuiz', r).map(response => response.json());
+    return this.http.post('http://localhost:9090/generateQuiz', r).map(response => response.json()).catch(this.handleError);
   }
 
   setQuiz(quiz: Quiz): void {
     this.result = quiz;
+  }
+
+  public updateQuiz(quiz: Quiz, username: string): Observable<Quiz> {
+    console.log(quiz);
+    console.log(username);
+    return this.http.post('http://localhost:9090/saveOrUpdateQuiz/' + username + '/' + quiz.punctajTotal + '/' + quiz.idQuiz, this.options).map(response => response.json());
   }
 
 

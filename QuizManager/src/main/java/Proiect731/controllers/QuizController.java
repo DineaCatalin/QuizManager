@@ -2,7 +2,9 @@ package Proiect731.controllers;
 
 import Proiect731.entity.Intrebare;
 import Proiect731.entity.Quiz;
+import Proiect731.entity.Utilizator;
 import Proiect731.service.QuizService;
+import Proiect731.service.UtilizatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ public class QuizController {
 
     @Autowired
     private QuizService service;
+
+    @Autowired
+    private UtilizatorService utilizatorService;
 
     @GetMapping(path = "/getQuiz")
     public @ResponseBody
@@ -41,17 +46,15 @@ public class QuizController {
         return "" + obj;
     }
 
-    @RequestMapping(value = "/createQuiz", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/saveOrUpdateQuiz/{username}/{score}/{quizId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String create(@RequestBody Quiz obj) {
-        String id = "";
-        try {
-            service.saveOrUpdateQuiz(obj);
-            id = String.valueOf(obj.getIdQuiz());
-        } catch (Exception ex) {
-            return "Error creating the quiz: " + ex.toString();
-        }
-        return "Quiz succesfully created with id = " + id;
+    public Quiz create(@PathVariable("username") String username, @PathVariable("score") int score, @PathVariable("quizId") int quizId) {
+        //nu face cascade delete
+        Utilizator utilizator = utilizatorService.getUtilizator(username);
+        Quiz quizToUpdate = service.getQuiz(quizId);
+        quizToUpdate.setPunctajTotal(score);
+        quizToUpdate.setUtilizator(utilizator);
+        return service.saveOrUpdateQuiz(quizToUpdate);
     }
 
     @GetMapping("/deleteQuiz/{id}")
@@ -91,13 +94,14 @@ public class QuizController {
 
     private Quiz filterQuizData(Quiz quiz, String language, String domain, String technology, Integer difficultyLevel) {
         List<Intrebare> foundQuestions = quiz.getIntrebari().stream().filter(intrebare ->
-                ( !language.equals("undefined") ? intrebare.getLimbaj().equals(language) : true)
+                (!language.equals("undefined") ? intrebare.getLimbaj().equals(language) : true)
                         && (!domain.equals("undefined") ? intrebare.getDomeniu().equals(domain) : true)
                         && (!technology.equals("undefined") ? intrebare.getTehnologie().equals(technology) : true)
                         && (difficultyLevel != null ? difficultyLevel.equals(intrebare.getNivelDificultate()) : true))
                 .collect(Collectors.toList());
         return foundQuestions.size() > 0 ? quiz : null;
     }
+
     @GetMapping("/getQuizes/{user}")
     public List<Quiz> getQuizesForUser(@PathVariable("user") String user) {
         Iterable<Quiz> allQuizzes = service.getAllQuizzes();

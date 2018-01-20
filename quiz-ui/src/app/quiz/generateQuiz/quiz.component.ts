@@ -49,7 +49,9 @@ export class QuizComponent implements OnInit {
         this.result = resp;
         this.quizService.setQuiz(this.result);
         if (this.result != null) {
-
+          if (this.result.intrebari.length < this.nrInterbari) {
+            alert('not enough questions');
+          }
           this.router.navigate(['./showQuiz']);
         }
       });

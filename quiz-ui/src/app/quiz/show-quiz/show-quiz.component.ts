@@ -4,7 +4,8 @@ import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 import {Router} from '@angular/router';
 import {Raspuns} from '../../models/Raspuns';
-import {TranslateService} from "../translate.service";
+import {TranslateService} from '../translate.service';
+import {Utilizator} from '../../models/Utilizator';
 
 @Component({
   selector: 'app-show-quiz',
@@ -133,6 +134,9 @@ export class ShowQuizComponent implements OnInit {
     }
     console.log(this.score);
     this.showResult = true;
+    this.quiz.punctajTotal = this.score;
+    const username = sessionStorage.key(0);
+    this.quizService.updateQuiz(this.quiz, username);
   }
 
 
