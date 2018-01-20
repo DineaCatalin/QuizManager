@@ -56,7 +56,6 @@ export class QuestionPageComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
-     this.translateService.Language='en';
   }
 
   checkUncheck(): void {

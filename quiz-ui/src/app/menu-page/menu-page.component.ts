@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '../quiz/translate.service';
 
@@ -8,6 +8,7 @@ class menuItem {
   active: boolean;
 }
 
+
 @Component({
   selector: 'app-menu-page',
   templateUrl: './menu-page.component.html',
@@ -15,19 +16,45 @@ class menuItem {
   encapsulation: ViewEncapsulation.None
 })
 export class MenuPageComponent implements OnInit {
-  urls: menuItem[] = [
-    { active: false, url: 'question-page', text: 'Filter and list questions' },
-    { active: false, url: 'create-question-page', text: 'Add Question' },
-    { active: false, url: 'generateQuiz', text: 'Generate Quiz' },
-    { active: false, url: 'create-user-page', text: 'Create user' },
-    { active: false, url: 'logout-page', text: 'Logout' },
-    {active: false, url: 'history', text: 'History'}
-  ];
 
-  constructor(private route: ActivatedRoute, private router: Router, private translateService: TranslateService) { }
+  urls: menuItem[];
+
+
+  constructor(private route: ActivatedRoute, private router: Router, private translateService: TranslateService) {
+  }
+
+  ChangeLanguage(Language: string) {
+    this.translateService.Language = Language;
+    this.ngOnInit();
+  }
 
   ngOnInit() {
+    this.urls = [
+      {
+        active: false,
+        url: 'question-page',
+        text: this.translateService.GetTranslations("lbl.question-page")
+      },
+      {
+        active: false,
+        url: 'create-question-page',
+        text: this.translateService.GetTranslations("lbl.create-question-page")
+      },
+      {
+        active: false,
+        url: 'generateQuiz',
+        text: this.translateService.GetTranslations("lbl.generateQuiz")
+      },
+      {
+        active: false,
+        url: 'create-user-page',
+        text: this.translateService.GetTranslations("lbl.create-user-page")
+      },
+      {active: false, url: 'logout-page', text: this.translateService.GetTranslations('lbl.logout-page')},
+      {active: false, url: 'history', text: this.translateService.GetTranslations("lbl.History")}
+    ];
     console.log(this.urls);
+
   }
 
   navigate(url: menuItem) {
