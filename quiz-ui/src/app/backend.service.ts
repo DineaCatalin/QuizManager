@@ -21,7 +21,7 @@ export class BackendService {
   }
 
   public getAllQuestions(): Observable<Intrebare[]> {
-    return this.http.get('http://localhost:9090/getIntrebari', this.options).map(response => response.json()).catch(this.handleError);
+    return this.http.get('http://localhost:9090/getIntrebari', this.options).map(response => response.json());
   }
 
   public test(): Observable<any> {
@@ -55,8 +55,8 @@ export class BackendService {
     return this.http.get(link).map(response => response.json()).catch(this.handleError);
   }
 
-  public getTranslationsOfQuestion(id: number): Observable<any> {
-    const link = 'http://localhost:9090/getIntrebariTraduseByIntrebare/' + id;
+  public getTranslationsOfQuestion(id: number, lang: string): Observable<any> {
+    const link = 'http://localhost:9090/getIntrebariTraduseByIntrebare/' + id + '/' + lang;
     return this.http.get(link).map(response => response.json()).catch(this.handleError);
   }
 

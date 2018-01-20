@@ -56,6 +56,9 @@ export class QuestionPageComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
+    console.log('astea is intrebarile');
+
+    console.log(this.questions);
   }
 
   checkUncheck(): void {
@@ -134,8 +137,12 @@ export class QuestionPageComponent implements OnInit {
     this.backend.getAllQuestions().subscribe(res => {
       this.questions = res;
       this.questions.forEach((intrebare: Intrebare) => {
-        this.backend.getTranslationsOfQuestion(intrebare.idIntrebare).subscribe(res => {
+        this.backend.getTranslationsOfQuestion(intrebare.idIntrebare, this.translateService.Language).subscribe(res => {
           intrebare.traduceri = res;
+          console.log('res');
+          console.log(res);
+          console.log('traduceri');
+          console.log(intrebare.traduceri);
         });
         this.backend.getAnswersByQuestion(intrebare.idIntrebare).subscribe(res => {
           intrebare.raspuns = res;
@@ -146,7 +153,11 @@ export class QuestionPageComponent implements OnInit {
           });
         });
       });
+      this.sleep(6000);
+      console.log('intrebarile is astea');
+      console.log(this.questions);
     });
+
   }
 
   editQuestion(Question: Intrebare): void {
@@ -197,6 +208,15 @@ export class QuestionPageComponent implements OnInit {
     }
     else {
       this.selectDeselect = true;
+    }
+  }
+
+  sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds) {
+        break;
+      }
     }
   }
 
