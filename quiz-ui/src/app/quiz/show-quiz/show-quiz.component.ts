@@ -3,9 +3,7 @@ import {QuizService} from '../quiz.service';
 import {Quiz} from '../../models/quiz';
 import {Intrebare} from '../../models/Intrebare';
 import {Router} from '@angular/router';
-import {Raspuns} from '../../models/Raspuns';
 import {TranslateService} from '../translate.service';
-import {Utilizator} from '../../models/Utilizator';
 
 @Component({
   selector: 'app-show-quiz',
@@ -28,6 +26,7 @@ export class ShowQuizComponent implements OnInit {
 
   showResult: boolean;
 
+  language: string;
 
   constructor(private quizService: QuizService, private router: Router, private translateService: TranslateService) {
   }
@@ -43,7 +42,15 @@ export class ShowQuizComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.quiz = this.quizService.result;
+    if (this.translateService.Language === 'en') {
+      this.language = 'English';
+    } else {
+      this.language = 'German';
+    }
+    console.log('aaaaaaaaaaaaaa');
+    console.log(this.language);
+    console.log(this.quiz);
     if (this.quiz == null || this.quiz.intrebari.length == 0) {
       this.router.navigate(['./generateQuiz']);
       alert('no questions were found');

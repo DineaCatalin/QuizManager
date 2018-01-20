@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Intrebare} from '../models/Intrebare';
 import {Raspuns} from '../models/Raspuns';
-import {TraducereIntrebare} from '../models/TraducereIntrebare';
-import {TraducereRaspuns} from '../models/TraducereRaspuns';
 import {BackendService} from '../backend.service';
 import {TranslateService} from '../quiz/translate.service';
 
@@ -56,13 +54,9 @@ export class QuestionPageComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
-    console.log('astea is intrebarile');
-
-    console.log(this.questions);
   }
 
   checkUncheck(): void {
-    console.log('selectDeselect');
     this.selectDeselect = !this.selectDeselect;
     this.checkboxCaseSens = this.selectDeselect;
     for (var i = 0; i < this.checkboxes1.length; i++) {
@@ -139,10 +133,6 @@ export class QuestionPageComponent implements OnInit {
       this.questions.forEach((intrebare: Intrebare) => {
         this.backend.getTranslationsOfQuestion(intrebare.idIntrebare, this.translateService.Language).subscribe(res => {
           intrebare.traduceri = res;
-          console.log('res');
-          console.log(res);
-          console.log('traduceri');
-          console.log(intrebare.traduceri);
         });
         this.backend.getAnswersByQuestion(intrebare.idIntrebare).subscribe(res => {
           intrebare.raspuns = res;
@@ -154,8 +144,6 @@ export class QuestionPageComponent implements OnInit {
         });
       });
       this.sleep(6000);
-      console.log('intrebarile is astea');
-      console.log(this.questions);
     });
 
   }

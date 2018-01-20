@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '../quiz/translate.service';
 import {QuestionPageComponent} from '../question-page/question-page.component';
+import {ShowQuizComponent} from '../quiz/show-quiz/show-quiz.component';
 
 class menuItem {
   url: string;
@@ -22,11 +23,12 @@ export class MenuPageComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private router: Router, private translateService: TranslateService,
-              private questionPageComponent: QuestionPageComponent) {
+              private questionPageComponent: QuestionPageComponent, private showQuizComponent: ShowQuizComponent) {
   }
 
   ChangeLanguage(Language: string) {
     this.translateService.Language = Language;
+    this.showQuizComponent.ngOnInit();
     this.questionPageComponent.ngOnInit();
     this.ngOnInit();
   }

@@ -8,19 +8,27 @@
 <ul>
   <!--*ngFor="intrebare in intrebari"-->
   <div *ngFor="let intrebare of intrebari">
-    <li *ngFor="let translatedQuestions of intrebare.traduceri"><h3>{{translatedQuestions.enunt}}</h3>
+    <div *ngFor="let translatedQuestions of intrebare.traduceri">
+      <li *ngIf="translatedQuestions.limba === language">
+        <h3 *ngIf="translatedQuestions.limba === language">
+          <div *ngIf="translatedQuestions.limba === language">{{translatedQuestions.enunt}}</div>
+        </h3>
 
-      <div *ngFor="let rasp of intrebare.raspuns">
-        <div *ngFor="let trad of rasp.traduceri">
-          <!--<div *ngFor="let checkboxoption of checkboxOptions">-->
-          <input (change)="OnCheckboxSelect(item.id, rasp.idRaspuns, $event)" type="checkbox">{{trad.enunt}}<br>
-          <!--</div>-->
+        <div *ngFor="let rasp of intrebare.raspuns">
+          <div *ngFor="let trad of rasp.traduceri">
+
+            <div *ngIf="trad.limba === language">
+              <input  (change)="OnCheckboxSelect(item.id, rasp.idRaspuns, $event)"
+                   type="checkbox"/>
+              {{trad.enunt}}
+            </div>
+
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
   </div>
 </ul>
-
 <div>
   <button (click)="calculateScore()" class="form-group">Submit</button>
 </div>
