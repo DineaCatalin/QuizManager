@@ -4,6 +4,9 @@ import {Quiz} from '../models/quiz';
 import {Observable} from 'rxjs/Observable';
 import {Intrebare} from '../models/Intrebare';
 import {TranslateService} from '../quiz/translate.service';
+import { Router } from '@angular/router';
+import {HistoryQuizQuestionsComponent} from './history-quiz-questions/history-quiz-questions.component'
+
 
 @Component({
   selector: 'app-history-page',
@@ -13,7 +16,7 @@ import {TranslateService} from '../quiz/translate.service';
 })
 export class HistoryPageComponent implements OnInit {
 
-  constructor(private backend: BackendService, private translateService: TranslateService) {
+  constructor(private backend: BackendService, private translateService: TranslateService, private rout:Router) {
   }
 
   historyList: Quiz[];
@@ -26,6 +29,8 @@ export class HistoryPageComponent implements OnInit {
   tehnologie: string;
   utilizator: string;
   media: number;
+
+  selectedQuiz:Quiz;
 
   ngOnInit() {
     const obj = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
@@ -42,4 +47,12 @@ export class HistoryPageComponent implements OnInit {
     });
 
   }
+
+  getQuestionsOfQuiz(q:Quiz){
+    //this.questionsHist.quiz=q;
+    this.selectedQuiz=q;
+    this.backend.setSelectedQuizHistory(q);
+    this.rout.navigate(["/history-quiz-questions"])
+  }
+
 }

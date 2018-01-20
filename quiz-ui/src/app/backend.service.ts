@@ -17,6 +17,8 @@ export class BackendService {
   options = new RequestOptions({headers: this.headers});
   user = 'test';
 
+  selectedQuizHistory:Quiz;
+
   constructor(private http: Http) {
   }
 
@@ -188,5 +190,14 @@ export class BackendService {
 
     return s / historyList.length;
   }
+
+  getSelectedQuizHistory():Quiz{
+    return this.selectedQuizHistory;
+  }
+
+  setSelectedQuizHistory(quiz:Quiz){
+    this.selectedQuizHistory=quiz;
+  }
+  
 }
 
