@@ -1,6 +1,6 @@
 .navigation-sidebar {
   display: inline-grid;
-  background-color: #0f213f;
+  background-color: #290C5B;
   height: 100vh;
   width: 200px;
   position: fixed;
@@ -14,7 +14,7 @@
 .nav-btn {
   width: 100%;
   border-radius: 0px;
-  background-color: #0f213f;
+  background-color: #290C5B;
   border-width: 0px;
   padding-bottom: 0px;
   padding-top: 0px;
@@ -30,11 +30,11 @@
 }
 
 .nav-btn:hover {
-  background-color: #14305e;
+  background-color: #5525A6;
 }
 
 .nav-btn-active {
-  background-color: #14305e;
+  background-color: #5525A6;
 }
 
 a:link {

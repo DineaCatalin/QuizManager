@@ -15,9 +15,9 @@ import {TranslateService} from "../../quiz/translate.service";
 export class CreateUserComponent implements OnInit {
 
 
-  username: string;
-  password: string;
-  confirmpassword: string;
+  username = '';
+  password = '';
+  confirmpassword = '';
 
   constructor(private backend: BackendService, private translateService: TranslateService) {
   }
@@ -27,13 +27,21 @@ export class CreateUserComponent implements OnInit {
 
   createUser(): void {
     const userToAdd: Utilizator = new Utilizator(this.username, this.password, 2);
-    if (this.password !== this.confirmpassword) {
+    if (this.username === '' || this.confirmpassword === '' || this.password === '') {
+      alert('One field is empty!');
+    } else if (this.password !== this.confirmpassword) {
       alert('Password and Confirmpassword are not the same');
       window.location.reload();
     } else {
-      alert('User was added');
+      // alert('User was added');
       userToAdd.parola = btoa(this.password);
-      this.backend.createUser(userToAdd).subscribe((res: Utilizator) => {
+      this.backend.createUser(userToAdd).subscribe((res: String) => {
+        alert(res);
+        // if (res === 'The user already exists!') {
+        //   alert('User already exists!');
+        // } else {
+        //   alert('User was added');
+        // }
           window.location.reload();
         }
       );

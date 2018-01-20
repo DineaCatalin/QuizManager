@@ -1,23 +1,8 @@
 package Proiect731.entity;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "intrebare")
@@ -49,7 +34,7 @@ public class Intrebare {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "intrebare",fetch = FetchType.EAGER)
 	private Set<TraducereIntrebare> traduceri = new HashSet<TraducereIntrebare>();
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "intrebare_quiz", joinColumns = { @JoinColumn(name = "id_intrebare",nullable=false) }, inverseJoinColumns = {
 			@JoinColumn(name = "id_quiz",nullable=false) })
 	private Set<Quiz> quizes = new HashSet<>();

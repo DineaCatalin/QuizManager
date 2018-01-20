@@ -13,6 +13,7 @@ import {TranslateService} from '../quiz/translate.service';
 export class QuestionPageComponent implements OnInit {
 
   questions: Intrebare[] = [];
+  language = 'English';
 
   dificultati: string[] = ['Undefined', 'Junior', 'Intermediary', 'Senior', 'Architect'];
   checkboxCaseSens = false;
@@ -53,6 +54,11 @@ export class QuestionPageComponent implements OnInit {
 
 
   ngOnInit() {
+    if (this.translateService.Language === 'en') {
+      this.language = 'English';
+    } else {
+      this.language = 'German';
+    }
     this.refresh();
   }
 
@@ -150,7 +156,7 @@ export class QuestionPageComponent implements OnInit {
 
   editQuestion(Question: Intrebare): void {
     const user = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
-    if (user.rangAccess === 1) {
+    if (user.rangAcces === 1) {
       this.edit = true;
       this.editableQuestion = Question;
     } else {
@@ -168,7 +174,7 @@ export class QuestionPageComponent implements OnInit {
 
   deleteQuestion(Question: Intrebare): void {
     const user = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
-    if (user.rangAccess === 1) {
+    if (user.rangAcces === 1) {
       this.backend.deleteQuestion(Question.idIntrebare).subscribe(res => {
         alert('Delete successful');
         this.refresh();

@@ -34,7 +34,9 @@
           </tr>
           <tr *ngFor="let answer of question.raspuns">
             <td>
-              <span *ngFor="let traducere of answer.traduceri">{{traducere.enunt}}</span>
+              <span *ngFor="let traducere of answer.traduceri">
+                <div *ngIf="language === traducere.limba">{{traducere.enunt}}</div>
+              </span>
 
             </td>
             <td>{{answer.valoareAdevar}}</td>

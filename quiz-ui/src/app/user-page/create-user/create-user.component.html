@@ -7,7 +7,7 @@
 <input class="w3-input w3-border" type="password" [(ngModel)]="password" placeholder="Password">
 <br>
 <label>{{this.translateService.GetTranslations("lbl.ConfirmPassword")}}:</label>
-<input class="w3-input w3-border" type="password" [(ngModel)]="confirmpassword" placeholder="ConfirmPassword">
+<input class="w3-input w3-border" type="password" [(ngModel)]="confirmpassword" placeholder="Confirm Password">
 <br>
 
 <button class="w3-btn w3-green w3-ripple" [disabled]="error || incomplete" (click)="createUser()">&#10004; {{this.translateService.GetTranslations("lbl.CreateUser")}}
